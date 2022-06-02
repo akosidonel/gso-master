@@ -175,76 +175,77 @@ include('../database/databaseConnection.php');
           </button>
           </div>
           <div class="modal-body">
-          <form method="POST">
+          <form method="POST" id="inventory_update">
       <div class="form-row">
+        <input type="hidden" id="InvId" name="InvId" >
         <div class="form-group col-md-6">
           <label >P.A.R Number</label>
-          <input type="text" class="form-control" id="par">
+          <input type="text" class="form-control" id="par" name="par">
         </div>
     <div class="form-group col-md-6">
       <label >Date Aquired</label>
-      <input type="text" class="form-control" id="date">
+      <input type="text" class="form-control" id="date" name="date">
     </div>
   </div>
   <div class="form-group">
     <label >Status</label>
-    <input type="text" class="form-control" id="status">
+    <input type="text" class="form-control" id="status" name="status">
   </div>
   <div class="form-group">
     <label >Quantity</label>
-    <input type="text" class="form-control" id="quantity">
+    <input type="text" class="form-control" id="quantity" name="quantity">
   </div>
   <div class="form-group">
     <label >Item</label>
-    <input type="text" class="form-control" id="item">
+    <input type="text" class="form-control" id="item" name="item">
   </div>
   <div class="form-group">
     <label >Description</label>
-    <textarea class="form-control" id="description" rows="4"></textarea>
+    <textarea class="form-control" id="description" name="descrption" rows="4"></textarea>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label >Unit Value</label>
-      <input type="text" class="form-control" id="uvalue">
+      <input type="text" class="form-control" id="uvalue" name="uvalue">
     </div>
     <div class="form-group col-md-6">
       <label >Total Value</label>
-      <input type="text" class="form-control" id="tvalue">
+      <input type="text" class="form-control" id="tvalue" name="tvalue">
     </div>
     </div>
     <div class="form-row">
     <div class="form-group col-md-6">
       <label >Department</label>
-      <input type="text" class="form-control" id="department">
+      <input type="text" class="form-control" id="department" name="department">
     </div>
     <div class="form-group col-md-6">
       <label >End User</label>
-      <input type="text" class="form-control" id="enduser">
+      <input type="text" class="form-control" id="enduser" name="enduser">
     </div>
     </div>
     <div class="form-row">
     <div class="form-group col-md-6">
       <label >Account Code</label>
-      <input type="text" class="form-control" id="acode">
+      <input type="text" class="form-control" id="acode" name="acode">
     </div>
     <div class="form-group col-md-6">
       <label >Supplier</label>
-      <input type="text" class="form-control" id="supplier">
+      <input type="text" class="form-control" id="supplier" name="supplier">
     </div>
     </div>
     <div class="form-row">
     <div class="form-group col-md-6">
       <label >P.O</label>
-      <input type="text" class="form-control" id="po">
+      <input type="text" class="form-control" id="po" name="po">
     </div>
     <div class="form-group col-md-6">
       <label >O.B.R</label>
-      <input type="text" class="form-control" id="obr">
+      <input type="text" class="form-control" id="obr" name="obr">
     </div>
     </div>
       <div class="form-group">
             <label >Remarks</label>
-            <textarea class="form-control" id="remarks" rows="2"></textarea>
+            <textarea class="form-control" id="remarks" name="remarks" rows="2"></textarea>
       </div>
       </div>
           <div class="modal-footer">
@@ -390,6 +391,7 @@ $(function(){
           if(res.status==422){
             alert(res.message);
           }else if(res.status == 200){
+            $('#InvId').val(res.data.id);
             $('#par').val(res.data.par_number);
             $('#date').val(res.data.date_aquired);
             $('#status').val(res.data.status);
@@ -442,7 +444,7 @@ $(function(){
         }
       });
   });
-  $(document).on('submit','',function(e){
+  $(document).on('submit','#inventory_update',function(e){
     e.preventDefault();
 
     var fd = new FormData(this);
@@ -455,7 +457,17 @@ $(function(){
       processData: false,
       contentType: false,
       success: function(response){
+        var res = jQuery.parseJSON(response);
 
+        if(res.status == 422){
+              $('#errorMessage').removeClass('d-none');
+              $('#errorMessage').text(res.message);
+            }else if(res.status == 200 ){
+              $('#errorMessage').addClass('d-none');
+              $('#editInModal').modal('hide');
+              $('#inventory_update')[0].reset();
+              $('#example1').load(location.href + " #example1");
+            }
       }
     }); 
   });

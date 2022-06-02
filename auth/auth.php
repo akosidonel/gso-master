@@ -294,8 +294,56 @@ if(isset($_GET['invid'])){
     }
 }
 
-if(isset($_POST[''])){
-    
+if(isset($_POST['update_inventory'])){
+    $InvId = mysqli_real_escape_string($conn, $_POST['InvId']);
+    $par = mysqli_real_escape_string($conn, $_POST['par']);
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $status = mysqli_real_escape_string($conn, $_POST['status']);
+    $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
+    $item = mysqli_real_escape_string($conn, $_POST['item']);
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
+    $uvalue = mysqli_real_escape_string($conn, $_POST['uvalue']);
+    $tvalue = mysqli_real_escape_string($conn, $_POST['tvalue']);
+    $department = mysqli_real_escape_string($conn, $_POST['department']);
+    $enduser = mysqli_real_escape_string($conn, $_POST['enduser']);
+    $acode = mysqli_real_escape_string($conn, $_POST['acode']);
+    $supplier = mysqli_real_escape_string($conn, $_POST['supplier']);
+    $po = mysqli_real_escape_string($conn, $_POST['po']);
+    $obr = mysqli_real_escape_string($conn, $_POST['obr']);
+
+    if($InvId == NULL || $par == NULL || $date == NULL || $par == NULL || $status == NULL || $quantity == NULL || $item == NULL || $description == NULL || $uvalue == NULL || $tvalue == NULL || $department == NULL || $enduser == NULL || $acode == NULL || $supplier == NULL || $po == NULL || $obr== NULL)
+    {
+        $res = [
+            'status' => 422,
+            'message' => 'All fields are required!.'
+        ];
+        echo json_encode($res);
+        return false;
+
+    }
+   
+    $query = "UPDATE general_fund SET id ='$InvId', item = '$item', description = '$description', par_number = '$par',
+    unit_value = '$uvalue',total_value = '$tvalue' ,date_aquired = '$date',quantity = '$quantity',end_user = '$enduser',
+    account_code = '$acode',department = '$department',supplier = '$supplier',purchase_order='$po',obr_number = '$obr' WHERE id = '$InvId' ";
+
+    $results = mysqli_query($conn, $query);
+
+    if($results){
+        $res = [
+            'status' => 200,
+            'message' => 'Updated succesfully!'
+        ];
+        echo json_encode($res);
+        return false;  
+    }else{
+        $res = [
+            'status' => 500,
+            'message' => 'opps..something went wrong..'
+        ];
+        echo json_encode($res);
+        return false;  
+    }
+
 }
 
 
