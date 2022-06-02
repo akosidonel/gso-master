@@ -311,19 +311,9 @@ if(isset($_POST['update_inventory'])){
     $po = mysqli_real_escape_string($conn, $_POST['po']);
     $obr = mysqli_real_escape_string($conn, $_POST['obr']);
 
-    if($InvId == NULL || $par == NULL || $date == NULL || $par == NULL || $status == NULL || $quantity == NULL || $item == NULL || $description == NULL || $uvalue == NULL || $tvalue == NULL || $department == NULL || $enduser == NULL || $acode == NULL || $supplier == NULL || $po == NULL || $obr== NULL)
-    {
-        $res = [
-            'status' => 422,
-            'message' => 'All fields are required!.'
-        ];
-        echo json_encode($res);
-        return false;
-
-    }
    
-    $query = "UPDATE general_fund SET id ='$InvId', item = '$item', description = '$description', par_number = '$par',
-    unit_value = '$uvalue',total_value = '$tvalue' ,date_aquired = '$date',quantity = '$quantity',end_user = '$enduser',
+    $query = "UPDATE general_fund SET item = '$item', description = '$description', par_number = '$par',
+    unit_value = '$uvalue',total_value = '$tvalue',date_aquired = '$date',quantity = '$quantity',end_user = '$enduser',
     account_code = '$acode',department = '$department',supplier = '$supplier',purchase_order='$po',obr_number = '$obr' WHERE id = '$InvId' ";
 
     $results = mysqli_query($conn, $query);

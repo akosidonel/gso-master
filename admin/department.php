@@ -77,17 +77,13 @@ include('../database/databaseConnection.php');
               <div class="alert alert-warning d-none"></div>
 
                 <div class="card-body">
-                  <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">Department Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="deptname" id="deptname" placeholder="Department name">
-                    </div>
+                  <div class="form-group">
+                    <label>Department Name</label>
+                      <input type="text" class="form-control" name="deptname" id="deptname" placeholder="Department name">  
                   </div>
-                  <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">Code</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="deptcode" id="deptcode" placeholder="Code">
-                    </div>
+                  <div class="form-group ">
+                    <label>Department Code</label>
+                      <input type="text" class="form-control" name="deptcode" id="deptcode" placeholder="Department Code">   
                   </div>   
                 </div>
                 <!-- /.card-body -->
@@ -223,6 +219,36 @@ $(function(){
         "responsive": true, "lengthChange": false, "autoWidth": false
       })//Page specific script
       $('[data-toggle="popover"]').popover()
+
+      $('#dept_form').validate({
+          rules:{
+            deptname:{
+              required:true
+            },
+            deptcode:{
+              required:true
+            }
+          },
+          messages:{
+            deptname:{
+              required: "Please enter department name"
+            },
+            deptcode:{
+              required: "Please enter department code"
+            }
+          },
+          errorElement: 'span',
+            errorPlacement: function (error, element) {
+              error.addClass('invalid-feedback');
+              element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+              $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+              $(element).removeClass('is-invalid');
+            }
+      });
 });
 </script>
 <script>

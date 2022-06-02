@@ -175,7 +175,7 @@ include('../database/databaseConnection.php');
           </button>
           </div>
           <div class="modal-body">
-          <form method="POST" id="inventory_update">
+          <form method="POST" id="inventory_update" enctype="multipart/form-data">
       <div class="form-row">
         <input type="hidden" id="InvId" name="InvId" >
         <div class="form-group col-md-6">
@@ -201,7 +201,7 @@ include('../database/databaseConnection.php');
   </div>
   <div class="form-group">
     <label >Description</label>
-    <textarea class="form-control" id="description" name="descrption" rows="4"></textarea>
+    <textarea class="form-control" id="description" name="description" rows="4"></textarea>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -248,8 +248,9 @@ include('../database/databaseConnection.php');
             <textarea class="form-control" id="remarks" name="remarks" rows="2"></textarea>
       </div>
       </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Update</button>
+          <div class="modal-footer justify-content-between">
+            <button type="submit" class="btn btn-info ">Print</button>
+            <button type="submit" class="btn btn-primary ">Update</button>
             </form>
           </div> 
         </div>
@@ -444,6 +445,7 @@ $(function(){
         }
       });
   });
+
   $(document).on('submit','#inventory_update',function(e){
     e.preventDefault();
 
@@ -452,7 +454,7 @@ $(function(){
 
     $.ajax({
       type: "POST",
-      url: '../auth/auth.php',
+      url: "../auth/auth.php",
       data: fd,
       processData: false,
       contentType: false,
@@ -460,10 +462,8 @@ $(function(){
         var res = jQuery.parseJSON(response);
 
         if(res.status == 422){
-              $('#errorMessage').removeClass('d-none');
               $('#errorMessage').text(res.message);
             }else if(res.status == 200 ){
-              $('#errorMessage').addClass('d-none');
               $('#editInModal').modal('hide');
               $('#inventory_update')[0].reset();
               $('#example1').load(location.href + " #example1");

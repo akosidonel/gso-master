@@ -235,9 +235,9 @@ include('../database/databaseConnection.php');
                             <td><?=$row['contact'] ?></td>
                             <td><?=$row['role'] ?></td>
                             <td><?php $stats=$row['status']; if($stats == 1){?>
-                                                      <span style="color: green">Active</span>
+                                                      <span style="color: green">Online</span>
                                                           <?php } else { ?>
-                                                          <span style="color: red">Suspended</span>
+                                                          <span style="color: red">Offline</span>
                                                     <?php } ?>
                           </td>
                             <td class="text-center">
