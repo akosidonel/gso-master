@@ -7,7 +7,7 @@ include('../database/databaseConnection.php');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Activity Log | GSO</title>
+  <title>Return Item | GSO</title>
 
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,12 +39,12 @@ include('../database/databaseConnection.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Page Under Construction!</h1>
+            <h1>Return Item</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Activity log</li>
+              <li class="breadcrumb-item active">Return Item</li>
             </ol>
           </div>
         </div>
@@ -54,21 +54,51 @@ include('../database/databaseConnection.php');
    
     <section class="content"> <!-- Main content -->
 
-    <div class="error-page">
-  
-        <div class="error-content">
-          <h3><i class="fas fa-tools text-secondary"></i> Coming soon!</h3>
-
-          <p>
-            We are working hard on it & the site may go live very soon.
-            Meanwhile, you may <a href="dashboard.php">return to dashboard</a>
-          </p>
+    <div class="card"> <!-- Default box -->
+        <div class="card-header">
+          <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; List of returned items</h3>
         </div>
+        <div class="card-body">
+        <table id="example1" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                  <th>ID</th>
+                    <th>ITEM</th>    
+                    <th>DESCRIPTION</th>
+                    <th>P.A.R NUMBER</th>
+                    <th>UNIT VALUE</th>
+                    <th>TOTAL VALUE</th>
+                    <th>DATE</th>
+                    <th>QTY</th>
+                    <th>END USER</th>
+                    <th>ACCOUNT CODE</th>
+                    <th>ACTION</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                  <th>ID</th>
+                    <th>ITEM</th>    
+                    <th>DESCRIPTION</th>
+                    <th>P.A.R NUMBER</th>
+                    <th>UNIT VALUE</th>
+                    <th>TOTAL VALUE</th>
+                    <th>DATE</th>
+                    <th>QTY</th>
+                    <th>END USER</th>
+                    <th>ACCOUNT CODE</th>
+                    <th>ACTION</th>
+                  </tr>
+                  </tfoot>
+                </table>
+
+        </div>
+        <!-- /.card-body -->
       </div>
-      <!-- /.error-page -->
-
-
-
+      <!-- /.card -->
 
     </section><!-- /.content -->
     
@@ -91,3 +121,13 @@ include('../database/databaseConnection.php');
 <script src="../assets/plugins/jquery-validation/additional-methods.min.js"></script>
 <script src="../assets/plugins/popper/popper.min.js"></script>
 <script src="../assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+ 
+<script>
+$(function(){ 
+    $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false
+      })//Page specific script
+      $('[data-toggle="popover"]').popover()
+
+});
+</script>

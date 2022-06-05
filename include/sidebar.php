@@ -87,7 +87,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="../admin/return-item.php" class="nav-link">
                       <i class="far fa-folder-open nav-icon"></i>
                       <p>Return Item</p>
                     </a>
@@ -128,7 +128,7 @@
                 </ul>   
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="../admin/archive.php" class="nav-link">
                   <i class="far fa-file-archive nav-icon"></i>
                   <p>Archive</p>
                 </a>

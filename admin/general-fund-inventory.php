@@ -511,7 +511,7 @@ $(document).on('click','.arcInv', function(e){
       type: "POST",
       url: "../auth/auth.php",
       data:{
-        'return_inv': true,
+        'archive_inv': true,
         'arcInv': arcInv
       },
       success:function(response){
