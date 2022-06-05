@@ -308,8 +308,8 @@ include('../database/databaseConnection.php');
                           <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52"><i class="fas fa-bars" data-toggle="popover" data-content="Actions" data-trigger="hover"></i></button>
                     <div class="dropdown-menu" role="menu">
                       <a href="#" class="dropdown-item editInv" data-toggle="modal" data-target="#editInModal" data-value="<?=$row['id']; ?>" ><i class="fas fa-edit"></i>&nbsp; Edit</a>
-                      <a href="#" class="dropdown-item"><i class="fas fa-box-open"></i>&nbsp; Return item</a>
-                      <a href="#" class="dropdown-item"><i class="fas fa-archive"></i>&nbsp;&nbsp;  Archive</a>
+                      <a href="#" class="dropdown-item retInv" data-value="<?=$row['id']; ?>"><i class="fas fa-box-open"></i>&nbsp; Return item</a>
+                      <a href="#" class="dropdown-item arcInv" data-value="<?=$row['id']; ?>"><i class="fas fa-archive"></i>&nbsp;&nbsp;  Archive</a>
                     </div>
                   </div>
                       </td>
@@ -471,4 +471,61 @@ $(function(){
       }
     }); 
   });
+
+$(document).on('click','.retInv', function(e){
+  e.preventDefault();
+
+  if(confirm("Return item to GSO?")){
+
+    var retInv = $(this).data("value");
+
+    $.ajax({
+      type: "POST",
+      url: "../auth/auth.php",
+      data:{
+        'return_inv': true,
+        'retInv': retInv
+      },
+      success:function(response){
+        var res = jQuery.parseJSON(response);
+              if(res.status == 500){
+                alert(res.message);
+              }else{
+                alert(res.message);
+
+                $('#example1').load(location.href + " #example1");
+              }
+          }
+    });
+  }
+});
+
+$(document).on('click','.arcInv', function(e){
+  e.preventDefault();
+
+  if(confirm("Are you sure this item is for Disposal?")){
+
+    var arcInv = $(this).data("value");
+
+    $.ajax({
+      type: "POST",
+      url: "../auth/auth.php",
+      data:{
+        'return_inv': true,
+        'arcInv': arcInv
+      },
+      success:function(response){
+        var res = jQuery.parseJSON(response);
+              if(res.status == 500){
+                alert(res.message);
+              }else{
+                alert(res.message);
+
+                $('#example1').load(location.href + " #example1");
+              }
+          }
+    });
+  }
+});
+
 </script>

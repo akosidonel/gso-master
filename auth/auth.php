@@ -264,6 +264,32 @@ if(isset($_POST['delete_dept'])){
     }
 }
 
+//return to inventory
+if(isset($_POST['return_inv'])){
+
+    $rinv = mysqli_real_escape_string($conn, $_POST['retInv']);
+
+    $sql ="INSERT INTO return_item SELECT * FROM general_fund WHERE id = '$rinv'; DELETE FROM general_fund WHERE id = '$rinv'";
+    $query = mysqli_multi_query($conn, $sql);
+
+    if($query){
+        $res = [
+            'status' => 200,
+            'message' => 'Succesfully returned!'
+        ];
+        echo json_encode($res);
+        return false;  
+    }else{
+        $res = [
+            'status' => 500,
+            'message' => 'opps..something went wrong..'
+        ];
+        echo json_encode($res);
+        return false;  
+    }
+
+}
+
 //fetch inventory details
 if(isset($_GET['invid'])){
     
@@ -335,6 +361,8 @@ if(isset($_POST['update_inventory'])){
     }
 
 }
+
+
 
 
 ?>
