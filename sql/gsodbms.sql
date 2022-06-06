@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2022 at 01:10 PM
+-- Generation Time: Jun 06, 2022 at 10:09 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -20,6 +20,39 @@ SET time_zone = "+00:00";
 --
 -- Database: `gsodbms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `archive`
+--
+
+CREATE TABLE `archive` (
+  `id` int(11) NOT NULL,
+  `item` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `par_number` varchar(255) NOT NULL,
+  `unit_value` varchar(255) NOT NULL,
+  `total_value` varchar(255) NOT NULL,
+  `date_aquired` varchar(255) NOT NULL,
+  `quantity` varchar(255) NOT NULL,
+  `end_user` varchar(255) NOT NULL,
+  `account_code` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `department_code` varchar(255) NOT NULL,
+  `supplier` varchar(255) NOT NULL,
+  `purchase_order` varchar(255) NOT NULL,
+  `obr_number` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `archive`
+--
+
+INSERT INTO `archive` (`id`, `item`, `description`, `par_number`, `unit_value`, `total_value`, `date_aquired`, `quantity`, `end_user`, `account_code`, `department`, `department_code`, `supplier`, `purchase_order`, `obr_number`, `status`) VALUES
+(347, 'Projector', 'Projector - 3200 ANSI Lumens, 3LCD Technology Projector with HDMI XGA (1024 x 768* with 70\" x 70\" tripod projector screen (EPSON EB-X41 ESP) SN: X4HW9600062', '19 - 129', '68,900.00', '68,900.00', '6/3/2019', '1', 'Leonel Valenzuela', '221', 'B.A.C', '8', 'Brighter Stars Trading', '', '', ''),
+(4, 'Internal Harddrive', '1TB sky Hawk Surveillance 3.5 SATA 6GB/s', '21-3246-3249', '11,400.00', '45,600.00', '12/24/2021', '4', 'Jose O. Nariz', '223', 'Accounting Office', '2', 'Beamly Consumer Goods Trading', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -63,7 +96,7 @@ CREATE TABLE `general_fund` (
   `supplier` varchar(255) NOT NULL,
   `purchase_order` varchar(255) NOT NULL,
   `obr_number` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
+  `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -71,9 +104,6 @@ CREATE TABLE `general_fund` (
 --
 
 INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_value`, `total_value`, `date_aquired`, `quantity`, `end_user`, `account_code`, `department`, `department_code`, `supplier`, `purchase_order`, `obr_number`, `status`) VALUES
-(2, 'Aircon', 'Koppel - Airconditioner 3. OTR Floor Mounted inverter with Installation, Indoor SN:3400852150114150810247,SN:3400852150114150810059, Outdoor SN:340D727420118180870048,SN:340D727420118180870109', '21-3243-3244', '264,400.00', '528,800.00', '12/24/2021', '2', 'Jose O. Nariz', '221', 'Accounting Office', '2', 'Beamly Consumer Goods Trading', '', '', ''),
-(3, '', '9Synology DS420+4 Bay Distation NAS (Diskless)', '21-3245', '80,400.00', '80,400.00', '12/24/2021', '1', 'Jose O. Nariz', '223', 'Accounting Office', '2', 'Beamly Consumer Goods Trading', '', '', ''),
-(4, 'Internal Harddrive', '1TB sky Hawk Surveillance 3.5 SATA 6GB/s', '21-3246-3249', '11,400.00', '45,600.00', '12/24/2021', '4', 'Jose O. Nariz', '223', 'Accounting Office', '2', 'Beamly Consumer Goods Trading', '', '', ''),
 (5, 'Copier', 'Gestetner Digital Full Color Copier Model M2701 SN: 328M1530018', '21-3250', '169,380.00', '169,380.00', '12/24/2021', '1', 'Guilermo Pilar', '223', 'Accounting Office', '2', 'Philippine Duplicators Inc.', '', '', ''),
 (6, 'Aircon', 'Aircon wall mounted 2.5HP super inverter with installation dismantle CARRIER SN: 02300402', '20 - 2012', '186,900.00', '186,900.00', '9/3/2020', '1', 'Luisa D. Espinas', '221', 'Accounting Office', '2', 'Multi Bliss Office & School Supplies Trading', '', '', ''),
 (7, 'Chair', 'Executive swivel chair with arm and backrest', '19 - 5020', '32,325.00', '32,325.00', '10/3/2019', '1', 'Maria Corazon H. Albores', '222', 'Accounting Office', '2', 'Lemon N Lime Essentials Inc.', '', '', ''),
@@ -286,12 +316,12 @@ INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_val
 (214, 'Computer package', 'Dell Inspiron 530 S MONITOR SN: CN-OF572H-72872-861-1A3M-A01 CPU- 889ZWIS', '7082', '119,895.00', '119,895.00', '10/27/2008', '1', 'Ma. Lorna G. David', '223', 'Accounting Office', '2', '', '', '', ''),
 (215, 'Computer Set', 'M-04BS CPU SN: H7VOV1S ', '7089', '149,900.00', '149,900.00', '10/27/2008', '1', 'Francisco Gaddi', '223', 'Accounting Office', '2', '', '', '', ''),
 (216, 'UPS', 'Tornado Untirruptible Power System mphoenix 650va SN: 816000183', '7100', '6,200.00', '6,200.00', '10/27/2008', '1', 'Jacqueline B. Aguilar', '223', 'Accounting Office', '2', '', '', '', ''),
-(217, 'Printer', 'Epson LX-300+II SN: G8NY093466', '7101', '14,400.00', '14,400.00', '10/27/2008', '1', 'Jacqueline B. Aguilar', '223', 'Accounting Office', '2', '', '', '', '');
-INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_value`, `total_value`, `date_aquired`, `quantity`, `end_user`, `account_code`, `department`, `department_code`, `supplier`, `purchase_order`, `obr_number`, `status`) VALUES
+(217, 'Printer', 'Epson LX-300+II SN: G8NY093466', '7101', '14,400.00', '14,400.00', '10/27/2008', '1', 'Jacqueline B. Aguilar', '223', 'Accounting Office', '2', '', '', '', ''),
 (218, 'UPS', 'Tornado Uninterruptible Power System mphoenix SN: 81600181', '7103', '6,200.00', '6,200.00', '10/27/2008', '1', 'Brumme Baral', '223', 'Accounting Office', '2', '', '', '', ''),
 (219, 'UPS', 'Tornado UPS SN: 81600301', '7107', '6,200.00', '6,200.00', '10/27/2008', '1', 'MA. EVELYN VIRATA- ADMIN. OFFICER II', '223', 'Accounting Office', '2', '', '', '', ''),
 (220, 'Printer', 'Epson LX-300+II SN: G8NY092267', '7094', '14,400.00', '14,400.00', '10/27/2008', '1', 'EDEL ARVIN VALERO- ADMIN. AIDE IV', '223', 'Accounting Office', '2', '', '', '', ''),
-(221, 'UPS', 'Tornado UPS SN: 81600182', '7095', '6,200.00', '6,200.00', '10/27/2008', '1', 'EDEL ARVIN VALERO- ADMIN. AIDE IV', '223', 'Accounting Office', '2', '', '', '', ''),
+(221, 'UPS', 'Tornado UPS SN: 81600182', '7095', '6,200.00', '6,200.00', '10/27/2008', '1', 'EDEL ARVIN VALERO- ADMIN. AIDE IV', '223', 'Accounting Office', '2', '', '', '', '');
+INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_value`, `total_value`, `date_aquired`, `quantity`, `end_user`, `account_code`, `department`, `department_code`, `supplier`, `purchase_order`, `obr_number`, `status`) VALUES
 (222, 'UPS', 'Tornado UPS SN: 81600302', '7096', '6,200.00', '6,200.00', '10/27/2008', '1', 'NIMROD YBERA- ACCOUNTANT I', '223', 'Accounting Office', '2', '', '', '', ''),
 (223, 'Printer', 'Epson LX-300+II SN: G8NY093467', '', '14,400.00', '14,400.00', '10/27/2008', '1', 'NIMROD YBERA- ACCOUNTANT I', '223', 'Accounting Office', '2', '', '', '', ''),
 (224, 'Computer package', 'Dell Inspiron 530 S MONITOR SN:  CN-OF572H-72872-861-186M-A01CPU- 299ZWIS', '7080', '119,895.00', '119,895.00', '10/27/2008', '1', 'Fatima Cernal', '223', 'Accounting Office', '2', '', '', '', ''),
@@ -417,7 +447,6 @@ INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_val
 (344, 'Calculator', 'Casio Electronic Calculator Model No. DR 12oL SN: Q 3027078', '', '8,500.00', '8,500.00', '7/24/1995', '1', 'MA. CORAZON ALBORES', '221', 'Accounting Office', '2', '', '', '', ''),
 (345, 'Copier', 'Digital Colored Copier-printer scanner, fax (option)- inclusive of 1CYMK, 1 steel cabinet; lifetime free service warm up time; 21 sec. COPIER IMC2500-ARDF (GESTETNER) SN: 3098RC20160', '19 - 105', '439,726.00', '439,726.00', '6/3/2019', '1', 'Marie Josephine Claire Reyes', '221', 'B.A.C', '', 'Cosed Trading', '', '', ''),
 (346, 'Shredder', 'Shredder Cross - cut shredder shreds 16 sheets per pass into 4 x 38mm cross cut particles (Security level P-4) FELLOWES POWER SHRED', '19 - 130', '44,150.00', '44,150.00', '6/3/2019', '1', 'Anna Liza R. Germano - B.A.C.', '221', 'B.A.C', '', 'Brighter Stars Trading', '', '', ''),
-(347, 'Projector', 'Projector - 3200 ANSI Lumens, 3LCD Technology Projector with HDMI XGA (1024 x 768* with 70\" x 70\" tripod projector screen (EPSON EB-X41 ESP) SN: X4HW9600062', '19 - 129', '68,900.00', '68,900.00', '6/3/2019', '1', 'Leonel Valenzuela', '221', 'B.A.C', '8', 'Brighter Stars Trading', '', '', ''),
 (348, 'Laptop', 'Laptop - 7th generation intel core i5-7200U 2.50GHz (3M cache, up to 3.10 GHz) 1TB 5400 RPM Hard drive 4GB memory 2400MHZ DDR AMD Radeon R5 M430 Graphics w/ 2GB DDR3 14\" HD (1366 x 768) Anti-Glare LED-backlit display (DELL) SN: 87FCZN2', '19 - 128', '79,320.00', '79,320.00', '6/3/2019', '1', 'Anna Liza R. Germano - B.A.C.', '221', 'B.A.C', '8', 'Brighter Stars Trading', '', '', ''),
 (349, 'Laptop', 'Laptop - 7th generation intel core i5-7200U 2.50GHz (3M cache, up to 3.10 GHz) 1TB 5400 RPM Hard drive 4GB memory 2400MHZ DDR AMD Radeon R5 M430 Graphics w/ 2GB DDR3 14\" HD (1366 x 768) Anti-Glare LED-backlit display (DELL) SN: 99GCZN2', '19 - 127', '79,320.00', '79,320.00', '6/3/2019', '1', 'Leonel Valenzuela', '221', 'B.A.C', '8', 'Brighter Stars Trading', '', '', ''),
 (350, 'Printer', 'Printer all in 1 5760 dpi x 1440\" dpi EPSON L3110 SN: X5DY228451', '19 - 124', '17,350.00', '17,350.00', '6/3/2019', '1', 'Anna Liza R. Germano - B.A.C.', '223', 'B.A.C', '8', 'Brighter Star Trading', '', '', ''),
@@ -426,7 +455,6 @@ INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_val
 (353, 'Computer set', 'Computer Set- operating system windows 10 home; i7-7700 processor (8MB cache, up to 3.60 GHz); 1 GB DDR4 2400MHz; hard disk; 1TB GB 7200 + 128GB SSD graphics NVIDIA, GeForce, GTX 1050 2GB DDR5, Optical drive; tray load DVD Drive; Display 23 Monitor S2318H', '18 - 005', '179,500.00', '179,500.00', '6/3/2018', '1', 'Leonel Valenzuela', '223', 'B.A.C', '8', 'Bian-John Office Supplies & Gen. Mdse.', '', '', ''),
 (354, 'Computer set', 'Computer Set- operating system windows 10 home; i7-7700 processor (8MB cache, up to 3.60 GHz); 1 GB DDR4 2400MHz; hard disk; 1TB GB 7200 + 128GB SSD graphics NVIDIA, GeForce, GTX 1050 2GB DDR5, Optical drive; tray load DVD Drive; Display 23 Monitor S2318H', '18 - 004', '179,500.00', '179,500.00', '6/3/2018', '1', 'Jovelyn Villadares', '223', 'B.A.C', '8', 'Bian-John Office Supplies & Gen. Mdse.', '', '', ''),
 (355, 'Computer set', 'Computer Set- operating system windows 10 home; i7-7700 processor (8MB cache, up to 3.60 GHz); 1 GB DDR4 2400MHz; hard disk; 1TB GB 7200 + 128GB SSD graphics NVIDIA, GeForce, GTX 1050 2GB DDR5, Optical drive; tray load DVD Drive; Display 23 Monitor S2318H', '18 - 003', '179,500.00', '179,500.00', '6/3/2018', '1', 'Analyn Quilang', '223', 'B.A.C', '8', 'Bian-John Office Supplies & Gen. Mdse.', '', '', ''),
-(356, 'Push Cart', 'Push Cart 400kg folding and heavy duty', '17 - 2719', '14,900.00', '14,900.00', '11/3/2017', '1', 'Anna Liza R. Germano', '03-990', 'B.A.C', '8', 'Eminence Builders and Traders', '', '', ''),
 (357, 'Typewriter', 'Manual Typewriter 18\" carriage with 3 tabular position ribbon selectro w/ tabulator setting; Line spacing 1/1.5/2/2.5/3; metal casing OLYMPIA SN: 7354853', '17 - 2718', '49,322.40', '49,322.40', '11/3/2017', '1', 'Anna Liza R. Germano', '221', 'B.A.C', '8', 'Eminence Builders and Traders', '', '', ''),
 (358, 'Aircon', 'Airconditioning 2.0 HP window type carrier Model: WCARH024EA SN: 51PMXRACCAR24KEA-HI6PC-0780341; 51PMXRACCAR24KEA-RI6PC-1263805', '17 - 569-570', '78,680.00', '157,360.00', '5/3/2017', '2', 'Anna Liza R. Germano', '221', 'B.A.C', '8', 'Eminence Builders and Traders', '', '', ''),
 (359, 'Printer', 'Printer - Office Inkjet all in one printer CR769A 7610 Multifunction\'s print , fax scan copy and web 4 in 1 SN - CES43KQ03B', '4234', '25,000.00', '25,000.00', '2015', '1', 'Anna Liza R. Germano', '221', 'B.A.C', '8', 'Brighter Star Trading', '', '', ''),
@@ -437,6 +465,52 @@ INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_val
 (364, 'Printer ', 'Printer L120 SN - SMQK10289; SMQK103390; SMQK090692; SMQK090700', '6638 - 6641', '11,488.00', '45,952.00', '2016', '4', 'Anna Liza R. Germano', '', 'B.A.C', '8', '', '', '', 'previous mr issued to Atty. Melanie T. Malaya'),
 (365, 'Projector', 'Projector Model E-S18-SVGA 800x500, 300 Lumens ACER SN - MRJG110073380168B5910', '6647', '46,760.00', '46,760.00', '2016', '1', 'Anna Liza R. Germano', '223', 'B.A.C', '8', 'Brighter Star Trading', '', '', 'previous mr issued to Atty. Melanie T. Malaya'),
 (366, 'Printer ', 'Printer - L110 , 180 Nozzles, black 50 nozzles each color (cyan, magenta, yellow) 50 sheets A4 plain paper 75 mgsm, 10 sh eets premium glossy paper  SN -RADK - 417781 ', '1667', '11,400.00', '11,400.00', '2015', '1', 'Anna Liza R. Germano', '223', 'B.A.C', '8', 'Lemon N\' Lime Essentials INC.', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_history`
+--
+
+CREATE TABLE `item_history` (
+  `id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `end_user` varchar(255) NOT NULL,
+  `department_code` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `return_item`
+--
+
+CREATE TABLE `return_item` (
+  `id` int(11) NOT NULL,
+  `item` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `par_number` varchar(255) NOT NULL,
+  `unit_value` varchar(255) NOT NULL,
+  `total_value` varchar(255) NOT NULL,
+  `date_aquired` varchar(255) NOT NULL,
+  `quantity` varchar(255) NOT NULL,
+  `end_user` varchar(255) NOT NULL,
+  `account_code` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `department_code` varchar(255) NOT NULL,
+  `supplier` varchar(255) NOT NULL,
+  `purchase_order` varchar(255) NOT NULL,
+  `obr_number` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `return_item`
+--
+
+INSERT INTO `return_item` (`id`, `item`, `description`, `par_number`, `unit_value`, `total_value`, `date_aquired`, `quantity`, `end_user`, `account_code`, `department`, `department_code`, `supplier`, `purchase_order`, `obr_number`, `status`) VALUES
+(3, '', '9Synology DS420+4 Bay Distation NAS (Diskless)', '21-3245', '80,400.00', '80,400.00', '12/24/2021', '1', 'Jose O. Nariz', '223', 'Accounting Office', '2', 'Beamly Consumer Goods Trading', '', '', ''),
+(356, 'Push Cart', 'Push Cart 400kg folding and heavy duty', '17 - 2719', '14,900.00', '14,900.00', '11/3/2017', '1', 'Anna Liza R. Germano', '03-990', 'B.A.C', '8', 'Eminence Builders and Traders', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -478,6 +552,12 @@ ALTER TABLE `departments`
 -- Indexes for table `general_fund`
 --
 ALTER TABLE `general_fund`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `return_item`
+--
+ALTER TABLE `return_item`
   ADD PRIMARY KEY (`id`);
 
 --
