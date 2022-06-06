@@ -58,24 +58,83 @@ include('../database/databaseConnection.php');
         <div class="card-header">
           <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; List of returned items</h3>
         </div>
+
+        <div class="modal fade" id="reassign" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Reassignment  Information</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="#" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="inputAddress">End User</label>
+                <input type="text" class="form-control" id="end_user" placeholder="Username">
+              </div> 
+              <div class="form-group">
+                <label for="inputAddress">Department</label>
+                <select id="inputState" class="form-control">
+                  <option selected>Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inputAddress">Department Code</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="Department Code">
+              </div>
+            </div> 
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary">Save changes</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
         <div class="card-body">
         <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                  <th>ID</th>
+                    <th>ID</th>
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
                     <th>UNIT VALUE</th>
-                    <th>TOTAL VALUE</th>
                     <th>DATE</th>
-                    <th>QTY</th>
                     <th>END USER</th>
                     <th>ACCOUNT CODE</th>
                     <th>ACTION</th>
                   </tr>
                   </thead>
                   <tbody>
+                    <?php
+                    $query = "SELECT * FROM return_item";
+                    $results = mysqli_query($conn, $query);
+
+                    if(mysqli_num_rows($results)){
+                      foreach($results as $result){?>
+                        <tr>
+                          <td><?=$result['id']?></td>
+                          <td><?=$result['item']?></td>
+                          <td><?=$result['description']?></td>
+                          <td><?=$result['par_number']?></td>
+                          <td><?=$result['unit_value']?></td>
+                          <td><?=$result['date_aquired']?></td>
+                          <td><?=$result['end_user']?></td>
+                          <td><?=$result['account_code']?></td>
+                          <td>
+                          <button type="submit" value="<?= $result['id']; ?>" class="btn btn-sm btn-success" data-toggle="modal" data-target="#reassign"><i class="fas fa-recycle" data-toggle="popover" data-content="Re-M.R" data-trigger="hover"></i></button>
+                          <button type="submit" value="<?= $result['id']; ?>" class="btn btn-sm btn-danger"><i class="fas fa-archive" data-toggle="popover" data-content="Archive" data-trigger="hover"></i></button>
+                          </td>
+                        </tr>
+                    <?php }}?>
                 
                   </tbody>
                   <tfoot>
@@ -85,9 +144,7 @@ include('../database/databaseConnection.php');
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
                     <th>UNIT VALUE</th>
-                    <th>TOTAL VALUE</th>
                     <th>DATE</th>
-                    <th>QTY</th>
                     <th>END USER</th>
                     <th>ACCOUNT CODE</th>
                     <th>ACTION</th>

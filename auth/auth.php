@@ -269,7 +269,7 @@ if(isset($_POST['return_inv'])){
 
     $rinv = mysqli_real_escape_string($conn, $_POST['retInv']);
 
-    $sql ="INSERT INTO return_item SELECT * FROM general_fund WHERE id = '$rinv'; DELETE FROM general_fund WHERE id = '$rinv'";
+    $sql = "INSERT INTO return_item SELECT * FROM general_fund WHERE id = '$rinv'; DELETE FROM general_fund WHERE id = '$rinv' ";
     $query = mysqli_multi_query($conn, $sql);
 
     if($query){
@@ -287,7 +287,6 @@ if(isset($_POST['return_inv'])){
         echo json_encode($res);
         return false;  
     }
-
 }
 
 //archive items
@@ -316,6 +315,29 @@ if(isset($_POST['archive_inv'])){
 
 }
 
+if(isset($_POST[''])){
+
+    $sql = "INSERT INTO general_fund SELECT * FROM return_item WHERE id =''; UPDATE item_history SET ; DELETE FROM return_item WHERE id = '' ";
+
+    $query = mysqli_multi_query($conn, $sql);
+
+    if($query){
+        $res = [
+            'status' => 200,
+            'message' => 'Succesfully archive!'
+        ];
+        echo json_encode($res);
+        return false;  
+    }else{
+        $res = [
+            'status' => 500,
+            'message' => 'opps..something went wrong..'
+        ];
+        echo json_encode($res);
+        return false;  
+    }
+
+}
 
 
 //fetch inventory details

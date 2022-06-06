@@ -53,60 +53,41 @@ include('../database/databaseConnection.php');
 
    
     <section class="content"> <!-- Main content -->
-
+     
      
       <div class="card"> <!-- Default box -->
         <div class="card-header">
           <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; List of department</h3>
-
           <div class="card-tools">
-          <button type="button" class="btn btn-block bg-gradient-primary btn-sm"  data-toggle="modal" data-target="#addDeptModal"> <i class="fas fa-user-plus"></i>&nbsp; Add Department</button> 
-          <!-- add user modal -->
-          <div class="modal fade" id="addDeptModal">
-            <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <button type="button" class="btn btn-block bg-gradient-primary btn-sm"  data-toggle="modal" data-target="#addItemModal"><i class="fas fa-dolly"></i>&nbsp; Add Item</button> 
+          </div>
+        </div>
+
+        <!-- start modal -->
+        <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Add Department Information</h5>
+              <h5 class="modal-title">Item Information</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form class="form-horizontal" id="dept_form" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
+              
+              
 
-              <div class="alert alert-warning d-none"></div>
-
-                <div class="card-body">
-                  <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">Department Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="deptname" id="deptname" placeholder="Department name">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">Code</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="deptcode" id="deptcode" placeholder="Code">
-                    </div>
-                  </div>   
-                </div>
-                <!-- /.card-body -->
-                </div>
-                  <div class="modal-footer">
-                      <button type="submit" class="btn btn-info">Save</button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
           </div>
-          <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
       </div>
-   
-    </div>
-    </div>
+      <!-- end modal -->
 
 
-
+          
         <div class="card-body">
         <table id="example1" class="table table-bordered table-hover">
                   <thead>
