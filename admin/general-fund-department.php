@@ -74,12 +74,51 @@ include('../database/databaseConnection.php');
               </button>
             </div>
             <div class="modal-body">
-              
-              
+              <!-- form -->
+
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Poperty Number</label>
+                    <input type="email" class="form-control" id="inputEmail4">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Date Aquired</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputAddress">Item</label>
+                  <input type="text" class="form-control" id="inputAddress" placeholder="Item">
+                </div>
+                <div class="form-group">
+                  <label for="inputAddress2">Description</label>
+                <textarea name="" id="" cols="30" class="form-control" rows="3" placeholder="Description"></textarea>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputCity">Unit Value</label>
+                    <input type="text" class="form-control" id="inputCity">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputState">Department</label>
+                    <select id="inputState" class="form-control">
+                      <option selected>Choose...</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="inputZip">End User</label>
+                    <input type="text" class="form-control" id="inputZip">
+                  </div>
+                </div>
+            
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+              </form>
+              <!-- form -->
             </div>
           </div>
         </div>
@@ -137,6 +176,7 @@ include('../database/databaseConnection.php');
 
 
 <script src="../assets/plugins/jquery/jquery.min.js"></script><!-- jQuery -->
+<script src="../assets/plugins/popper/umd/popper.min.js"></script>
 <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script><!-- Bootstrap 4 -->
 <script src="../assets/dist/js/adminlte.min.js"></script><!-- Custom App -->
 <script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script><!-- DataTables  & Plugins -->
@@ -145,7 +185,6 @@ include('../database/databaseConnection.php');
 <script src="../assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../assets/plugins/jquery-validation/jquery.validate.min.js"></script><!-- jquery-validation -->
 <script src="../assets/plugins/jquery-validation/additional-methods.min.js"></script>
-<script src="../assets/plugins/popper/popper.min.js"></script>
 <script src="../assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script>

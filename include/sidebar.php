@@ -35,7 +35,7 @@
         
           <li class="nav-item">
             <a href="../admin/dashboard.php" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fa-solid fa-layer-group text-info"></i>
               <p>
                 Dashboard     
               </p>
@@ -43,7 +43,7 @@
           </li>
           <li class="nav-item">
             <a href="../admin/department.php" class="nav-link">
-            <i class="nav-icon fas fa-building"></i>
+            <i class="nav-icon fas fa-building text-warning"></i>
               <p>
                 Department     
               </p>
@@ -52,7 +52,7 @@
          
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-warehouse"></i>
+            <i class="nav-icon fa-solid fa-cart-flatbed text-success"></i>
               <p>
                 Inventory
                 <i class="right fas fa-angle-left"></i>
@@ -143,13 +143,13 @@
           </li>
           <li class="nav-item">
             <a href="../admin/activity-log.php" class="nav-link">
-              <i class="fas fa-chart-line nav-icon"></i>
+              <i class="fas fa-chart-line nav-icon text-secondary"></i>
               <p>Activity Log</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="fas fa-sign-out-alt nav-icon"></i>
+              <i class="fas fa-sign-out-alt nav-icon text-danger"></i>
               <p>Log Out</p>
             </a>
           </li>

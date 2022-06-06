@@ -210,7 +210,7 @@ include('../database/databaseConnection.php');
 <script src="../assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../assets/plugins/jquery-validation/jquery.validate.min.js"></script><!-- jquery-validation -->
 <script src="../assets/plugins/jquery-validation/additional-methods.min.js"></script>
-<script src="../assets/plugins/popper/popper.min.js"></script>
+<script src="../assets/plugins/popper/umd/popper.min.js"></script>
 <script src="../assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script>
