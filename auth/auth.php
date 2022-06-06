@@ -412,7 +412,42 @@ if(isset($_POST['update_inventory'])){
 
 }
 
+if(isset($_POST['save_item'])){
+    $pr = mysqli_real_escape_string($conn, $_POST['property_number']);
+    $datea = mysqli_real_escape_string($conn, $_POST['datea']);
+    $item = mysqli_real_escape_string($conn, $_POST['item']);
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
+    $uvalue = mysqli_real_escape_string($conn, $_POST['uvalue']);
+    $department = mysqli_real_escape_string($conn, $_POST['department']);
+    $user = mysqli_real_escape_string($conn, $_POST['user']);
+    $acode = mysqli_real_escape_string($conn, $_POST['acode']);
+    $po = mysqli_real_escape_string($conn, $_POST['po']);
+    $obr = mysqli_real_escape_string($conn, $_POST['obr']);
+    $supplier = mysqli_real_escape_string($conn, $_POST['supplier']);
+    $remarks = mysqli_real_escape_string($conn, $_POST['remarks']);
+   
+    $sql = "INSERT INTO general_fund (par_number,item,description,unit_value,date_aquired,account_code,department,supplier,purchase_order,obr_number,status) 
+    VALUES ('$pr','$item','$description','$uvalue','$datea','$acode','$department','$supplier','$po','$obr','$remarks'); INSERT INTO item_history (par_number,end_user,department_code) VALUES ('$pr','$user','$department');";
+    $query = mysqli_multi_query($conn,$sql);
 
+    if($query){
+
+        $res = [
+            'status' => 200,
+            'message' => 'Added successfully!.'
+        ];
+        echo json_encode($res);
+        return false;
+    }else{
+        $res = [
+            'status' => 500,
+            'message' => 'opps..something went wrong..'
+        ];
+        echo json_encode($res);
+        return false;
+    }
+
+}
 
 
 ?>

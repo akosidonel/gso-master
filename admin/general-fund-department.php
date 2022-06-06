@@ -76,43 +76,68 @@ include('../database/databaseConnection.php');
             <div class="modal-body">
               <!-- form -->
 
-              <form>
+              <form id="item_form" method="POST" enctype="multipart/form-data">
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="inputEmail4">Poperty Number</label>
-                    <input type="email" class="form-control" id="inputEmail4">
+                    <label >Property Number</label>
+                    <input type="text" class="form-control" name="property_number" id="property_number" placeholder="Property Number">
                   </div>
                   <div class="form-group col-md-6">
-                    <label for="inputPassword4">Date Aquired</label>
-                    <input type="password" class="form-control" id="inputPassword4">
+                    <label >Date Aquired</label>
+                    <input type="text" class="form-control" name="datea" id="datea" placeholder="Date aquired">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputAddress">Item</label>
-                  <input type="text" class="form-control" id="inputAddress" placeholder="Item">
+                  <label >Item</label>
+                  <input type="text" class="form-control" name="item" id="item" placeholder="Item">
                 </div>
                 <div class="form-group">
-                  <label for="inputAddress2">Description</label>
-                <textarea name="" id="" cols="30" class="form-control" rows="3" placeholder="Description"></textarea>
+                  <label >Description</label>
+                <textarea name="description" id="description" cols="30" class="form-control" rows="3" placeholder="Description"></textarea>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="inputCity">Unit Value</label>
-                    <input type="text" class="form-control" id="inputCity">
+                    <label >Unit Value</label>
+                    <input type="text" class="form-control" name="uvalue" id="uvalue" placeholder="Unit Value">
                   </div>
-                  <div class="form-group col-md-4">
-                    <label for="inputState">Department</label>
-                    <select id="inputState" class="form-control">
+                  <div class="form-group col-md-6">
+                    <label >Department</label>
+                    <select name="department" id="department" class="form-control">
                       <option selected>Choose...</option>
-                      <option>...</option>
+                      <option value="Accounting">Accounting</option>
                     </select>
                   </div>
-                  <div class="form-group col-md-2">
-                    <label for="inputZip">End User</label>
-                    <input type="text" class="form-control" id="inputZip">
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label >End User</label>
+                    <input type="text" class="form-control" name="user" id="user" placeholder="End User">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label >Account code</label>
+                    <input type="text" class="form-control" name="acode" id="acode" placeholder="Account Code">
                   </div>
                 </div>
-            
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label >P.O number</label>
+                    <input type="text" class="form-control" name="po" id="po" placeholder="P.O Number">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label >O.B.R number</label>
+                    <input type="text" class="form-control" name="obr" id="obr" placeholder="O.B.R Number">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label >Supplier</label>
+                    <input type="text" class="form-control" name="supplier" id="supplier" placeholder="Supplier">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label >Remarks</label>
+                    <input type="text" class="form-control" name="remarks" id="remarks" placeholder="Remarks">
+                  </div>
+                </div>
 
             </div>
             <div class="modal-footer">
@@ -195,4 +220,29 @@ $(function(){
       $('[data-toggle="popover"]').popover()
 });
 </script>
- 
+ <script>
+   $(document).on('submit','#item_form',function(e){
+    e.preventDefault();
+    var fd = new FormData(this);
+    fd.append("save_item",true);
+
+    $.ajax({
+      type: "POST",
+      url: "../auth/auth.php",
+      data: fd,
+      processData: false,
+      contentType: false,
+      success: function(response){
+        var res = jQuery.parseJSON(response);
+
+        if(res.status == 422){
+                $('#errorMessage').text(res.message);
+              }else if(res.status == 200 ){
+                $('#addItemModal').modal('hide');
+                $('#item_form')[0].reset();
+                $('#example1').load(location.href + " #example1");
+              }
+      }
+    });
+   });
+ </script>
