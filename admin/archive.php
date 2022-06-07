@@ -67,16 +67,39 @@ include('../database/databaseConnection.php');
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
                     <th>UNIT VALUE</th>
-                    <th>TOTAL VALUE</th>
                     <th>DATE</th>
-                    <th>QTY</th>
-                    <th>END USER</th>
+                    <th>QTY</th>        
                     <th>ACCOUNT CODE</th>
+                    <th>SUPPLIER</th>
                     <th>ACTION</th>
                   </tr>
                   </thead>
                   <tbody>
-                
+    <?php
+    $query = "SELECT * FROM archive";
+    $results = mysqli_query($conn, $query);
+    $cnt = 1;
+    if(mysqli_num_rows($results)){
+      foreach($results as $row ){?>
+
+  <tr>
+    <td><?php echo htmlentities($cnt); ?></td>
+    <td><?=$row['item']?></td>
+    <td><?=$row['description']?></td>
+    <td><?=$row['par_number']?></td>
+    <td><?=$row['unit_value']?></td>
+    <td><?=$row['date_aquired']?></td>
+    <td><?=$row['quantity']?></td>
+    <td><?=$row['account_code']?></td>
+    <td><?=$row['supplier']?></td>
+    <td>
+        <button type="submit" value="<?= $result['']; ?>" class=" btn btn-sm btn-success" data-toggle="modal" data-target="#editDeptModal"><i class="fas fa-undo" data-toggle="popover" data-content="Undo" data-trigger="hover"></i></button>
+        <button type="submit" value="<?= $result['']; ?>" class=" btn btn-sm btn-danger"><i class="fas fa-trash" data-toggle="popover" data-content="Trash" data-trigger="hover"></i></button>
+    </td>
+  </tr>
+
+      <?php $cnt++; }}?>
+
                   </tbody>
                   <tfoot>
                   <tr>
@@ -85,11 +108,10 @@ include('../database/databaseConnection.php');
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
                     <th>UNIT VALUE</th>
-                    <th>TOTAL VALUE</th>
                     <th>DATE</th>
                     <th>QTY</th>
-                    <th>END USER</th>
                     <th>ACCOUNT CODE</th>
+                    <th>SUPPLIER</th>
                     <th>ACTION</th>
                   </tr>
                   </tfoot>
@@ -128,6 +150,5 @@ $(function(){
         "responsive": true, "lengthChange": false, "autoWidth": false
       })//Page specific script
       $('[data-toggle="popover"]').popover()
-
 });
 </script>

@@ -108,7 +108,6 @@ include('../database/databaseConnection.php');
                     <th>P.A.R NUMBER</th>
                     <th>UNIT VALUE</th>
                     <th>DATE</th>
-                    <th>END USER</th>
                     <th>ACCOUNT CODE</th>
                     <th>ACTION</th>
                   </tr>
@@ -127,7 +126,6 @@ include('../database/databaseConnection.php');
                           <td><?=$result['par_number']?></td>
                           <td><?=$result['unit_value']?></td>
                           <td><?=$result['date_aquired']?></td>
-                          <td><?=$result['end_user']?></td>
                           <td><?=$result['account_code']?></td>
                           <td>
                           <button type="submit" value="<?= $result['id']; ?>" class="btn btn-sm btn-success" data-toggle="modal" data-target="#reassign"><i class="fas fa-recycle" data-toggle="popover" data-content="Re-M.R" data-trigger="hover"></i></button>
@@ -145,7 +143,6 @@ include('../database/databaseConnection.php');
                     <th>P.A.R NUMBER</th>
                     <th>UNIT VALUE</th>
                     <th>DATE</th>
-                    <th>END USER</th>
                     <th>ACCOUNT CODE</th>
                     <th>ACTION</th>
                   </tr>
