@@ -268,9 +268,7 @@ include('../database/databaseConnection.php');
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
                     <th>UNIT VALUE</th>
-                    <th>TOTAL VALUE</th>
                     <th>DATE</th>
-                    <th>QTY</th>
                     <th>END USER</th>
                     <th>ACCOUNT CODE</th>
                     <th>ACTION</th>
@@ -282,13 +280,12 @@ include('../database/databaseConnection.php');
                  
                  $did = intval($_GET['dept']);
                  $query = "SELECT departments.deptid,departments.department_code,general_fund.id,general_fund.item,
-                 general_fund.description,general_fund.par_number,general_fund.unit_value,general_fund.total_value,general_fund.date_aquired,
-                 general_fund.quantity,general_fund.end_user,general_fund.account_code,general_fund.department,
-                 general_fund.department_code,general_fund.supplier,general_fund.status 
-                 FROM departments JOIN general_fund ON departments.department_code = general_fund.department_code WHERE departments.deptid = '$did' ";
-                 $results = mysqli_query($conn, $query);
+                 general_fund.description,general_fund.par_number,general_fund.unit_value,general_fund.date_aquired,general_fund.account_code,
+                 general_fund.department_code,general_fund.supplier,item_history.end_user,item_history.par_number
+                 FROM departments FULL OUTER JOIN general_fund ON departments.department_code = general_fund.department_code FULL OUTER JOIN item_history ON general_fund.par_nmuber = item_history.par_number WHERE departments.deptid = '$did' ";
                  $cnt=1;
-                 if(mysqli_num_rows($results)>0){
+                 $results = mysqli_query($conn, $query);
+                 if(mysqli_num_rows($results) > 0){
                     foreach($results as $row){?>
                     <tr>
                       <td><?php echo htmlentities($cnt); ?></td>
@@ -296,9 +293,7 @@ include('../database/databaseConnection.php');
                       <td><?=$row['description']?></td>
                       <td><?=$row['par_number']?></td>
                       <td><?=$row['unit_value']?></td>
-                      <td><?=$row['total_value']?></td>
                       <td><?=$row['date_aquired']?></td>
-                      <td><?=$row['quantity']?></td>
                       <td><?=$row['end_user']?></td>
                       <td><?=$row['account_code']?></td>
                       <td>
@@ -325,9 +320,7 @@ include('../database/databaseConnection.php');
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
                     <th>UNIT VALUE</th>
-                    <th>TOTAL VALUE</th>
                     <th>DATE</th>
-                    <th>QTY</th>
                     <th>END USER</th>
                     <th>ACCOUNT CODE</th>
                     <th>ACTION</th>
