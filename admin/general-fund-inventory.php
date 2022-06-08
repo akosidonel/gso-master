@@ -267,10 +267,8 @@ include('../database/databaseConnection.php');
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
-                    <th>UNIT VALUE</th>
-                    <th>DATE</th>
+                    <th>DEPARTMENT</th>
                     <th>END USER</th>
-                    <th>ACCOUNT CODE</th>
                     <th>ACTION</th>
                   </tr>
                   </thead>
@@ -279,11 +277,10 @@ include('../database/databaseConnection.php');
                  <?php 
                  
                  $did = intval($_GET['dept']);
-                 $query = "SELECT departments.deptid,departments.department_code,general_fund.id,general_fund.item,
-                 general_fund.description,general_fund.par_number,general_fund.unit_value,general_fund.date_aquired,general_fund.account_code,
-                 general_fund.department_code,general_fund.supplier,item_history.end_user,item_history.par_number
-                 FROM departments FULL OUTER JOIN general_fund ON departments.department_code = general_fund.department_code FULL OUTER JOIN item_history ON general_fund.par_nmuber = item_history.par_number WHERE departments.deptid = '$did' ";
-                 $cnt=1;
+                 $query = "SELECT departments.deptid, departments.department_code, departments.department_name, general_fund.id, general_fund.item,
+                 general_fund.description, general_fund.par_number, general_fund.department_code, item_history.par_number, item_history.end_user
+                 FROM departments JOIN general_fund ON departments.department_code = general_fund.department_code JOIN item_history ON general_fund.par_number = item_history.par_number WHERE departments.deptid = '$did' ";
+                 $cnt = 1;
                  $results = mysqli_query($conn, $query);
                  if(mysqli_num_rows($results) > 0){
                     foreach($results as $row){?>
@@ -292,10 +289,8 @@ include('../database/databaseConnection.php');
                       <td><?=$row['item']?></td>
                       <td><?=$row['description']?></td>
                       <td><?=$row['par_number']?></td>
-                      <td><?=$row['unit_value']?></td>
-                      <td><?=$row['date_aquired']?></td>
+                      <td><?=$row['department_name']?></td>
                       <td><?=$row['end_user']?></td>
-                      <td><?=$row['account_code']?></td>
                       <td>
                      
                       <div class="btn-group">
@@ -303,26 +298,24 @@ include('../database/databaseConnection.php');
                           <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52"><i class="fas fa-bars" data-toggle="popover" data-content="Actions" data-trigger="hover"></i></button>
                     <div class="dropdown-menu" role="menu">
                       <a href="#" class="dropdown-item editInv" data-toggle="modal" data-target="#editInModal" data-value="<?=$row['id']; ?>" ><i class="fas fa-edit"></i>&nbsp; Edit</a>
-                      <a href="#" class="dropdown-item retInv" data-value="<?=$row['id']; ?>"><i class="fas fa-box-open"></i>&nbsp; Return item</a>
+                      <a href="#" class="dropdown-item retInv" data-value="<?=$row['par_number']; ?>"><i class="fas fa-box-open"></i>&nbsp; Return item</a>
                       <a href="#" class="dropdown-item arcInv" data-value="<?=$row['id']; ?>"><i class="fas fa-archive"></i>&nbsp;&nbsp;  Archive</a>
                     </div>
                   </div>
                       </td>
                     </tr>
 
-               <?php $cnt++; }}?>
+               <?php $cnt++; } } ?>
 
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>ID</th>
+                    <th>ID</th>
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
-                    <th>UNIT VALUE</th>
-                    <th>DATE</th>
+                    <th>DEPARTMENT</th>
                     <th>END USER</th>
-                    <th>ACCOUNT CODE</th>
                     <th>ACTION</th>
                   </tr>
                   </tfoot>

@@ -270,7 +270,7 @@ if(isset($_POST['return_inv'])){
     $rinv = mysqli_real_escape_string($conn, $_POST['retInv']);
     $status = 0;
 
-    $sql = "UPDATE item_history SET status = '$status' WHERE par_number = '$rinv'; INSERT INTO return_item SELECT * FROM general_fund WHERE id = '$rinv'; DELETE FROM general_fund WHERE id = '$rinv' ";
+    $sql = "UPDATE item_history SET status = '$status' WHERE par_number = '$rinv'; INSERT INTO return_item SELECT * FROM general_fund WHERE par_number = '$rinv'; DELETE FROM general_fund WHERE par_number = '$rinv' ";
     $query = mysqli_multi_query($conn, $sql);
 
     if($query){
@@ -426,10 +426,11 @@ if(isset($_POST['save_item'])){
     $obr = mysqli_real_escape_string($conn, $_POST['obr']);
     $supplier = mysqli_real_escape_string($conn, $_POST['supplier']);
     $remarks = mysqli_real_escape_string($conn, $_POST['remarks']);
+    $departmentCode = 8;
     $status = 1;
    
-    $sql = "INSERT INTO general_fund (par_number,item,description,unit_value,date_aquired,account_code,department,supplier,purchase_order,obr_number,remarks) 
-    VALUES ('$pr','$item','$description','$uvalue','$datea','$acode','$department','$supplier','$po','$obr','$remarks'); INSERT INTO item_history (par_number,end_user,department_code,status) VALUES ('$pr','$user','$department','$status');";
+    $sql = "INSERT INTO general_fund (par_number,item,description,unit_value,date_aquired,account_code,department,department_code,supplier,purchase_order,obr_number,remarks) 
+    VALUES ('$pr','$item','$description','$uvalue','$datea','$acode','$department',$departmentCode,'$supplier','$po','$obr','$remarks'); INSERT INTO item_history (par_number,end_user,department_code,status) VALUES ('$pr','$user','$departmentCode','$status');";
     $query = mysqli_multi_query($conn,$sql);
 
     if($query){

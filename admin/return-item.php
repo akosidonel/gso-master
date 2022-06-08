@@ -71,19 +71,23 @@ include('../database/databaseConnection.php');
             <div class="modal-body">
               <form action="#" method="post" enctype="multipart/form-data">
               <div class="form-group">
+                <label for="inputAddress">P.A.R</label>
+                <input type="text" class="form-control" name="par" id="par" placeholder="Username">
+              </div> 
+              <div class="form-group">
                 <label for="inputAddress">End User</label>
-                <input type="text" class="form-control" id="end_user" placeholder="Username">
+                <input type="text" class="form-control" id="enduser" name="enduser" placeholder="Username">
               </div> 
               <div class="form-group">
                 <label for="inputAddress">Department</label>
-                <select id="inputState" class="form-control">
+                <select id="dept" name="dept" class="form-control">
                   <option selected>Choose...</option>
                   <option>...</option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="inputAddress">Department Code</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Department Code">
+                <input type="text" class="form-control" id="deptcode" name="deptcode" placeholder="Department Code">
               </div>
             </div> 
             <div class="modal-footer">
