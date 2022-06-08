@@ -316,29 +316,38 @@ if(isset($_POST['archive_inv'])){
 
 }
 
-if(isset($_POST[''])){
+//fetch return_item details
+if(isset($_GET['retid'])){
 
-    $sql = "INSERT INTO general_fund SELECT * FROM return_item WHERE id =''; UPDATE item_history SET ; DELETE FROM return_item WHERE id = '' ";
+    $retid = mysqli_real_escape_string($conn, $_GET['retid']);
 
-    $query = mysqli_multi_query($conn, $sql);
+    $sql = "SELECT * FROM return_item WHERE id = '$retid' "; 
+    $query = mysqli_query($conn, $sql);
 
-    if($query){
+    if(mysqli_num_rows($query) == 1){
+
+        $returnItem = mysqli_fetch_array($query);
+
         $res = [
             'status' => 200,
-            'message' => 'Succesfully archive!'
+            'message' => 'Inventory id fetch successfully',
+            'data' => $returnItem
         ];
         echo json_encode($res);
-        return false;  
+        return false; 
+
     }else{
         $res = [
-            'status' => 500,
-            'message' => 'opps..something went wrong..'
+            'status' => 422,
+            'message' => 'No inventory id found'
         ];
         echo json_encode($res);
-        return false;  
+        return false; 
     }
+    
 
 }
+
 
 
 //fetch inventory details
@@ -449,6 +458,11 @@ if(isset($_POST['save_item'])){
         echo json_encode($res);
         return false;
     }
+
+}
+
+//insert and restore item
+if(isset($_POST[''])){
 
 }
 

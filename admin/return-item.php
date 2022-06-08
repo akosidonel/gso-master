@@ -69,10 +69,10 @@ include('../database/databaseConnection.php');
               </button>
             </div>
             <div class="modal-body">
-              <form action="#" method="post" enctype="multipart/form-data">
+              <form action="#" id="ret_form" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="inputAddress">P.A.R</label>
-                <input type="text" class="form-control" name="par" id="par" placeholder="Username">
+                <input type="text" class="form-control" name="par" id="par" placeholder="P.A.R">
               </div> 
               <div class="form-group">
                 <label for="inputAddress">End User</label>
@@ -82,13 +82,12 @@ include('../database/databaseConnection.php');
                 <label for="inputAddress">Department</label>
                 <select id="dept" name="dept" class="form-control">
                   <option selected>Choose...</option>
-                  <option>...</option>
+                  <option value="1">G.S.O</option>
+                  <option value="2">Accounting</option>
+                  <option value="8">B.A.C</option>
                 </select>
               </div>
-              <div class="form-group">
-                <label for="inputAddress">Department Code</label>
-                <input type="text" class="form-control" id="deptcode" name="deptcode" placeholder="Department Code">
-              </div>
+             
             </div> 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary">Save changes</button>
@@ -132,7 +131,7 @@ include('../database/databaseConnection.php');
                           <td><?=$result['date_aquired']?></td>
                           <td><?=$result['account_code']?></td>
                           <td>
-                          <button type="submit" value="<?= $result['id']; ?>" class="btn btn-sm btn-success" data-toggle="modal" data-target="#reassign"><i class="fas fa-recycle" data-toggle="popover" data-content="Re-M.R" data-trigger="hover"></i></button>
+                          <button type="submit" value="<?= $result['id']; ?>" class="editreturn btn btn-sm btn-success" data-toggle="modal" data-target="#reassign"><i class="fas fa-recycle" data-toggle="popover" data-content="Re-M.R" data-trigger="hover"></i></button>
                           <button type="submit" value="<?= $result['id']; ?>" class="btn btn-sm btn-danger"><i class="fas fa-archive" data-toggle="popover" data-content="Archive" data-trigger="hover"></i></button>
                           </td>
                         </tr>
@@ -188,4 +187,47 @@ $(function(){
       $('[data-toggle="popover"]').popover()
 
 });
+</script>
+<script>
+  $(document).on('click','.editreturn',function(){
+      var retid = $(this).val();
+      $.ajax({
+        type:'GET',
+        url: '../auth/auth.php?retid='+ retid,
+        success:function(response){
+            var res = jQuery.parseJSON(response);
+
+            if(res.status == 422){
+              alert(res.message);
+            }else if(res.status == 200){
+              $('#par').val(res.data.par_number);
+              $('#reassign').modal('show');
+        }
+      }
+    });
+  });
+  $(document).on('submit','#ret_form', function(e){
+    e.preventDefault();
+    var fd  = new FormData(this);
+    fd.append("save_item",true);
+
+    $.ajax({
+      type: "POST",
+      url: "../auth/auth.php",
+      data: fd,
+      processData: false,
+      contentType: false,
+      success: function(response){
+        var res = jQuery.parseJSON(response);
+
+        if(res.status == 422){
+                $('#errorMessage').text(res.message);
+              }else if(res.status == 200 ){
+                $('#reassign').modal('hide');
+                $('#ret_form')[0].reset();
+                $('#example1').load(location.href + " #example1");
+              }
+      }
+    });
+  });
 </script>
