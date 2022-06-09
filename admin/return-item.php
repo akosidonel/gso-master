@@ -70,16 +70,17 @@ include('../database/databaseConnection.php');
             </div>
             <div class="modal-body">
               <form action="#" id="ret_form" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="rid" id="rid">
               <div class="form-group">
-                <label for="inputAddress">P.A.R</label>
+                <label >P.A.R</label>
                 <input type="text" class="form-control" name="par" id="par" placeholder="P.A.R">
               </div> 
               <div class="form-group">
-                <label for="inputAddress">End User</label>
+                <label >End User</label>
                 <input type="text" class="form-control" id="enduser" name="enduser" placeholder="Username">
               </div> 
               <div class="form-group">
-                <label for="inputAddress">Department</label>
+                <label >Department</label>
                 <select id="dept" name="dept" class="form-control">
                   <option selected>Choose...</option>
                   <option value="1">G.S.O</option>
@@ -90,7 +91,7 @@ include('../database/databaseConnection.php');
              
             </div> 
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary">Save changes</button>
+              <button type="submit" class="btn btn-secondary">Save changes</button>
               </form>
             </div>
           </div>
@@ -200,6 +201,7 @@ $(function(){
             if(res.status == 422){
               alert(res.message);
             }else if(res.status == 200){
+              $('#rid').val(res.data.id);
               $('#par').val(res.data.par_number);
               $('#reassign').modal('show');
         }
@@ -209,7 +211,7 @@ $(function(){
   $(document).on('submit','#ret_form', function(e){
     e.preventDefault();
     var fd  = new FormData(this);
-    fd.append("save_item",true);
+    fd.append("save_ret",true);
 
     $.ajax({
       type: "POST",
@@ -218,9 +220,10 @@ $(function(){
       processData: false,
       contentType: false,
       success: function(response){
+
         var res = jQuery.parseJSON(response);
 
-        if(res.status == 422){
+        if(res.status == 500){
                 $('#errorMessage').text(res.message);
               }else if(res.status == 200 ){
                 $('#reassign').modal('hide');

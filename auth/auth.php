@@ -379,7 +379,7 @@ if(isset($_GET['invid'])){
         return false; 
     }
 }
-
+//update item
 if(isset($_POST['update_inventory'])){
     $InvId = mysqli_real_escape_string($conn, $_POST['InvId']);
     $par = mysqli_real_escape_string($conn, $_POST['par']);
@@ -462,7 +462,31 @@ if(isset($_POST['save_item'])){
 }
 
 //insert and restore item
-if(isset($_POST[''])){
+if(isset($_POST['save_ret'])){
+    $rid = mysqli_real_escape_string($conn, $_POST['rid']);
+    $par = mysqli_real_escape_string($conn, $_POST['par']);
+    $enduser = mysqli_real_escape_string($conn, $_POST['enduser']);
+    $dept = mysqli_real_escape_string($conn, $_POST['dept']);
+    $status =1;
+
+    $sql = "INSERT INTO item_history (par_number,end_user,department_code,status) VALUES ('$par','$enduser','$dept','$status'); INSERT INTO general_fund SELECT * FROM return_item WHERE id = '$rid' ; DELETE FROM return_item WHERE id = '$rid' ";
+    $query = mysqli_multi_query($conn, $sql);
+
+    if($query){
+        $res = [
+            'status' => 200,
+            'message' => 'Succesfully restore!'
+        ];
+        echo json_encode($res);
+        return false;  
+    }else{
+        $res = [
+            'status' => 500,
+            'message' => 'opps..something went wrong..'
+        ];
+        echo json_encode($res);
+        return false;  
+    }
 
 }
 
