@@ -278,8 +278,8 @@ include('../database/databaseConnection.php');
                  
                  $did = intval($_GET['dept']);
                  $query = "SELECT departments.deptid, departments.department_code, departments.department_name, general_fund.id, general_fund.item,
-                 general_fund.description, general_fund.par_number, general_fund.department_code, item_history.par_number, item_history.end_user
-                 FROM departments JOIN general_fund ON departments.department_code = general_fund.department_code JOIN item_history ON general_fund.par_number = item_history.par_number WHERE departments.deptid = '$did' ";
+                 general_fund.description, general_fund.par_number, general_fund.department_code, item_history.par_number, item_history.end_user , item_history.status
+                 FROM departments JOIN general_fund ON departments.department_code = general_fund.department_code JOIN item_history ON general_fund.par_number = item_history.par_number WHERE departments.deptid = '$did' AND item_history.status = '1' ";
                  $cnt = 1;
                  $results = mysqli_query($conn, $query);
                  if(mysqli_num_rows($results) > 0){
@@ -378,21 +378,21 @@ $(function(){
           if(res.status==422){
             alert(res.message);
           }else if(res.status == 200){
-            $('#InvId').val(res.data.id);
-            $('#par').val(res.data.par_number);
-            $('#date').val(res.data.date_aquired);
-            $('#status').val(res.data.status);
-            $('#quantity').val(res.data.quantity);
-            $('#item').val(res.data.item);
-            $('#description').val(res.data.description);
-            $('#uvalue').val(res.data.unit_value);
-            $('#tvalue').val(res.data.total_value);
-            $('#department').val(res.data.department);
+            $('#InvId').val(res.data.general_fund.id);
+            $('#par').val(res.data.general_fund.par_number);
+            // $('#date').val(res.data.date_aquired);
+            // $('#status').val(res.data.status);
+            // $('#quantity').val(res.data.quantity);
+            // $('#item').val(res.data.item);
+            // $('#description').val(res.data.description);
+            // $('#uvalue').val(res.data.unit_value);
+            // $('#tvalue').val(res.data.total_value);
+            // $('#department').val(res.data.department);
             $('#enduser').val(res.data.end_user);
-            $('#acode').val(res.data.account_code);
-            $('#supplier').val(res.data.supplier);
-            $('#po').val(res.data.purchase_order);
-            $('#obr').val(res.data.obr_number);
+            // $('#acode').val(res.data.account_code);
+            // $('#supplier').val(res.data.supplier);
+            // $('#po').val(res.data.purchase_order);
+            // $('#obr').val(res.data.obr_number);
             $('#editInModal').modal('show');
 
           }

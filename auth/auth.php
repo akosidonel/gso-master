@@ -355,7 +355,9 @@ if(isset($_GET['invid'])){
     
     $invid = mysqli_real_escape_string($conn, $_GET['invid']);
     
-    $sql = "SELECT * FROM general_fund WHERE id = '$invid' LIMIT 1 ";
+    $sql = "SELECT departments.deptid, departments.department_code, departments.department_name, general_fund.id, general_fund.item,
+    general_fund.description, general_fund.par_number, general_fund.department_code, item_history.par_number, item_history.end_user , item_history.status
+    FROM departments JOIN general_fund ON departments.department_code = general_fund.department_code JOIN item_history ON general_fund.par_number = item_history.par_number WHERE departments.deptid = '$invid' AND item_history.status = '1' LIMIT 1 ";
     $query = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($query) == 1){
@@ -462,15 +464,15 @@ if(isset($_POST['save_item'])){
 }
 
 //insert and restore item
-if(isset($_POST['save_ret'])){
+if(isset($_POST['save_retitem'])){
     $rid = mysqli_real_escape_string($conn, $_POST['rid']);
     $par = mysqli_real_escape_string($conn, $_POST['par']);
     $enduser = mysqli_real_escape_string($conn, $_POST['enduser']);
     $dept = mysqli_real_escape_string($conn, $_POST['dept']);
-    $status =1;
+    $stat =1;
 
-    $sql = "INSERT INTO item_history (par_number,end_user,department_code,status) VALUES ('$par','$enduser','$dept','$status'); INSERT INTO general_fund SELECT * FROM return_item WHERE id = '$rid' ; DELETE FROM return_item WHERE id = '$rid' ";
-    $query = mysqli_multi_query($conn, $sql);
+    $sql = "INSERT INTO item_history (par_number,end_user,department_code,status) VALUES ('$par','$enduser','$dept','$stat'); INSERT INTO general_fund SELECT * FROM return_item WHERE id = '$rid'; DELETE FROM return_item WHERE id = '$rid' ";
+    $query = mysqli_multi_query($conn,$sql);
 
     if($query){
         $res = [

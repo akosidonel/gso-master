@@ -186,7 +186,6 @@ $(function(){
         "responsive": true, "lengthChange": false, "autoWidth": false
       })//Page specific script
       $('[data-toggle="popover"]').popover()
-
 });
 </script>
 <script>
@@ -211,7 +210,7 @@ $(function(){
   $(document).on('submit','#ret_form', function(e){
     e.preventDefault();
     var fd  = new FormData(this);
-    fd.append("save_ret",true);
+    fd.append("save_retitem",true);
 
     $.ajax({
       type: "POST",
@@ -224,12 +223,12 @@ $(function(){
         var res = jQuery.parseJSON(response);
 
         if(res.status == 500){
-                $('#errorMessage').text(res.message);
-              }else if(res.status == 200 ){
-                $('#reassign').modal('hide');
-                $('#ret_form')[0].reset();
-                $('#example1').load(location.href + " #example1");
-              }
+            $('#errorMessage').text(res.message);
+          }else if(res.status == 200 ){
+            $('#reassign').modal('hide');
+            $('#ret_form')[0].reset();
+            $('#example1').load(location.href + " #example1");
+        }
       }
     });
   });
