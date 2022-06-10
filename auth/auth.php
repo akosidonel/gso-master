@@ -355,8 +355,7 @@ if(isset($_GET['invid'])){
     
     $invid = mysqli_real_escape_string($conn, $_GET['invid']);
     
-    $sql = "SELECT departments.deptid, departments.department_code, departments.department_name, general_fund.id, general_fund.item,
-    general_fund.description, general_fund.par_number, general_fund.department_code, item_history.par_number, item_history.end_user , item_history.status
+    $sql = "SELECT departments.deptid, general_fund.par_number, general_fund.department_code, item_history.end_user, item_history.par_number
     FROM departments JOIN general_fund ON departments.department_code = general_fund.department_code JOIN item_history ON general_fund.par_number = item_history.par_number WHERE departments.deptid = '$invid' AND item_history.status = '1' LIMIT 1 ";
     $query = mysqli_query($conn, $sql);
 
