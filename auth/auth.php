@@ -353,33 +353,11 @@ if(isset($_GET['retid'])){
 //fetch inventory details
 if(isset($_GET['invid'])){
     
-    $invid = mysqli_real_escape_string($conn, $_GET['invid']);
     
-    $sql = "SELECT departments.deptid, general_fund.par_number, general_fund.department_code, item_history.end_user, item_history.par_number
-    FROM departments JOIN general_fund ON departments.department_code = general_fund.department_code JOIN item_history ON general_fund.par_number = item_history.par_number WHERE departments.deptid = '$invid' AND item_history.status = '1' LIMIT 1 ";
-    $query = mysqli_query($conn, $sql);
-
-    if(mysqli_num_rows($query) == 1){
-
-        $inventory = mysqli_fetch_array($query);
-
-        $res = [
-            'status' => 200,
-            'message' => 'Inventory id fetch successfully',
-            'data' => $inventory
-        ];
-        echo json_encode($res);
-        return false; 
-
-    }else{
-        $res = [
-            'status' => 422,
-            'message' => 'No inventory id found'
-        ];
-        echo json_encode($res);
-        return false; 
-    }
 }
+
+
+
 //update item
 if(isset($_POST['update_inventory'])){
     $InvId = mysqli_real_escape_string($conn, $_POST['InvId']);
@@ -422,7 +400,7 @@ if(isset($_POST['update_inventory'])){
     }
 
 }
-
+//add item
 if(isset($_POST['save_item'])){
     $pr = mysqli_real_escape_string($conn, $_POST['property_number']);
     $datea = mysqli_real_escape_string($conn, $_POST['datea']);
@@ -436,7 +414,7 @@ if(isset($_POST['save_item'])){
     $obr = mysqli_real_escape_string($conn, $_POST['obr']);
     $supplier = mysqli_real_escape_string($conn, $_POST['supplier']);
     $remarks = mysqli_real_escape_string($conn, $_POST['remarks']);
-    $departmentCode = 8;
+    $departmentCode = 2;
     $status = 1;
    
     $sql = "INSERT INTO general_fund (par_number,item,description,unit_value,date_aquired,account_code,department,department_code,supplier,purchase_order,obr_number,remarks) 

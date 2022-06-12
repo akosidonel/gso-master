@@ -59,9 +59,10 @@ include('../database/databaseConnection.php');
         <div class="card-header">
           <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; List of department</h3>
           <div class="card-tools">
-            <button type="button" class="btn btn-block bg-gradient-primary btn-sm"  data-toggle="modal" data-target="#addItemModal"><i class="fas fa-dolly"></i>&nbsp; Add Item</button> 
+            <button type="button" class="btn btn-block bg-gradient-primary btn-sm"  data-toggle="modal" data-target="#sample"><i class="fas fa-dolly"></i>&nbsp; Add Item</button> 
           </div>
         </div>
+
 
         <!-- start modal -->
         <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" data-backdrop="static">
@@ -155,7 +156,7 @@ include('../database/databaseConnection.php');
         <div class="card-body">
         <table id="example1" class="table table-bordered table-hover">
                   <thead>
-                  <tr>
+                  <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th>DEPARTMENT NAME</th>
                     <th>CODE</th>
                   </tr>
@@ -178,7 +179,7 @@ include('../database/databaseConnection.php');
                  
                   </tbody>
                   <tfoot>
-                  <tr>
+                  <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th>DEPARTMENT NAME</th>
                     <th>CODE</th>
                   </tr>

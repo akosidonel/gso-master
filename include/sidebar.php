@@ -137,13 +137,13 @@
           </li>
           <li class="nav-item">
             <a href="../admin/user-management.php" class="nav-link">
-              <i class="fas fa-users-cog nav-icon"></i>
+              <i class="fas fa-users-cog nav-icon text-gray dark"></i>
               <p>User Management</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="../admin/activity-log.php" class="nav-link">
-              <i class="fas fa-chart-line nav-icon text-secondary"></i>
+              <i class="fas fa-chart-line nav-icon text-orange"></i>
               <p>Activity Log</p>
             </a>
           </li>

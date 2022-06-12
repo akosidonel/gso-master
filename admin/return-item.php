@@ -105,7 +105,7 @@ include('../database/databaseConnection.php');
         <div class="card-body">
         <table id="example1" class="table table-bordered table-hover">
                   <thead>
-                  <tr>
+                  <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th>ID</th>
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
@@ -140,8 +140,8 @@ include('../database/databaseConnection.php');
                 
                   </tbody>
                   <tfoot>
-                  <tr>
-                  <th>ID</th>
+                  <tr class="bg-dark text-light bg-gradient bg-opacity-150">
+                    <th>ID</th>
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
@@ -182,7 +182,7 @@ include('../database/databaseConnection.php');
  
 <script>
 $(function(){ 
-    $("#example1").DataTable({
+   $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false
       })//Page specific script
       $('[data-toggle="popover"]').popover()

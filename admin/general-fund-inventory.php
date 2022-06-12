@@ -75,92 +75,22 @@ include('../database/databaseConnection.php');
 
 
         <div class="modal fade" id="viewInModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Item Information</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          </div>
-          <div class="modal-body">
-          <form method="POST">
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label >P.A.R Number</label>
-          <input type="text" class="form-control" id="vpar">
-        </div>
-    <div class="form-group col-md-6">
-      <label >Date Aquired</label>
-      <input type="text" class="form-control" id="vdate">
-    </div>
-  </div>
-  <div class="form-group">
-    <label >Status</label>
-    <input type="text" class="form-control" id="vstatus">
-  </div>
-  <div class="form-group">
-    <label >Quantity</label>
-    <input type="text" class="form-control" id="vquantity">
-  </div>
-  <div class="form-group">
-    <label >Item</label>
-    <input type="text" class="form-control" id="vitem">
-  </div>
-  <div class="form-group">
-    <label >Description</label>
-    <textarea class="form-control" id="vdescription" rows="4"></textarea>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label >Unit Value</label>
-      <input type="text" class="form-control" id="vuvalue">
-    </div>
-    <div class="form-group col-md-6">
-      <label >Total Value</label>
-      <input type="text" class="form-control" id="vtvalue">
-    </div>
-    </div>
-    <div class="form-row">
-    <div class="form-group col-md-6">
-      <label >Department</label>
-      <input type="text" class="form-control" id="vdepartment">
-    </div>
-    <div class="form-group col-md-6">
-      <label >End User</label>
-      <input type="text" class="form-control" id="venduser">
-    </div>
-    </div>
-    <div class="form-row">
-    <div class="form-group col-md-6">
-      <label >Account Code</label>
-      <input type="text" class="form-control" id="vacode">
-    </div>
-    <div class="form-group col-md-6">
-      <label >Supplier</label>
-      <input type="text" class="form-control" id="vsupplier">
-    </div>
-    </div>
-    <div class="form-row">
-    <div class="form-group col-md-6">
-      <label >P.O</label>
-      <input type="text" class="form-control" id="vpo">
-    </div>
-    <div class="form-group col-md-6">
-      <label >O.B.R</label>
-      <input type="text" class="form-control" id="vobr">
-    </div>
-    </div>
-      <div class="form-group">
-            <label >Remarks</label>
-            <textarea class="form-control" id="vremarks" rows="2"></textarea>
-      </div>
-      </div>
-      </form>
-        </div>
-        </div>
-    </div>
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Property Information</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            
+            
 
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
@@ -262,14 +192,14 @@ include('../database/databaseConnection.php');
         <div class="card-body">
         <table id="example1" class="table table-bordered table-hover">
                   <thead>
-                  <tr>
+                  <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th>ID</th>
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
                     <th>DEPARTMENT</th>
                     <th>END USER</th>
-                    <th>ACTION</th>
+                    <th class="text-center">ACTION</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -291,7 +221,7 @@ include('../database/databaseConnection.php');
                       <td><?=$row['par_number']?></td>
                       <td><?=$row['department_name']?></td>
                       <td><?=$row['end_user']?></td>
-                      <td>
+                      <td class="text-center">
                      
                       <div class="btn-group">
                           <button type="button" value="<?=$row['id']?>" class="btn btn-info btn-sm viewIn"  data-toggle="modal" data-target="#viewInModal"><i class="fas fa-eye" data-toggle="popover" data-content="View" data-trigger="hover"></i></button>
@@ -309,14 +239,14 @@ include('../database/databaseConnection.php');
 
                   </tbody>
                   <tfoot>
-                  <tr>
+                  <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th>ID</th>
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
                     <th>DEPARTMENT</th>
                     <th>END USER</th>
-                    <th>ACTION</th>
+                    <th class="text-center">ACTION</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -380,19 +310,19 @@ $(function(){
           }else if(res.status == 200){
             $('#InvId').val(res.data.general_fund.id);
             $('#par').val(res.data.general_fund.par_number);
-            // $('#date').val(res.data.date_aquired);
-            // $('#status').val(res.data.status);
-            // $('#quantity').val(res.data.quantity);
-            // $('#item').val(res.data.item);
-            // $('#description').val(res.data.description);
-            // $('#uvalue').val(res.data.unit_value);
-            // $('#tvalue').val(res.data.total_value);
-            // $('#department').val(res.data.department);
+            $('#date').val(res.data.date_aquired);
+            $('#status').val(res.data.status);
+            $('#quantity').val(res.data.quantity);
+            $('#item').val(res.data.item);
+            $('#description').val(res.data.description);
+            $('#uvalue').val(res.data.unit_value);
+            $('#tvalue').val(res.data.total_value);
+            $('#department').val(res.data.department);
             $('#enduser').val(res.data.end_user);
-            // $('#acode').val(res.data.account_code);
-            // $('#supplier').val(res.data.supplier);
-            // $('#po').val(res.data.purchase_order);
-            // $('#obr').val(res.data.obr_number);
+            $('#acode').val(res.data.account_code);
+            $('#supplier').val(res.data.supplier);
+            $('#po').val(res.data.purchase_order);
+            $('#obr').val(res.data.obr_number);
             $('#editInModal').modal('show');
 
           }
@@ -403,31 +333,10 @@ $(function(){
       var invid = $(this).val();
       $.ajax({
         type: 'GET',
-        url:'../auth/auth.php?invid='+ invid,
+        url:'../auth/auth2.php?invid='+ invid,
         success: function(response){
-
-          var res = jQuery.parseJSON(response);
-
-          if(res.status==422){
-            alert(res.message);
-          }else if(res.status == 200){
-            $('#vpar').val(res.data.par_number);
-            $('#vdate').val(res.data.date_aquired);
-            $('#vstatus').val(res.data.status);
-            $('#vquantity').val(res.data.quantity);
-            $('#vitem').val(res.data.item);
-            $('#vdescription').val(res.data.description);
-            $('#vuvalue').val(res.data.unit_value);
-            $('#vtvalue').val(res.data.total_value);
-            $('#vdepartment').val(res.data.department);
-            $('#venduser').val(res.data.end_user);
-            $('#vacode').val(res.data.account_code);
-            $('#vsupplier').val(res.data.supplier);
-            $('#vpo').val(res.data.purchase_order);
-            $('#vobr').val(res.data.obr_number);
-            $('#viewInModal').modal('show');
-
-          }
+          $('.modal-body').html(response)
+          $('#viewInModal').modal('show')
         }
       });
   });
