@@ -352,7 +352,32 @@ if(isset($_GET['retid'])){
 
 //fetch inventory details
 if(isset($_GET['invid'])){
-    
+
+    $invid = mysqli_real_escape_string($conn, $_GET['invid']);
+    $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.department,general_fund.par_number,general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,item_history.end_user,item_history.status FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number
+    WHERE general_fund.id = '$invid' AND item_history.status = '1' LIMIT 1 ";
+    $query = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($query) == 1){
+
+        $returnItem = mysqli_fetch_array($query);
+
+        $res = [
+            'status' => 200,
+            'message' => 'Inventory id fetch successfully',
+            'data' => $returnItem
+        ];
+        echo json_encode($res);
+        return false; 
+
+    }else{
+        $res = [
+            'status' => 422,
+            'message' => 'No inventory id found'
+        ];
+        echo json_encode($res);
+        return false; 
+    }
     
 }
 

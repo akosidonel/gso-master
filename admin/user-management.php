@@ -209,7 +209,7 @@ include('../database/databaseConnection.php');
         <div class="card-body">
         <table id="example1" class="table table-bordered table-hover">
                   <thead>
-                  <tr>
+                  <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th>EMPID</th>
                     <th>NAME</th>
                     <th>EMAIL</th>
@@ -250,7 +250,7 @@ include('../database/databaseConnection.php');
                       }?>
                   </tbody>
                   <tfoot>
-                  <tr>
+                  <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th>EMPID</th>
                     <th>NAME</th>
                     <th>EMAIL</th>

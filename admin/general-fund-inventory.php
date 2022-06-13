@@ -61,12 +61,12 @@ include('../database/databaseConnection.php');
         <div class="card-header">
           <?php
           $did = intval($_GET['dept']);
-          $sql = "SELECT departments.deptid,departments.department_code,general_fund.department,general_fund.department_code FROM departments JOIN general_fund ON departments.department_code = general_fund.department_code 
-          WHERE departments.deptid = '$did' LIMIT 1 ";
+          $sql = "SELECT * FROM departments  
+          WHERE deptid = '$did' LIMIT 1 ";
           $query = mysqli_query($conn, $sql);
           if(mysqli_num_rows($query)>0){
             foreach($query as $result){?>
-                <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; <?=$result['department']?>&nbsp;Inventory</h3>
+                <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; <?=$result['department_name']?>&nbsp;Inventory</h3>
             <?php }}?>  
         </div>
 
@@ -178,8 +178,7 @@ include('../database/databaseConnection.php');
             <textarea class="form-control" id="remarks" name="remarks" rows="2"></textarea>
       </div>
       </div>
-          <div class="modal-footer justify-content-between">
-            <button type="submit" class="btn btn-info ">Print</button>
+          <div class="modal-footer">
             <button type="submit" class="btn btn-primary ">Update</button>
             </form>
           </div> 
@@ -224,7 +223,7 @@ include('../database/databaseConnection.php');
                       <td class="text-center">
                      
                       <div class="btn-group">
-                          <button type="button" value="<?=$row['id']?>" class="btn btn-info btn-sm viewIn"  data-toggle="modal" data-target="#viewInModal"><i class="fas fa-eye" data-toggle="popover" data-content="View" data-trigger="hover"></i></button>
+                          <button type="button" value="<?=$row['id']?>" class="btn btn-info btn-sm viewIn"  data-toggle="modal" data-target="#viewInModal"><i class="fas fa-eye" data-toggle="popover" data-content="View details" data-trigger="hover"></i></button>
                           <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52"><i class="fas fa-bars" data-toggle="popover" data-content="Actions" data-trigger="hover"></i></button>
                     <div class="dropdown-menu" role="menu">
                       <a href="#" class="dropdown-item editInv" data-toggle="modal" data-target="#editInModal" data-value="<?=$row['id']; ?>" ><i class="fas fa-edit"></i>&nbsp; Edit</a>
@@ -308,8 +307,8 @@ $(function(){
           if(res.status==422){
             alert(res.message);
           }else if(res.status == 200){
-            $('#InvId').val(res.data.general_fund.id);
-            $('#par').val(res.data.general_fund.par_number);
+            $('#InvId').val(res.data.id);
+            $('#par').val(res.data.par_number);
             $('#date').val(res.data.date_aquired);
             $('#status').val(res.data.status);
             $('#quantity').val(res.data.quantity);

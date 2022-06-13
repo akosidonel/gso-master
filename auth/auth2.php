@@ -48,7 +48,7 @@ $invid = mysqli_real_escape_string($conn, $_GET['invid']);
                 <div class="col-sm-4 invoice-col">
                   <b>P.A.R No. :</b> <?php echo $row['par_number']?><br>
                   <b>Purchase order:</b> <?php echo $row['purchase_order']?><br>
-                  <b>Obr No.:</b><?php echo $row['obr_number']?><br>
+                  <b>Obr No.:</b> <?php echo $row['obr_number']?><br>
                   <b>Account code:</b> <?php echo $row['account_code']?>
                 </div>
                 <!-- /.col -->
@@ -67,7 +67,7 @@ $invid = mysqli_real_escape_string($conn, $_GET['invid']);
                 <div class="col-12 table-responsive">
                   <table class="table table-striped">
                     <thead>
-                    <tr>
+                    <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                       <th>No.</th>
                       <th>Previous user</th>
                       <th>Department</th>
