@@ -296,10 +296,10 @@ $(function(){
 </script>
 <script>
   $(document).on('click','.editInv', function(){
-      var invid = $(this).data("value");
+      var editinv = $(this).data("value");
       $.ajax({
         type: 'GET',
-        url:'../auth/auth.php?invid='+ invid,
+        url:'../auth/auth.php?editin='+ editinv,
         success: function(response){
 
           var res = jQuery.parseJSON(response);

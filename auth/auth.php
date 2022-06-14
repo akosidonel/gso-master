@@ -351,9 +351,9 @@ if(isset($_GET['retid'])){
 
 
 //fetch inventory details
-if(isset($_GET['invid'])){
+if(isset($_GET['editinv'])){
 
-    $invid = mysqli_real_escape_string($conn, $_GET['invid']);
+    $invid = mysqli_real_escape_string($conn, $_GET['editinv']);
     $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.department,general_fund.par_number,general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,item_history.end_user,item_history.status FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number
     WHERE general_fund.id = '$invid' AND item_history.status = '1' LIMIT 1 ";
     $query = mysqli_query($conn, $sql);
