@@ -59,7 +59,7 @@ include('../database/databaseConnection.php');
         <div class="card-header">
           <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; List of department</h3>
           <div class="card-tools">
-            <button type="button" class="btn btn-block bg-gradient-primary btn-sm"  data-toggle="modal" data-target="#sample"><i class="fas fa-dolly"></i>&nbsp; Add Item</button> 
+            <button type="button" class="btn btn-block bg-gradient-primary btn-sm"  data-toggle="modal" data-target="#addItemModal"><i class="fas fa-dolly-flatbed"></i>&nbsp; Add Property</button> 
           </div>
         </div>
 
@@ -69,7 +69,7 @@ include('../database/databaseConnection.php');
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Item Information</h5>
+              <h5 class="modal-title">Add Property Information</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -94,7 +94,7 @@ include('../database/databaseConnection.php');
                 </div>
                 <div class="form-group">
                   <label >Description</label>
-                <textarea name="description" id="description" cols="30" class="form-control" rows="3" placeholder="Description"></textarea>
+                <textarea name="description" id="description" cols="30" class="form-control" rows="2" placeholder="Description"></textarea>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
@@ -142,7 +142,7 @@ include('../database/databaseConnection.php');
 
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-secondary"><i class="fas fa-hdd"></i>&nbsp; Print and Save</button>
               </form>
               <!-- form -->
             </div>

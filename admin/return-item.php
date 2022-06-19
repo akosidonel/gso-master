@@ -39,12 +39,12 @@ include('../database/databaseConnection.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Return Item</h1>
+            <h1>Return Property</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Return Item</li>
+              <li class="breadcrumb-item active">Return Property</li>
             </ol>
           </div>
         </div>
@@ -56,7 +56,7 @@ include('../database/databaseConnection.php');
 
     <div class="card"> <!-- Default box -->
         <div class="card-header">
-          <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; List of returned items</h3>
+          <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; List of returned property</h3>
         </div>
 
         <div class="modal fade" id="reassign" tabindex="-1" role="dialog">
@@ -73,7 +73,7 @@ include('../database/databaseConnection.php');
               <input type="hidden" name="rid" id="rid">
               <div class="form-group">
                 <label >P.A.R</label>
-                <input type="text" class="form-control" name="par" id="par" placeholder="P.A.R">
+                <input type="text" class="form-control" name="par" id="par" placeholder="P.A.R" readonly>
               </div> 
               <div class="form-group">
                 <label >End User</label>

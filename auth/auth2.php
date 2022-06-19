@@ -5,7 +5,9 @@ include('../database/databaseConnection.php');
 
 $invid = mysqli_real_escape_string($conn, $_GET['invid']);
 
-    $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.department,general_fund.par_number,general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,item_history.end_user,item_history.status FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number
+    $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.par_number,general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,item_history.end_user,item_history.status,item_history.department_code,departments.department_name,departments.department_code
+    FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number
+    JOIN departments ON item_history.department_code = departments.department_code
     WHERE general_fund.id = '$invid' AND item_history.status = '1' LIMIT 1 ";
     $query = mysqli_query($conn, $sql);
     $cnt = 1;
@@ -41,7 +43,7 @@ $invid = mysqli_real_escape_string($conn, $_GET['invid']);
                   </address>
                   <strong>Department:</strong>
                 <address>
-                <?php echo $row['department']?>
+                <?php echo $row['department_name']?>
                 </address>
                 </div>
                 <!-- /.col -->
@@ -79,7 +81,8 @@ $invid = mysqli_real_escape_string($conn, $_GET['invid']);
 
                     $invid = mysqli_real_escape_string($conn, $_GET['invid']);
 
-                    $sql1 = "SELECT general_fund.id,general_fund.par_number,general_fund.department,general_fund.date_aquired,item_history.par_number,item_history.end_user,item_history.status FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number
+                    $sql1 = "SELECT general_fund.id,general_fund.par_number,general_fund.date_aquired,item_history.par_number,item_history.end_user,item_history.status,item_history.department_code,departments.department_name,departments.department_code
+                    FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number JOIN departments ON item_history.department_code = departments.department_code
                     WHERE general_fund.id = '$invid' AND item_history.status = '0'";
                     $query =mysqli_query ($conn, $sql1);
                     if(mysqli_num_rows($query)>0){
@@ -87,12 +90,14 @@ $invid = mysqli_real_escape_string($conn, $_GET['invid']);
                             <tr>
                                 <td><?php  echo htmlentities($cnt) ?></td>
                                 <td><?php  echo $result['end_user']?></td>
-                                <td><?php  echo $result['department']?></td>
+                                <td><?php  echo $result['department_name']?></td>
                                 <td><?php  echo $result['date_aquired']?></td>
                             </tr>
                             <?php $cnt++; }}
                             else{
-                                echo '<h6 class="text-center">No History</h6>'; 
+                                echo '<tr class="text-center">
+                                <td colspan="4" ><h6>No History</h6></td>
+                                </tr>'; 
                             }?>
                     </tbody>
                   </table>

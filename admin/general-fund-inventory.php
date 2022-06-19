@@ -95,11 +95,11 @@ include('../database/databaseConnection.php');
 
 
 
-    <div class="modal fade" id="editInModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="editInModal" data-backdrop="static" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Item Information</h5>
+          <h5 class="modal-title">Property Information</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -110,53 +110,41 @@ include('../database/databaseConnection.php');
         <input type="hidden" id="InvId" name="InvId" >
         <div class="form-group col-md-6">
           <label >P.A.R Number</label>
-          <input type="text" class="form-control" id="par" name="par">
+          <input type="text" class="form-control" id="par" name="par" readonly>
         </div>
     <div class="form-group col-md-6">
       <label >Date Aquired</label>
       <input type="text" class="form-control" id="date" name="date">
     </div>
   </div>
-  <div class="form-group">
-    <label >Status</label>
-    <input type="text" class="form-control" id="status" name="status">
-  </div>
-  <div class="form-group">
-    <label >Quantity</label>
-    <input type="text" class="form-control" id="quantity" name="quantity">
-  </div>
-  <div class="form-group">
+  <div class="form-row">
+  <div class="form-group col-md-6">
     <label >Item</label>
     <input type="text" class="form-control" id="item" name="item">
+  </div>
+  <div class="form-group col-md-6">
+      <label >Unit Value</label>
+      <input type="text" class="form-control" id="uvalue" name="uvalue">
+    </div>
   </div>
   <div class="form-group">
     <label >Description</label>
     <textarea class="form-control" id="description" name="description" rows="4"></textarea>
   </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label >Unit Value</label>
-      <input type="text" class="form-control" id="uvalue" name="uvalue">
-    </div>
-    <div class="form-group col-md-6">
-      <label >Total Value</label>
-      <input type="text" class="form-control" id="tvalue" name="tvalue">
-    </div>
-    </div>
     <div class="form-row">
     <div class="form-group col-md-6">
-      <label >Department</label>
-      <input type="text" class="form-control" id="department" name="department">
+      <label >End User</label>
+      <input type="text" class="form-control" id="enduser" name="enduser" readonly>
     </div>
     <div class="form-group col-md-6">
-      <label >End User</label>
-      <input type="text" class="form-control" id="enduser" name="enduser">
+      <label >Department</label>
+      <input type="text" class="form-control" id="department" name="department" readonly>
     </div>
     </div>
     <div class="form-row">
     <div class="form-group col-md-6">
       <label >Account Code</label>
-      <input type="text" class="form-control" id="acode" name="acode">
+      <input type="text" class="form-control" id="acode" name="acode" readonly>
     </div>
     <div class="form-group col-md-6">
       <label >Supplier</label>
@@ -166,17 +154,13 @@ include('../database/databaseConnection.php');
     <div class="form-row">
     <div class="form-group col-md-6">
       <label >P.O</label>
-      <input type="text" class="form-control" id="po" name="po">
+      <input type="text" class="form-control" id="po" name="po" readonly>
     </div>
     <div class="form-group col-md-6">
       <label >O.B.R</label>
-      <input type="text" class="form-control" id="obr" name="obr">
+      <input type="text" class="form-control" id="obr" name="obr" readonly>
     </div>
     </div>
-      <div class="form-group">
-            <label >Remarks</label>
-            <textarea class="form-control" id="remarks" name="remarks" rows="2"></textarea>
-      </div>
       </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary ">Update</button>
@@ -207,8 +191,10 @@ include('../database/databaseConnection.php');
                  
                  $did = intval($_GET['dept']);
                  $query = "SELECT departments.deptid, departments.department_code, departments.department_name, general_fund.id, general_fund.item,
-                 general_fund.description, general_fund.par_number, general_fund.department_code, item_history.par_number, item_history.end_user , item_history.status
-                 FROM departments JOIN general_fund ON departments.department_code = general_fund.department_code JOIN item_history ON general_fund.par_number = item_history.par_number WHERE departments.deptid = '$did' AND item_history.status = '1' ";
+                 general_fund.description, general_fund.par_number,item_history.par_number, item_history.end_user,
+                 item_history.department_code,item_history.status
+                 FROM departments JOIN item_history ON departments.department_code = item_history.department_code 
+                 JOIN general_fund ON item_history.par_number = general_fund.par_number WHERE departments.deptid = '$did' AND item_history.status = '1' ";
                  $cnt = 1;
                  $results = mysqli_query($conn, $query);
                  if(mysqli_num_rows($results) > 0){
@@ -216,7 +202,7 @@ include('../database/databaseConnection.php');
                     <tr>
                       <td><?php echo htmlentities($cnt); ?></td>
                       <td><?=$row['item']?></td>
-                      <td><?=$row['description']?></td>
+                      <td><?=$row['description']?></td> 
                       <td><?=$row['par_number']?></td>
                       <td><?=$row['department_name']?></td>
                       <td><?=$row['end_user']?></td>
@@ -299,7 +285,7 @@ $(function(){
       var editinv = $(this).data("value");
       $.ajax({
         type: 'GET',
-        url:'../auth/auth.php?editin='+ editinv,
+        url:'../auth/auth.php?editinv='+ editinv,
         success: function(response){
 
           var res = jQuery.parseJSON(response);
@@ -310,12 +296,9 @@ $(function(){
             $('#InvId').val(res.data.id);
             $('#par').val(res.data.par_number);
             $('#date').val(res.data.date_aquired);
-            $('#status').val(res.data.status);
-            $('#quantity').val(res.data.quantity);
             $('#item').val(res.data.item);
             $('#description').val(res.data.description);
             $('#uvalue').val(res.data.unit_value);
-            $('#tvalue').val(res.data.total_value);
             $('#department').val(res.data.department);
             $('#enduser').val(res.data.end_user);
             $('#acode').val(res.data.account_code);
@@ -323,11 +306,11 @@ $(function(){
             $('#po').val(res.data.purchase_order);
             $('#obr').val(res.data.obr_number);
             $('#editInModal').modal('show');
-
           }
         }
       });
   });
+
   $(document).on('click','.viewIn', function(){
       var invid = $(this).val();
       $.ajax({

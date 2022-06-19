@@ -354,11 +354,16 @@ if(isset($_GET['retid'])){
 if(isset($_GET['editinv'])){
 
     $invid = mysqli_real_escape_string($conn, $_GET['editinv']);
-    $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.department,general_fund.par_number,general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,item_history.end_user,item_history.status FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number
+
+    $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.par_number,general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,general_fund.supplier
+    item_history.end_user,item_history.status,item_history.department_code,
+    departments.department_name,departments.department_code
+    FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number
+    JOIN departments ON item_history.department_code = departments.department_code
     WHERE general_fund.id = '$invid' AND item_history.status = '1' LIMIT 1 ";
     $query = mysqli_query($conn, $sql);
 
-    if(mysqli_num_rows($query) == 1){
+    if(mysqli_num_rows($query)>0){
 
         $returnItem = mysqli_fetch_array($query);
 
@@ -386,25 +391,14 @@ if(isset($_GET['editinv'])){
 //update item
 if(isset($_POST['update_inventory'])){
     $InvId = mysqli_real_escape_string($conn, $_POST['InvId']);
-    $par = mysqli_real_escape_string($conn, $_POST['par']);
     $date = mysqli_real_escape_string($conn, $_POST['date']);
-    $status = mysqli_real_escape_string($conn, $_POST['status']);
-    $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
     $item = mysqli_real_escape_string($conn, $_POST['item']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
     $uvalue = mysqli_real_escape_string($conn, $_POST['uvalue']);
-    $tvalue = mysqli_real_escape_string($conn, $_POST['tvalue']);
-    $department = mysqli_real_escape_string($conn, $_POST['department']);
-    $enduser = mysqli_real_escape_string($conn, $_POST['enduser']);
-    $acode = mysqli_real_escape_string($conn, $_POST['acode']);
     $supplier = mysqli_real_escape_string($conn, $_POST['supplier']);
-    $po = mysqli_real_escape_string($conn, $_POST['po']);
-    $obr = mysqli_real_escape_string($conn, $_POST['obr']);
 
-   
-    $query = "UPDATE general_fund SET item = '$item', description = '$description', par_number = '$par',
-    unit_value = '$uvalue',total_value = '$tvalue',date_aquired = '$date',quantity = '$quantity',end_user = '$enduser',
-    account_code = '$acode',department = '$department',supplier = '$supplier',purchase_order='$po',obr_number = '$obr' WHERE id = '$InvId' ";
+    $query = "UPDATE general_fund SET item = '$item', description = '$description',
+    unit_value = '$uvalue', date_aquired = '$date', supplier = '$supplier' WHERE id = '$InvId' ";
 
     $results = mysqli_query($conn, $query);
 
@@ -442,12 +436,12 @@ if(isset($_POST['save_item'])){
     $departmentCode = 2;
     $status = 1;
    
-    $sql = "INSERT INTO general_fund (par_number,item,description,unit_value,date_aquired,account_code,department,department_code,supplier,purchase_order,obr_number,remarks) 
-    VALUES ('$pr','$item','$description','$uvalue','$datea','$acode','$department',$departmentCode,'$supplier','$po','$obr','$remarks'); INSERT INTO item_history (par_number,end_user,department_code,status) VALUES ('$pr','$user','$departmentCode','$status');";
+    $sql = "INSERT INTO general_fund (par_number,item,description,unit_value,date_aquired,account_code,supplier,purchase_order,obr_number,remarks) 
+    VALUES ('$pr','$item','$description','$uvalue','$datea','$acode','$supplier','$po','$obr','$remarks'); INSERT INTO item_history (par_number,end_user,department_code,status) VALUES ('$pr','$user','$departmentCode','$status');";
     $query = mysqli_multi_query($conn,$sql);
 
     if($query){
-
+ 
         $res = [
             'status' => 200,
             'message' => 'Added successfully!.'
