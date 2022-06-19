@@ -299,7 +299,7 @@ $(function(){
             $('#item').val(res.data.item);
             $('#description').val(res.data.description);
             $('#uvalue').val(res.data.unit_value);
-            $('#department').val(res.data.department);
+            $('#department').val(res.data.department_name);
             $('#enduser').val(res.data.end_user);
             $('#acode').val(res.data.account_code);
             $('#supplier').val(res.data.supplier);

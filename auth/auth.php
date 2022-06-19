@@ -355,15 +355,15 @@ if(isset($_GET['editinv'])){
 
     $invid = mysqli_real_escape_string($conn, $_GET['editinv']);
 
-    $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.par_number,general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,general_fund.supplier
-    item_history.end_user,item_history.status,item_history.department_code,
+    $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.par_number,general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,general_fund.supplier,
+    item_history.end_user,item_history.status,item_history.department_code,item_history.par_number
     departments.department_name,departments.department_code
     FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number
     JOIN departments ON item_history.department_code = departments.department_code
-    WHERE general_fund.id = '$invid' AND item_history.status = '1' LIMIT 1 ";
+    WHERE general_fund.id = '$invid' AND item_history.status = '1' LIMIT 1";
     $query = mysqli_query($conn, $sql);
 
-    if(mysqli_num_rows($query)>0){
+    if(mysqli_num_rows($query) == 1){
 
         $returnItem = mysqli_fetch_array($query);
 

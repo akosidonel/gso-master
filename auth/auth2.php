@@ -3,12 +3,12 @@
 include('../database/databaseConnection.php');
 
 
-$invid = mysqli_real_escape_string($conn, $_GET['invid']);
+$invi = mysqli_real_escape_string($conn, $_GET['invid']);
 
     $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.par_number,general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,item_history.end_user,item_history.status,item_history.department_code,departments.department_name,departments.department_code
     FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number
     JOIN departments ON item_history.department_code = departments.department_code
-    WHERE general_fund.id = '$invid' AND item_history.status = '1' LIMIT 1 ";
+    WHERE general_fund.id = '$invi' AND item_history.status = '1' LIMIT 1 ";
     $query = mysqli_query($conn, $sql);
     $cnt = 1;
     while($row = mysqli_fetch_array($query)){?>
@@ -79,11 +79,11 @@ $invid = mysqli_real_escape_string($conn, $_GET['invid']);
                     <tbody>
                     <?php
 
-                    $invid = mysqli_real_escape_string($conn, $_GET['invid']);
+                    $invi = mysqli_real_escape_string($conn, $_GET['invid']);
 
                     $sql1 = "SELECT general_fund.id,general_fund.par_number,general_fund.date_aquired,item_history.par_number,item_history.end_user,item_history.status,item_history.department_code,departments.department_name,departments.department_code
                     FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number JOIN departments ON item_history.department_code = departments.department_code
-                    WHERE general_fund.id = '$invid' AND item_history.status = '0'";
+                    WHERE general_fund.id = '$invi' AND item_history.status = '0'";
                     $query =mysqli_query ($conn, $sql1);
                     if(mysqli_num_rows($query)>0){
                         foreach($query  as $result){?>
