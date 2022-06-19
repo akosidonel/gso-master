@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2022 at 02:12 PM
+-- Generation Time: Jun 19, 2022 at 02:28 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -33,17 +33,13 @@ CREATE TABLE `archive` (
   `description` varchar(255) NOT NULL,
   `par_number` varchar(255) NOT NULL,
   `unit_value` varchar(255) NOT NULL,
-  `total_value` varchar(255) NOT NULL,
   `date_aquired` varchar(255) NOT NULL,
-  `quantity` varchar(255) NOT NULL,
-  `end_user` varchar(255) NOT NULL,
   `account_code` varchar(255) NOT NULL,
-  `department` varchar(255) NOT NULL,
-  `department_code` varchar(255) NOT NULL,
   `supplier` varchar(255) NOT NULL,
   `purchase_order` varchar(255) NOT NULL,
   `obr_number` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
+  `status` varchar(255) NOT NULL DEFAULT '1',
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -80,21 +76,19 @@ CREATE TABLE `general_fund` (
   `unit_value` varchar(255) NOT NULL,
   `date_aquired` varchar(255) NOT NULL,
   `account_code` varchar(255) NOT NULL,
-  `department` varchar(255) NOT NULL,
-  `department_code` varchar(255) NOT NULL,
   `supplier` varchar(255) NOT NULL,
   `purchase_order` varchar(255) NOT NULL,
   `obr_number` varchar(255) NOT NULL,
-  `remarks` varchar(255) DEFAULT NULL
+  `remarks` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `general_fund`
 --
 
-INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_value`, `date_aquired`, `account_code`, `department`, `department_code`, `supplier`, `purchase_order`, `obr_number`, `remarks`) VALUES
-(2, 'Laptop', 'Acer', '2022-07', '69,900.00', '12-11-2022', '223', 'Accounting', '2', 'Brighter Stars Trading', '10', '10', 'Serviceable'),
-(1, 'Aircon', 'test', '63263', '264,400.00', '12-12-2022', '240', 'Accounting', '2', 'Beamly Consumer Goods Trading', '12', '12', 'Serviceable');
+INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_value`, `date_aquired`, `account_code`, `supplier`, `purchase_order`, `obr_number`, `remarks`) VALUES
+(3, 'Computer', 'Acer - i7100F, 16GB DDR5, 512GB SSD, 1TB', '2019-05-030-0001-05', '', '12-12-2019', '223', 'Beamly Consumer Goods Trading', '12', '12', 'Serviceable'),
+(1, 'Aircon', '3.0 HP', '63263', '', '12-12-2022', '240', 'Beamly Consumer Goods Trading', '12', '12', '');
 
 -- --------------------------------------------------------
 
@@ -119,8 +113,11 @@ INSERT INTO `item_history` (`id`, `par_number`, `end_user`, `department_code`, `
 (1, '63263', 'Malou Tanael', '2', 0, '2022-06-12 02:02:16.678630'),
 (10, '63263', 'Leonel Valenzuela', '2', 0, '2022-06-11 23:46:10.330306'),
 (11, '63263', 'Malou Tanael', '2', 0, '2022-06-11 23:46:30.838714'),
-(12, '63263', 'Leonel Valenzuela', '2', 1, '2022-06-12 00:59:06.504112'),
-(13, '2022-07', 'Malou Tanael', '2', 1, '2022-06-12 02:02:12.277514');
+(12, '63263', 'Leonel Valenzuela', '2', 0, '2022-06-19 06:33:15.816856'),
+(13, '2022-07', 'Malou Tanael', '2', 0, '2022-06-19 11:52:13.975013'),
+(14, '63263', 'Reydonel M. Alafnte', '8', 0, '2022-06-19 10:33:34.448215'),
+(15, '63263', 'Elisa S. Pojanes', '2', 1, '2022-06-19 10:35:18.340698'),
+(16, '2019-05-030-0001-05', 'Andrea Nicole S. Edora', '2', 1, '2022-06-19 11:26:53.171043');
 
 -- --------------------------------------------------------
 
@@ -136,13 +133,18 @@ CREATE TABLE `return_item` (
   `unit_value` varchar(255) NOT NULL,
   `date_aquired` varchar(255) NOT NULL,
   `account_code` varchar(255) NOT NULL,
-  `department` varchar(255) NOT NULL,
-  `department_code` varchar(255) NOT NULL,
   `supplier` varchar(255) NOT NULL,
   `purchase_order` varchar(255) NOT NULL,
   `obr_number` varchar(255) NOT NULL,
   `remarks` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `return_item`
+--
+
+INSERT INTO `return_item` (`id`, `item`, `description`, `par_number`, `unit_value`, `date_aquired`, `account_code`, `supplier`, `purchase_order`, `obr_number`, `remarks`) VALUES
+(2, 'Laptop', 'Acer', '2022-07', '69,900.00', '12-11-2022', '223', 'Brighter Stars Trading', '10', '10', '');
 
 -- --------------------------------------------------------
 
@@ -232,13 +234,13 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `general_fund`
 --
 ALTER TABLE `general_fund`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `item_history`
 --
 ALTER TABLE `item_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
