@@ -99,7 +99,7 @@ include('../database/databaseConnection.php');
         <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Property Information</h5>
+          <h5 class="modal-title">Update Property Information</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
