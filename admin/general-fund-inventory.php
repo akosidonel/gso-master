@@ -122,7 +122,7 @@ include('../database/databaseConnection.php');
   <div class="form-row">
   <div class="form-group col-md-6">
     <label >Item</label>
-    <input type="text" class="form-control" id="item" name="item">
+    <input type="text" class="form-control" id="Item" name="item">
   </div>
   <div class="form-group col-md-6">
       <label >Unit Value</label>
@@ -217,7 +217,7 @@ include('../database/databaseConnection.php');
                     <div class="dropdown-menu" role="menu">
                       <a href="#" class="dropdown-item editInv" data-toggle="modal" data-target="#editInModal" data-value="<?=$row['gid']; ?>" ><i class="fas fa-edit"></i>&nbsp; Edit</a>
                       <a href="#" class="dropdown-item retInv" data-value="<?=$row['par_number']; ?>"><i class="fas fa-box-open"></i>&nbsp; Return item</a>
-                      <a href="#" class="dropdown-item arcInv" data-value="<?=$row['id']; ?>"><i class="fas fa-archive"></i>&nbsp;&nbsp;  Archive</a>
+                      <a href="#" class="dropdown-item arcInv" data-value="<?=$row['gid']; ?>"><i class="fas fa-archive"></i>&nbsp;&nbsp;  Archive</a>
                     </div>
                   </div>
                       </td>
@@ -300,7 +300,7 @@ $(function(){
             $('#InvId').val(res.data.id);
             $('#par').val(res.data.par_number);
             $('#date').val(res.data.date_aquired);
-            $('#item').val(res.data.item);
+            $('#Item').val(res.data.item);
             $('#description').val(res.data.description);
             $('#uvalue').val(res.data.unit_value);
             $('#department').val(res.data.department_name);

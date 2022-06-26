@@ -356,9 +356,11 @@ if(isset($_GET['editinv'])){
     $invid = mysqli_real_escape_string($conn, $_GET['editinv']);
     
     $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.par_number,
-    general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,general_fund.supplier,
-    item_history.par_number,
-    FROM general_fund
+    general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,general_fund.supplier,general_fund.unit_value,
+    item_history.par_number,item_history.end_user,item_history.department_code,item_history.status,
+    departments.department_code,departments.department_name
+    FROM general_fund JOIN item_history ON item_history.par_number = general_fund.par_number
+    JOIN departments ON item_history.department_code = departments.department_code
     WHERE general_fund.id = '$invid' LIMIT 1";
     $query = mysqli_query($conn, $sql);
 
