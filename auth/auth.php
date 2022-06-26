@@ -350,12 +350,14 @@ if(isset($_GET['retid'])){
 
 
 
-//fetch inventory details
+//fetch property details
 if(isset($_GET['editinv'])){
 
     $invid = mysqli_real_escape_string($conn, $_GET['editinv']);
     
-    $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.par_number,general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,general_fund.supplier
+    $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.par_number,
+    general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,general_fund.supplier,
+    item_history.par_number,
     FROM general_fund
     WHERE general_fund.id = '$invid' LIMIT 1";
     $query = mysqli_query($conn, $sql);
@@ -485,5 +487,146 @@ if(isset($_POST['save_retitem'])){
 
 }
 
+//view property details
+if(isset($_POST['viewProperBtn'])){
+
+    $pid = $_POST['propertyid'];
+    $sql = "SELECT general_fund.id,general_fund.item,general_fund.date_aquired,general_fund.description,general_fund.par_number,general_fund.account_code,general_fund.purchase_order,general_fund.obr_number,item_history.end_user,item_history.status,item_history.department_code,departments.department_name,departments.department_code
+    FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number
+    JOIN departments ON item_history.department_code = departments.department_code
+    WHERE general_fund.id = '$pid' AND item_history.status = '1' LIMIT 1 ";
+    $query = mysqli_query($conn, $sql);
+    if(mysqli_num_rows($query) > 0){
+        foreach ($query as $row){
+            echo $return = '
+            <!-- title row -->
+            <div class="row mb-1">
+              <div class="col-12">
+                <h4 id="item">
+                    '.$row['item'].'
+                  <small class="float-right">Date: '.$row['date_aquired'].'</small>
+                </h4>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- info row -->
+            <div class="row invoice-info">
+              <div class="col-sm-4 invoice-col">
+                <address>
+                  <strong>Description: </strong><br>
+                 '.$row['description'].'
+                </address>
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-4 invoice-col">
+              <strong>Current user:</strong>
+                <address>
+                '.$row['end_user'].'<br>
+                </address>
+                <strong>Department:</strong>
+              <address>
+              '.$row['department_name'].'
+              </address>
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-4 invoice-col">
+                <b>P.A.R No. :</b> '.$row['par_number'].'<br>
+                <b>Purchase order:</b> '.$row['purchase_order'].'<br>
+                <b>Obr No.:</b> '.$row['obr_number'].'<br>
+                <b>Account code:</b> '.$row['account_code'].'
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            ';
+        }
+    }
+}
+
+//view property history
+if(isset($_POST['viewProperBtn'])){
+
+    $pid = $_POST['propertyid'];
+    $sql1 = "SELECT general_fund.id,general_fund.par_number,general_fund.date_aquired,
+    item_history.par_number,item_history.end_user,item_history.status,item_history.department_code,
+    departments.department_name,departments.department_code
+    FROM general_fund JOIN item_history ON general_fund.par_number = item_history.par_number JOIN departments ON item_history.department_code = departments.department_code
+    WHERE general_fund.id = '$pid' AND item_history.status = '0' LIMIT 5";
+    $query =mysqli_query ($conn, $sql1);
+    $cnt = 1;
+    if(mysqli_num_rows($query) > 0){
+
+        echo $return ='      
+        <div class="row invoice-info mb-3 mt-3">
+        <div class="col-sm-4 invoice-col">
+          <strong>Property history</strong>
+        </div>
+      </div>
+
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr class="bg-dark text-light bg-gradient bg-opacity-150">
+              <th>No.</th>
+              <th>Previous user</th>
+              <th>Department</th>
+              <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>';
+
+        foreach ($query as $result){
+            echo $return = '
+                        <tr>
+                            <td>'.$cnt.'</td>
+                            <td>'.$result['end_user'].'</td>
+                            <td>'.$result['department_name'].'</td>
+                            <td>'.$result['date_aquired'].'</td>
+                        </tr>
+            ';
+            $cnt++;
+        }
+        echo $return = '  </tbody>
+        </table>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->';
+    }else{
+        echo $return = ' <div class="row invoice-info mb-3 mt-3">
+        <div class="col-sm-4 invoice-col">
+          <strong>Property history</strong>
+        </div>
+      </div>
+
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr class="bg-dark text-light bg-gradient bg-opacity-150">
+              <th>No.</th>
+              <th>Previous user</th>
+              <th>Department</th>
+              <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+        
+        <tr class="text-center">
+        <td colspan="4" ><h6>No History</h6></td>
+        </tr>
+        
+        </table>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+        
+        '; 
+    }
+}
 
 ?>

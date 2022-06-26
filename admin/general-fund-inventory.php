@@ -85,7 +85,9 @@ include('../database/databaseConnection.php');
             </div>
             <div class="modal-body">
             
-            
+            <div class="invoice p-3 mb-3">
+
+            </div>
 
             </div>
           </div>
@@ -176,7 +178,8 @@ include('../database/databaseConnection.php');
         <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr class="bg-dark text-light bg-gradient bg-opacity-150">
-                    <th>ID</th>
+                   
+                    <th>No.</th>
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
@@ -190,7 +193,7 @@ include('../database/databaseConnection.php');
                  <?php 
                  
                  $did = intval($_GET['dept']);
-                 $query = "SELECT departments.deptid, departments.department_code, departments.department_name, general_fund.id, general_fund.item,
+                 $query = "SELECT departments.deptid, departments.department_code, departments.department_name, general_fund.id as gid, general_fund.item,
                  general_fund.description, general_fund.par_number,item_history.par_number, item_history.end_user,
                  item_history.department_code,item_history.status
                  FROM departments JOIN item_history ON departments.department_code = item_history.department_code 
@@ -200,19 +203,19 @@ include('../database/databaseConnection.php');
                  if(mysqli_num_rows($results) > 0){
                     foreach($results as $row){?>
                     <tr>
-                      <td><?php echo htmlentities($cnt); ?></td>
+                      <td class="id"><?= $row['gid']?></td>
                       <td><?=$row['item']?></td>
                       <td><?=$row['description']?></td> 
-                      <td><?=$row['par_number']?></td>
+                      <td ><?=$row['par_number']?></td>
                       <td><?=$row['department_name']?></td>
                       <td><?=$row['end_user']?></td>
                       <td class="text-center">
                      
                       <div class="btn-group">
-                          <button type="button" value="<?=$row['id']?>" class="btn btn-info btn-sm viewIn"  data-toggle="modal" data-target="#viewInModal"><i class="fas fa-eye" data-toggle="popover" data-content="View details" data-trigger="hover"></i></button>
+                          <button type="button" class="btn btn-info btn-sm viewProper"><i class="fas fa-eye" data-toggle="popover" data-content="View details" data-trigger="hover"></i></button>
                           <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52"><i class="fas fa-bars" data-toggle="popover" data-content="Actions" data-trigger="hover"></i></button>
                     <div class="dropdown-menu" role="menu">
-                      <a href="#" class="dropdown-item editInv" data-toggle="modal" data-target="#editInModal" data-value="<?=$row['id']; ?>" ><i class="fas fa-edit"></i>&nbsp; Edit</a>
+                      <a href="#" class="dropdown-item editInv" data-toggle="modal" data-target="#editInModal" data-value="<?=$row['gid']; ?>" ><i class="fas fa-edit"></i>&nbsp; Edit</a>
                       <a href="#" class="dropdown-item retInv" data-value="<?=$row['par_number']; ?>"><i class="fas fa-box-open"></i>&nbsp; Return item</a>
                       <a href="#" class="dropdown-item arcInv" data-value="<?=$row['id']; ?>"><i class="fas fa-archive"></i>&nbsp;&nbsp;  Archive</a>
                     </div>
@@ -225,7 +228,8 @@ include('../database/databaseConnection.php');
                   </tbody>
                   <tfoot>
                   <tr class="bg-dark text-light bg-gradient bg-opacity-150">
-                    <th>ID</th>
+                   
+                    <th>No.</th>
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
@@ -311,17 +315,6 @@ $(function(){
       });
   });
 
-  $(document).on('click','.viewIn', function(){
-      var invid = $(this).val();
-      $.ajax({
-        type: 'GET',
-        url:'../auth/auth2.php?invid='+ invid,
-        success: function(response){
-          $('.modal-body').html(response)
-          $('#viewInModal').modal('show')
-        }
-      });
-  });
 
   $(document).on('submit','#inventory_update',function(e){
     e.preventDefault();
@@ -344,7 +337,7 @@ $(function(){
               $('#editInModal').modal('hide');
               $('#inventory_update')[0].reset();
               $('#example1').load(location.href + " #example1");
-            }
+        }
       }
     }); 
   });
@@ -405,4 +398,29 @@ $(document).on('click','.arcInv', function(e){
   }
 });
 
+</script>
+<script>
+    $(document).ready(function () {
+
+        $('.viewProper').click(function (e) { 
+          e.preventDefault();
+          
+          var propertyid = $(this).closest('tr').find('.id').text();
+         
+          $.ajax({
+            type: "POST",
+            url:"../auth/auth.php",
+            data: {
+              'viewProperBtn': true,
+              'propertyid': propertyid,
+            }, 
+            success: function (response) {
+              $('.invoice').html(response);
+              $('#viewInModal').modal('show');
+            }
+          });
+            
+        });
+
+    });
 </script>

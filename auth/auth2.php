@@ -56,8 +56,7 @@ $invi = mysqli_real_escape_string($conn, $_GET['invid']);
                 <!-- /.col -->
               </div>
               <!-- /.row -->
-              <?php }?>
-
+            
               <div class="row invoice-info mb-3 mt-3">
                 <div class="col-sm-4 invoice-col">
                   <strong>Property history</strong>
