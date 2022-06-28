@@ -399,7 +399,7 @@ if(isset($_POST['update_inventory'])){
     $supplier = mysqli_real_escape_string($conn, $_POST['supplier']);
 
     $query = "UPDATE general_fund SET item = '$item', description = '$description',
-    unit_value = '$uvalue', date_aquired = '$date', supplier = '$supplier' WHERE id = '$InvId' ";
+    unit_value = '$uvalue', date_aquired = '$date', supplier = '$supplier' WHERE id = '$InvId'";
 
     $results = mysqli_query($conn, $query);
 

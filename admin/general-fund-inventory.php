@@ -197,7 +197,7 @@ include('../database/databaseConnection.php');
                  general_fund.description, general_fund.par_number,item_history.par_number, item_history.end_user,
                  item_history.department_code,item_history.status
                  FROM departments JOIN item_history ON departments.department_code = item_history.department_code 
-                 JOIN general_fund ON item_history.par_number = general_fund.par_number WHERE departments.deptid = '$did' AND item_history.status = '1' ";
+                 JOIN general_fund ON item_history.par_number = general_fund.par_number WHERE departments.deptid = '$did' AND item_history.status = '1'  ";
                  $cnt = 1;
                  $results = mysqli_query($conn, $query);
                  if(mysqli_num_rows($results) > 0){
@@ -278,11 +278,12 @@ include('../database/databaseConnection.php');
 <script>
 $(function(){ 
     $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "responsive": true, "lengthChange": false, "autoWidth": false,"bDestroy": true,
         "buttons": ["copy", "excel", "print", { extend: "pdfHtml5",orientation:"landscape",pageSize:"LEGAL",title:"RCPPE"}]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('[data-toggle="popover"]').popover()
+      $('[data-toggle="popover"]').popover();
 });
+
 </script>
 <script>
   $(document).on('click','.editInv', function(){
@@ -336,7 +337,7 @@ $(function(){
             }else if(res.status == 200 ){
               $('#editInModal').modal('hide');
               $('#inventory_update')[0].reset();
-              $('#example1').load(location.href + " #example1");
+              location.reload();
         }
       }
     }); 
