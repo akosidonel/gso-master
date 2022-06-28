@@ -364,7 +364,7 @@ $(document).on('click','.retInv', function(e){
               }else{
                 alert(res.message);
 
-                $('#example1').load(location.href + " #example1");
+                location.reload();
               }
           }
     });
@@ -392,7 +392,7 @@ $(document).on('click','.arcInv', function(e){
               }else{
                 alert(res.message);
 
-                $('#example1').load(location.href + " #example1");
+                location.reload();
               }
           }
     });
