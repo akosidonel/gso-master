@@ -278,7 +278,7 @@ include('../database/databaseConnection.php');
 <script>
 $(function(){ 
     $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,"bDestroy": true,
+        "responsive": true, "lengthChange": false, "autoWidth": false,
         "buttons": ["copy", "excel", "print", { extend: "pdfHtml5",orientation:"landscape",pageSize:"LEGAL",title:"RCPPE"}]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('[data-toggle="popover"]').popover();
