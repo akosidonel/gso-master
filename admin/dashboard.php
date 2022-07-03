@@ -1,4 +1,6 @@
 <?php 
+session_start();
+error_reporting(0);
 include('../database/databaseConnection.php');
 
 ?>
@@ -422,3 +424,7 @@ include('../database/databaseConnection.php');
 <script src="../assets/plugins/jquery-validation/additional-methods.min.js"></script>
 <script src="../assets/plugins/popper/popper.min.js"></script>
 <script src="../assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+</body>
+
+  </html>

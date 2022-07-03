@@ -2,11 +2,11 @@
 session_start();
 error_reporting(0);
 include('database/databaseConnection.php');
-include('auth/auth.php');
+ 
 if(isset($_POST['signin_btn'])){
   $email = mysqli_real_escape_string($conn, $_POST['email']);
   $password = mysqli_real_escape_string($conn, $_POST['password']);
-  $sql = "SELECT empid,email,password,status,role FROM users WHERE email='$email' ";
+  $sql = "SELECT * FROM users WHERE email='$email' ";
   $query = mysqli_query($conn, $sql);
   if(mysqli_num_rows($query) > 0){
     while($results = mysqli_fetch_assoc($query)){
@@ -14,15 +14,9 @@ if(isset($_POST['signin_btn'])){
         if($results['status'] == 0){
           $_SESSION['error'] = "Your account is suspended!.";
         }else{
-          if($results['role'] == 'Admin-GF'){
+          if($results['role'] == 'Super-Admin'){
             $_SESSION['alogin'] = $results['id'];
-            header('Location:user/general-fund/dashboard.php');
-          }elseif($results['role'] == 'Admin-SF'){
-            $_SESSION['alogin'] = $results['id'];
-            header('Location:user/sef/dashboard.php');
-          }elseif($results['role'] == 'Super-Admin'){
-            $_SESSION['alogin'] = $results['id'];
-            header('Location:admin/user-management.php');
+            header('Location:admin/department.php');
           }
         }
       }else{

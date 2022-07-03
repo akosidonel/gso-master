@@ -179,7 +179,7 @@ include('../database/databaseConnection.php');
                   <thead>
                   <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                    
-                    <th>No.</th>
+                    <th>No. </th>
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
@@ -203,7 +203,7 @@ include('../database/databaseConnection.php');
                  if(mysqli_num_rows($results) > 0){
                     foreach($results as $row){?>
                     <tr>
-                      <td class="id"><?= $row['gid']?></td>
+                      <td><?php echo htmlentities($cnt)?></td>
                       <td><?=$row['item']?></td>
                       <td><?=$row['description']?></td> 
                       <td ><?=$row['par_number']?></td>
@@ -212,7 +212,7 @@ include('../database/databaseConnection.php');
                       <td class="text-center">
                      
                       <div class="btn-group">
-                          <button type="button" class="btn btn-info btn-sm viewProper"><i class="fas fa-eye" data-toggle="popover" data-content="View details" data-trigger="hover"></i></button>
+                          <button type="button" class="btn btn-info btn-sm viewProper" data-value="<?=$row['gid']; ?>"><i class="fas fa-eye" data-toggle="popover" data-content="View details" data-trigger="hover"></i></button>
                           <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52"><i class="fas fa-bars" data-toggle="popover" data-content="Actions" data-trigger="hover"></i></button>
                     <div class="dropdown-menu" role="menu">
                       <a href="#" class="dropdown-item editInv" data-toggle="modal" data-target="#editInModal" data-value="<?=$row['gid']; ?>" ><i class="fas fa-edit"></i>&nbsp; Edit</a>
@@ -225,7 +225,7 @@ include('../database/databaseConnection.php');
 
                <?php $cnt++; } } ?>
 
-                  </tbody>
+                  </tbody> 
                   <tfoot>
                   <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                    
@@ -278,7 +278,7 @@ include('../database/databaseConnection.php');
 <script>
 $(function(){ 
     $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "responsive": true, "lengthChange": false, "autoWidth": false,columnDefs: [{targets: "_all",orderable: false}],
         "buttons": ["copy", "excel", "print", { extend: "pdfHtml5",orientation:"landscape",pageSize:"LEGAL",title:"RCPPE"}]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('[data-toggle="popover"]').popover();
@@ -401,12 +401,14 @@ $(document).on('click','.arcInv', function(e){
 
 </script>
 <script>
-    $(document).ready(function () {
+  
 
-        $('.viewProper').click(function (e) { 
+        $(document).on('click','.viewProper', function (e) { 
           e.preventDefault();
+         
           
-          var propertyid = $(this).closest('tr').find('.id').text();
+         // var propertyid = $(this).closest('tr').find('.id').text();
+         var propertyid = $(this).data("value");
          
           $.ajax({
             type: "POST",
@@ -423,5 +425,5 @@ $(document).on('click','.arcInv', function(e){
             
         });
 
-    });
+    
 </script>
