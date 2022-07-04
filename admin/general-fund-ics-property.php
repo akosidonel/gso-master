@@ -7,7 +7,7 @@ include('../database/databaseConnection.php');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>P.A.R | GSO</title>
+  <title>I.C.S | GSO</title>
 
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,13 +40,13 @@ include('../database/databaseConnection.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Inventory</h1>
+            <h1>I.C.S Property</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
               <li class="breadcrumb-item"><a href="general-fund-department.php">Department</a></li>
-              <li class="breadcrumb-item active">Inventory</li>
+              <li class="breadcrumb-item active">I.C.S Property</li>
             </ol>
           </div>
         </div>

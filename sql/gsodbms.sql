@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 28, 2022 at 10:37 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Host: localhost
+-- Generation Time: Jul 04, 2022 at 11:13 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -101,7 +101,7 @@ CREATE TABLE `general_fund` (
 --
 
 INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_value`, `date_aquired`, `account_code`, `department`, `department_code`, `supplier`, `purchase_order`, `obr_number`, `remarks`) VALUES
-(2, 'Laptop', 'ACER - intel i7-8500,16GB RAM 2x8 , 1TB SSD, 3TB HDD SATA, GTX 730 DDR5 2GB, \"15inch WQHD+ 3200x1440', '2022-07-223', '100,000', '12-12-2022', '223', 'Accounting', '8', 'Lemon and Lime', '000-001', '000-001', 'Serviceable'),
+(2, 'Laptop', 'ACER - intel i7-8500,16GB RAM 2x8 , 1TB SSD, 3TB HDD SATA, GTX 730 DDR5 2GB, \"15inch WQHD+ 3200x1440 DUAL AUDIO SOUND', '2022-07-223', '100,000', '12-12-2022', '223', 'Accounting', '8', 'Lemon and Lime', '000-001', '000-001', 'Serviceable'),
 (4, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume  SN: KMBE83020', '21-421', '17,418.50', '2021', '223', 'B.A.C', '8', 'JenJusJem', '', '', ''),
 (5, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume  SN: KMYV06220', '21-422', '17,418.50', '2021', '223', 'B.A.C', '8', 'JenJusJem', '', '', ''),
 (6, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume SN: KMYV05242', '21-423', '17,418.50', '2021', '223', 'B.A.C', '8', 'JenJusJem', '', '', ''),
@@ -125,6 +125,27 @@ INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_val
 (24, 'Computer desktop', 'Computer desktop 500-334D cor i5-4460 3.2GHZ 20\" LED Monitor DELL SN: 0HH66M-64180-49P-1CWL CPU Service Tag #3XXN622', '4132', '77,690.00', '5/3/2015', '223', 'B.A.C', '8', 'MA-REV Gen. Mdse.', '', '', ''),
 (25, 'Printer', 'Printer deskjet all in one printer SN: HP Deskjet 1000 CN36R19K7R', '4133', '6,370.00', '5/3/2015', '223', 'B.A.C', '8', 'MA-REV Gen. Mdse.', '', '', ''),
 (26, 'Laptop', 'Laptop - AMD A4 series A4-3300M 2.5ghz DELL Laptop 26VJM72 SN: 4769345254', '4098', '80,960.00', '5/3/2015', '223', 'B.A.C', '8', 'MA-REV Gen. Mdse.', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ics_general_fund`
+--
+
+CREATE TABLE `ics_general_fund` (
+  `id` int(11) NOT NULL,
+  `item` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `par_number` varchar(255) NOT NULL,
+  `unit_value` varchar(255) NOT NULL,
+  `date_aquired` varchar(255) NOT NULL,
+  `account_code` varchar(255) NOT NULL,
+  `department_code` varchar(255) NOT NULL,
+  `supplier` varchar(255) NOT NULL,
+  `purchase_order` varchar(255) NOT NULL,
+  `obr_number` varchar(255) NOT NULL,
+  `remarks` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 

@@ -75,7 +75,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="../admin/general-fund-ics-department.php" class="nav-link">
                       <i class="far fa-folder-open nav-icon"></i>
                       <p>I.C.S</p>
                     </a>
@@ -97,7 +97,7 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-folder nav-icon"></i>
-                  <p>SEF Fund</p>
+                  <p>SEF</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
                 <ul class="nav nav-treeview">
