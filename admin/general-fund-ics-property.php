@@ -193,11 +193,11 @@ include('../database/databaseConnection.php');
                  <?php 
                  
                  $did = intval($_GET['dept']);
-                 $query = "SELECT departments.deptid, departments.department_code, departments.department_name, general_fund.id as gid, general_fund.item,
-                 general_fund.description, general_fund.par_number,item_history.par_number, item_history.end_user,
+                 $query = "SELECT departments.deptid, departments.department_code, departments.department_name, ics_general_fund.id as gid, ics_general_fund.item,
+                 ics_general_fund.description, ics_general_fund.par_number,item_history.par_number, item_history.end_user,
                  item_history.department_code,item_history.status
                  FROM departments JOIN item_history ON departments.department_code = item_history.department_code 
-                 JOIN general_fund ON item_history.par_number = general_fund.par_number WHERE departments.deptid = '$did' AND item_history.status = '1'  ";
+                 JOIN ics_general_fund ON item_history.par_number = ics_general_fund.par_number WHERE departments.deptid = '$did' AND item_history.status = '1' ";
                  $cnt = 1;
                  $results = mysqli_query($conn, $query);
                  if(mysqli_num_rows($results) > 0){
