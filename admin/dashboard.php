@@ -54,7 +54,7 @@ include('../database/databaseConnection.php');
   <div class="row">
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-peso-sign"></i></span>
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-peso-sign"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">General Fund</span>
@@ -70,7 +70,7 @@ include('../database/databaseConnection.php');
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-peso-sign"></i></span>
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-peso-sign"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Special Education Fund</span>
@@ -89,7 +89,7 @@ include('../database/databaseConnection.php');
 
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-peso-sign"></i></span>
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-peso-sign"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Land</span>
@@ -122,11 +122,11 @@ include('../database/databaseConnection.php');
 
   <div class="row">
 
-      <div class="col-12 col-md-8">
+      <div class="col-12 col-md-6">
 
       <div class="card" >
               <div class="card-header border-transparent">
-                <h3 class="card-title">Recently added I.C.S property</h3>
+                <h3 class="card-title">New i.c.s property</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -142,6 +142,7 @@ include('../database/databaseConnection.php');
                     <tr>
                       <th>P.A.R No.</th>
                       <th>Item</th>
+                      <th>Department</th>
                       <th>Status</th>
                       <th>Fund</th>
                     </tr>
@@ -150,8 +151,9 @@ include('../database/databaseConnection.php');
                     <tr>
                       <td>OR9842</td>
                       <td>Laptop</td>
-                      <td></td>
-                      <td><span class="badge badge-success">Serviceable</span></td>
+                      <td>Accounting</td>
+                      <td>Serviceable</td>
+                      <td><span class="badge badge-success">GF</span></td>
                     </tr>
                   
                     </tbody>
@@ -169,100 +171,54 @@ include('../database/databaseConnection.php');
 
       </div>
 
-<div class="col-12 col-md-4">
-      <!-- PRODUCT LIST -->
-        <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Recently added P.A.R property</h3>
+      <div class="col-12 col-md-6">
 
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <ul class="products-list product-list-in-card pl-2 pr-2">
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">Samsung TV
-                        <span class="badge badge-warning float-right">$1800</span></a>
-                      <span class="product-description">
-                        Samsung 32" 1080p 60Hz LED Smart HDTV.
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">Bicycle
-                        <span class="badge badge-info float-right">$700</span></a>
-                      <span class="product-description">
-                        26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">
-                        Xbox One <span class="badge badge-danger float-right">
-                        $350
-                      </span>
-                      </a>
-                      <span class="product-description">
-                        Xbox One Console Bundle with Halo Master Chief Collection.
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">PlayStation 4
-                        <span class="badge badge-success float-right">$399</span></a>
-                      <span class="product-description">
-                        PlayStation 4 500GB Console (PS4)
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                    <!-- /.item -->
-                    <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">PlayStation 4
-                        <span class="badge badge-success float-right">$399</span></a>
-                      <span class="product-description">
-                        PlayStation 4 500GB Console (PS4)
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                </ul>
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer text-center">
-              <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All</a>
-              </div>
-              <!-- /.card-footer -->
-            </div>
-            <!-- /.card -->
+<div class="card" >
+        <div class="card-header border-transparent">
+          <h3 class="card-title">New p.a.r property</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
           </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table m-0">
+              <thead>
+              <tr>
+                <th>P.A.R No.</th>
+                <th>Item</th>
+                <th>Department</th>
+                <th>Status</th>
+                <th>Fund</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>OR9842</td>
+                <td>Laptop</td>
+                <td>Accounting</td>
+                <td>Serviceable</td>
+                <td><span class="badge badge-success">GF</span></td>
+              </tr>
+            
+              </tbody>
+            </table>
+          </div>
+          <!-- /.table-responsive -->
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer clearfix">
+          <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All</a>
+        </div>
+        <!-- /.card-footer -->
+      </div>
+      <!-- /.card -->
+
+</div>
 
 
 
@@ -272,7 +228,7 @@ include('../database/databaseConnection.php');
 
             <div class="card col-12 col-md-12" >
               <div class="card-header border-transparent">
-                <h3 class="card-title">Recently added property</h3>
+                <h3 class="card-title">Returned property</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -286,69 +242,32 @@ include('../database/databaseConnection.php');
                   <table class="table m-0">
                     <thead>
                     <tr>
-                      <th>Order ID</th>
+                      <th>P.A.R No.</th>
                       <th>Item</th>
+                      <th>Description</th>
+                      <th>Department</th>
+                      <th>Date Return</th>
                       <th>Status</th>
-                      <th>Popularity</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
-                      <td><span class="badge badge-success">Shipped</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                      </td>
+                      <td>2022-05-1978-23</td>
+                      <td>Desktop Computer</td>
+                      <td>Acer Aspire - intel-i756dF, 16GB RAM, 1TB SSD</td>
+                      <td>Budget Office</td>
+                      <td>Dec. 28, 2022</td>
+                      <td><span class="badge badge-success">Serviceable</span></td>
                     </tr>
                     <tr>
-                      <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-warning">Pending</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                      </td>
+                      <td>2022-05-1978-23</td>
+                      <td>Desktop Computer</td>
+                      <td>Acer Aspire - intel-i756dF, 16GB RAM, 1TB SSD</td>
+                      <td>Budget Office</td>
+                      <td>Dec. 28, 2022</td>
+                      <td><span class="badge badge-danger">Userviceable</span></td>
                     </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>iPhone 6 Plus</td>
-                      <td><span class="badge badge-danger">Delivered</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-info">Processing</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-warning">Pending</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>iPhone 6 Plus</td>
-                      <td><span class="badge badge-danger">Delivered</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
-                      <td><span class="badge badge-success">Shipped</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                      </td>
-                    </tr>
+                   
                     </tbody>
                   </table>
                 </div>
