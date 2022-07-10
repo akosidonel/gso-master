@@ -427,18 +427,18 @@ if(isset($_POST['save_item'])){
     $item = mysqli_real_escape_string($conn, $_POST['item']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
     $uvalue = mysqli_real_escape_string($conn, $_POST['uvalue']);
-    $department = mysqli_real_escape_string($conn, $_POST['department']);
     $user = mysqli_real_escape_string($conn, $_POST['user']);
     $acode = mysqli_real_escape_string($conn, $_POST['acode']);
     $po = mysqli_real_escape_string($conn, $_POST['po']);
     $obr = mysqli_real_escape_string($conn, $_POST['obr']);
     $supplier = mysqli_real_escape_string($conn, $_POST['supplier']);
     $remarks = mysqli_real_escape_string($conn, $_POST['remarks']);
-    $departmentCode = 2;
+    $departmentCode = mysqli_real_escape_string($conn, $_POST['department']);
     $status = 1;
    
-    $sql = "INSERT INTO general_fund (par_number,item,description,unit_value,date_aquired,account_code,supplier,purchase_order,obr_number,remarks) 
-    VALUES ('$pr','$item','$description','$uvalue','$datea','$acode','$supplier','$po','$obr','$remarks'); INSERT INTO item_history (par_number,end_user,department_code,status) VALUES ('$pr','$user','$departmentCode','$status');";
+    $sql = "INSERT INTO general_fund (par_number,item,description,unit_value,date_aquired,account_code,department_code,supplier,purchase_order,obr_number,remarks) 
+    VALUES ('$pr','$item','$description','$uvalue','$datea','$acode','$departmentCode','$supplier','$po','$obr','$remarks');
+    INSERT INTO item_history (par_number,end_user,department_code,status) VALUES ('$pr','$user','$departmentCode','$status');";
     $query = mysqli_multi_query($conn,$sql);
 
     if($query){

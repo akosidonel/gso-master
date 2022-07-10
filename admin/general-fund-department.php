@@ -104,8 +104,13 @@ include('../database/databaseConnection.php');
                   <div class="form-group col-md-6">
                     <label >Department</label>
                     <select name="department" id="department" class="form-control">
-                      <option selected>Choose...</option>
-                      <option value="Accounting">Accounting</option>
+                      <option value="">-SELECT-</option>
+                    <?php $sql = "SELECT * FROM departments";
+                        $query = mysqli_query($conn,$sql);
+                        if(mysqli_num_rows($query) > 0){
+                        foreach($query as $result){?> 
+                      <option value="<?php echo htmlentities($result['department_code']);?>"><?php echo htmlentities($result['department_name']);?></option>
+                      <?php }} ?>
                     </select>
                   </div>
                 </div>

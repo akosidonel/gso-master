@@ -1,5 +1,6 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
+<?php echo $page = substr($_SERVER['SCRIPT_NAME'] ,strrpos($_SERVER['SCRIPT_NAME'],"/")+1);?>
     <!-- Brand Logo -->
     <a href="#" class="brand-link text-center">
       <span class="brand-text font-weight-light"><strong>General Service Office</strong> </span>
@@ -34,16 +35,16 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         
           <li class="nav-item">
-            <a href="../admin/dashboard.php" class="nav-link">
-            <i class="nav-icon fa-solid fa-layer-group text-info"></i>
+            <a href="../admin/dashboard.php" class="nav-link <?= $page == 'dashboard.php'? 'active':' '?>">
+            <i class="nav-icon fa-solid fa-layer-group text-white"></i>
               <p>
                 Dashboard     
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="../admin/department.php" class="nav-link">
-            <i class="nav-icon fas fa-building text-warning"></i>
+            <a href="../admin/department.php" class="nav-link <?= $page == 'department.php'? 'active':' '?>" >
+            <i class="nav-icon fas fa-building text-white"></i>
               <p>
                 Department     
               </p>
@@ -51,8 +52,8 @@
           </li>
          
           <li class="nav-item">
-            <a href="#" class="nav-link">
-            <i class="nav-icon fa-solid fa-cart-flatbed text-success"></i>
+            <a href="#" class="nav-link <?= $page == 'general-fund-department.php' || $page == 'general-fund-ics-department.php' ? 'active':' '?>">
+            <i class="nav-icon fa-solid fa-cart-flatbed text-white"></i>
               <p>
                 Inventory
                 <i class="right fas fa-angle-left"></i>
@@ -60,7 +61,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link <?= $page == 'general-fund-department.php' || $page == 'general-fund-ics-department.php' ? 'show':' '?>">
                   <i class="far fa-folder nav-icon"></i>
                   <p>
                     General Fund
@@ -69,25 +70,25 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="../admin/general-fund-department.php" class="nav-link">
+                    <a href="../admin/general-fund-department.php" class="nav-link <?= $page == 'general-fund-department.php' || $page == 'general-fund-inventory.php' ? 'active':' '?>">
                       <i class="far fa-folder-open nav-icon"></i>
                       <p>P.A.R</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../admin/general-fund-ics-department.php" class="nav-link">
+                    <a href="../admin/general-fund-ics-department.php" class="nav-link <?= $page == 'general-fund-ics-department.php'? 'active':' '?>">
                       <i class="far fa-folder-open nav-icon"></i>
                       <p>I.C.S</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link <?= $page == '#'? 'active':' '?>">
                       <i class="far fa-folder-open nav-icon"></i>
                       <p>Account Code</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../admin/return-item.php" class="nav-link">
+                    <a href="../admin/return-item.php" class="nav-link <?= $page == 'return-item.php'? 'active':' '?>">
                       <i class="far fa-folder-open nav-icon"></i>
                       <p>Return Item</p>
                     </a>
@@ -128,7 +129,7 @@
                 </ul>   
               </li>
               <li class="nav-item">
-                <a href="../admin/archive.php" class="nav-link">
+                <a href="../admin/archive.php" class="nav-link <?= $page == 'archive.php'? 'active':' '?>">
                   <i class="far fa-file-archive nav-icon"></i>
                   <p>Archive</p>
                 </a>
@@ -136,20 +137,20 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="../admin/user-management.php" class="nav-link">
-              <i class="fas fa-users-cog nav-icon text-gray dark"></i>
+            <a href="../admin/user-management.php" class="nav-link <?= $page == 'user-management.php'? 'active':' '?>">
+              <i class="fas fa-users-cog nav-icon text-white"></i>
               <p>User Management</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="../admin/activity-log.php" class="nav-link">
-              <i class="fas fa-chart-line nav-icon text-orange"></i>
+            <a href="../admin/activity-log.php" class="nav-link <?= $page == 'activity-log.php'? 'active':' '?>">
+              <i class="fas fa-chart-line nav-icon text-white"></i>
               <p>Activity Log</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="fas fa-sign-out-alt nav-icon text-danger"></i>
+              <i class="fas fa-sign-out-alt nav-icon text-white"></i>
               <p>Log Out</p>
             </a>
           </li>
