@@ -9,7 +9,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel pb-3 mb-2 d-flex">
         <div class="image">
           <img src="../assets/dist/img/avatar4.png" class="img-circle elevation-2" alt="User Image">
         </div>
@@ -31,7 +31,7 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
+      <nav class="mt-3">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         
           <li class="nav-item">
@@ -47,6 +47,14 @@
             <i class="nav-icon fas fa-building text-white"></i>
               <p>
                 Department     
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../admin/account-code.php" class="nav-link <?= $page == 'account-code.php'? 'active':' '?>" >
+            <i class="nav-icon fas fa-book text-white"></i>
+              <p>
+                Account Code   
               </p>
             </a>
           </li>
@@ -82,7 +90,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link <?= $page == '#'? 'active':' '?>">
+                    <a href="../admin/general-fund-account-code.php" class="nav-link <?= $page == 'general-fund-account-code.php'? 'active':' '?>">
                       <i class="far fa-folder-open nav-icon"></i>
                       <p>Account Code</p>
                     </a>
