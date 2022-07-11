@@ -631,4 +631,32 @@ if(isset($_POST['viewProperBtn'])){
     }
 }
 
+if(isset($_POST['save_acct'])){
+
+    $atitles = mysqli_real_escape_string($conn, $_POST['acctname']);
+    $acode = mysqli_real_escape_string($conn, $_POST['acctcode']);
+     
+   
+    $sql = "INSERT INTO account_code (account_name,account_code) VALUES('$atitles','$acode')";
+    $query = mysqli_query($conn,$sql);
+  
+    if($query){
+  
+      $res = [
+          'status' => 200,
+          'message' => 'Added successfully!.'
+      ];
+      echo json_encode($res);
+      return false;
+    }else{
+        $res = [
+            'status' => 500,
+            'message' => 'opps..something went wrong..'
+        ];
+        echo json_encode($res);
+        return false;
+    }
+
+}
+
 ?>

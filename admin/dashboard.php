@@ -204,7 +204,6 @@ include('../database/databaseConnection.php');
                 <td>Serviceable</td>
                 <td><span class="badge badge-success">GF</span></td>
               </tr>
-            
               </tbody>
             </table>
           </div>
@@ -219,16 +218,12 @@ include('../database/databaseConnection.php');
       <!-- /.card -->
 
 </div>
-
-
-
-
        </div>
         <!-- /. row -->
 
             <div class="card col-12 col-md-12" >
               <div class="card-header border-transparent">
-                <h3 class="card-title">Returned property</h3>
+                <h3 class="card-title">Returned to stock</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">

@@ -71,15 +71,15 @@ include('../database/databaseConnection.php');
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form class="form-horizontal" id="acct_form" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" id="accnt_form" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
 
               <div class="alert alert-warning d-none"></div>
 
                 <div class="card-body">
                   <div class="form-group">
-                    <label>Account Name</label>
-                      <input type="text" class="form-control" name="acctname" id="acctname" placeholder="Account name">  
+                    <label>Account Title</label>
+                      <input type="text" class="form-control" name="acctname" id="acctname" placeholder="Account title">  
                   </div>
                   <div class="form-group ">
                     <label>Account Code</label>
@@ -110,7 +110,7 @@ include('../database/databaseConnection.php');
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form class="form-horizontal" id="dept_update" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" id="#" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
 
               <div class="alert alert-warning d-none"></div>
@@ -118,9 +118,9 @@ include('../database/databaseConnection.php');
                 <div class="card-body">
                   <div class="form-group row">
                     <input type="hidden" name="AccntId" id="AccntId">
-                    <label  class="col-sm-4 col-form-label">Account Name</label>
+                    <label  class="col-sm-4 col-form-label">Account title</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" name="eaccntname" id="eaccnttname" placeholder="Account name">
+                      <input type="text" class="form-control" name="eaccntname" id="eaccnttname" placeholder="Account title">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -153,7 +153,7 @@ include('../database/databaseConnection.php');
         <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr class="bg-dark text-light bg-gradient bg-opacity-150">
-                    <th>ACCOUNT NAME</th>
+                    <th>ACCOUNT TITLES</th>
                     <th>CODE</th>
                     <th class="text-center">ACTION</th>
                   </tr>
@@ -179,7 +179,7 @@ include('../database/databaseConnection.php');
                   </tbody>
                   <tfoot>
                   <tr class="bg-dark text-light bg-gradient bg-opacity-150">
-                    <th>ACCOUNT NAME</th>
+                    <th>ACCOUNT TITLES</th>
                     <th>CODE</th>
                     <th class="text-center">ACTION</th>
                   </tr>
@@ -220,21 +220,21 @@ $(function(){
       })//Page specific script
       $('[data-toggle="popover"]').popover()
 
-      $('#dept_form').validate({
+      $('#accnt_form').validate({
           rules:{
-            deptname:{
+            acctname:{
               required:true
             },
-            deptcode:{
+            acctcode:{
               required:true
             }
           },
           messages:{
-            deptname:{
-              required: "Please enter department name"
+            acctname:{
+              required: "Please enter account titles"
             },
-            deptcode:{
-              required: "Please enter department code"
+            acctcode:{
+              required: "Please enter account code"
             }
           },
           errorElement: 'span',
@@ -250,4 +250,30 @@ $(function(){
             }
       });
 });
+</script>
+<script>
+   $(document).on('submit', '#acct_form', function(e){
+    e.preventDefault();
+    var fd = new FormData(this);
+    fd.append("save_acct",true);
+
+    $.ajax({
+      type:"POST",
+      url: "../auth/auth.php",
+      data: fd,
+      processData: false,
+      contentType: false,
+      success:function(response){
+        var res = jQuery.parseJSON(response);
+
+        if(res.status == 422){
+          $('#errorMessage').text(res.message);
+        }else if(res.status == 200){
+          $('#addDeptModal').modal('hide');
+          $('#acct_form')[0].reset();
+          $('#example1').load(location.href + " #example1");
+        }
+      }
+    });
+   });
 </script>
