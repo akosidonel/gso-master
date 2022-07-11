@@ -630,7 +630,7 @@ if(isset($_POST['viewProperBtn'])){
         '; 
     }
 }
-
+//add account code
 if(isset($_POST['save_acct'])){
 
     $atitles = mysqli_real_escape_string($conn, $_POST['acctname']);
