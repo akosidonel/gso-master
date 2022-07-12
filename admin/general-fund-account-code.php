@@ -76,8 +76,20 @@ include('../database/databaseConnection.php');
                   </tr>
                   </thead>
                   <tbody>
-              
-                 
+              <?php 
+                $sql = "SELECT account_code.account_name,account_code.account_code, concat('₱',format(sum(general_fund.unit_value),2)) as total FROM account_code join general_fund on account_code.account_code = general_fund.account_code
+                group by account_code.account_name";
+                $results = mysqli_query($conn,$sql);
+
+                if(mysqli_num_rows($results)){
+                  foreach($results as $row){?>
+                  <tr>
+                    <td><?=$row['']?></td>
+                    <td><?=$row['total']?></td>
+                  </tr>
+<?php
+                  }
+                }?>
                   </tbody>
                 </table>
 

@@ -71,7 +71,7 @@ include('../database/databaseConnection.php');
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form class="form-horizontal" id="accnt_form" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" id="acct_form" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
 
               <div class="alert alert-warning d-none"></div>
@@ -269,7 +269,7 @@ $(function(){
         if(res.status == 422){
           $('#errorMessage').text(res.message);
         }else if(res.status == 200){
-          $('#addDeptModal').modal('hide');
+          $('#addAccntModal').modal('hide');
           $('#acct_form')[0].reset();
           $('#example1').load(location.href + " #example1");
         }
