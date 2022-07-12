@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2022 at 12:55 PM
+-- Generation Time: Jul 12, 2022 at 06:42 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -33,6 +33,19 @@ CREATE TABLE `account_code` (
   `account_code` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `account_code`
+--
+
+INSERT INTO `account_code` (`id`, `account_name`, `account_code`, `created_at`) VALUES
+(1, 'Medical, Dental and Laboratory Supplies Expenses', '5-02-03-080', '2022-07-11 22:53:56'),
+(2, 'Information and Communication Technology Equipment', '1-07-05-030', '2022-07-11 23:02:15'),
+(3, 'Office Equipment', '1-07-05-020', '2022-07-11 23:03:48'),
+(4, 'Motor Vehicles', '1-07-06-010', '2022-07-11 23:06:20'),
+(5, 'Furniture and Fixtures', '1-07-07-010', '2022-07-11 23:07:41'),
+(6, 'Other Machinery and Equipment', '1-07-05-990', '2022-07-11 23:10:33'),
+(7, 'Computer Software', '1-09-01-020', '2022-07-11 23:12:39');
 
 -- --------------------------------------------------------
 
@@ -101,7 +114,7 @@ CREATE TABLE `general_fund` (
   `item` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `par_number` varchar(255) NOT NULL,
-  `unit_value` varchar(255) NOT NULL,
+  `unit_value` decimal(8,2) NOT NULL,
   `date_aquired` varchar(255) NOT NULL,
   `account_code` varchar(255) NOT NULL,
   `department_code` varchar(255) NOT NULL,
@@ -116,30 +129,30 @@ CREATE TABLE `general_fund` (
 --
 
 INSERT INTO `general_fund` (`id`, `item`, `description`, `par_number`, `unit_value`, `date_aquired`, `account_code`, `department_code`, `supplier`, `purchase_order`, `obr_number`, `remarks`) VALUES
-(2, 'Laptop', 'ACER - intel i7-8500,16GB RAM 2x8 , 1TB SSD, 3TB HDD SATA, GTX 730 DDR5 2GB, \"15inch WQHD+ 3200x1440 DUAL AUDIO SOUND', '2022-07-223', '100,000', '12-12-2022', '223', '8', 'Lemon and Lime', '000-001', '000-001', 'Serviceable'),
-(4, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume  SN: KMBE83021', '21-421', '17,418.50', '2021', '223', '8', 'JenJusJem', '', '', ''),
-(5, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume  SN: KMYV06220', '21-422', '17,418.50', '2021', '223', '8', 'JenJusJem', '', '', ''),
-(6, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume SN: KMYV05242', '21-423', '17,418.50', '2021', '223', '8', 'JenJusJem', '', '', ''),
-(7, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume SN: KMYV06219', '21-424', '17,418.50', '2021', '223', '8', 'JenJusJem', '', '', ''),
-(8, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume SN: KMYV05249', '21-425', '17,418.50', '2021', '223', '8', 'JenJusJem', '', '', ''),
-(9, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume SN: KMBE83089', '21-426', '17,418.50', '2021', '223', '8', 'JenJusJem', '', '', ''),
-(10, 'Computer Desktop', 'System Unit : HP CDTS 2089 - intel i5-9400F,128GB NVME M.2 SSD,NVIDIA GeForce GTX 1030 2GB, W10, \nSN: 4CEO390N41 , Monitor - HP 22M Backlit  SN: ICRO420XLQ', '21-427', '112,617.00', '2021', '223', '8', 'JenJusJem', '', '', ''),
-(11, 'Computer Desktop', 'System Unit : HP CDTS 2089 - intel i5-9400F,128GB NVME M.2 SSD,NVIDIA GeForce GTX 1030 2GB, W10, SN:4CE0390CRM,  , Monitor - HP 22M Backlit SN: ICRO211FVS\nLCD Monitor ', '21-428', '112,617.00', '2021', '223', '8', 'JenJusJem', '', '', ''),
-(12, 'Computer Desktop', 'System Unit : HP CDTS 2089 - intel i5-9400F,128GB NVME M.2 SSD,NVIDIA GeForce GTX 1030 2GB, W10, SN: 4CE0390NK9 , Monitor - HP 22M Backlit  SN: ICRO420XKV\nLCD Monitor', '21-429', '112,617.00', '2021', '223', '8', 'JenJusJem', '', '', ''),
-(13, 'Computer Desktop', 'System Unit : HP CDTS 2089 - intel i5-9400F,128GB NVME M.2 SSD,NVIDIA GeForce GTX 1030 2GB, W10, SN:4CEO390CRM ,Monitor - HP 22M Backlit SN: ICRO420XM5\nLCD Monitor   ', '21-430', '112,617.00', '2021', '223', '8', 'JenJusJem', '', '', ''),
-(14, 'Computer Desktop', 'System Unit : HP CDTS 2089 - intel i5-9400F,128GB NVME M.2 SSD,NVIDIA GeForce GTX 1030 2GB, W10, SN: 4CE0390QRW, Monitor - HP 22M Backlit \nLCD Monitor SN: ICRO420XN1', '21-431', '112,617.00', '2021', '223', '8', 'JenJusJem', '', '', ''),
-(15, 'Chair', 'Office Ergo Comfort Black fabric high back executive perator chair, suitable for 24 hr use. Comfort arm rests optional 3 level synchronous ergo tilt seat back angle adjustment', '19 - 2337', '28,925.00', '6/3/2019', '222', '8', 'JenJusJem', '', '', ''),
-(16, 'Copier', 'Multi Function Laser Copier parts main engine assembly KYOCERA multi function laser copier task alfa 2201 SN: LXE4800085', '18 - 2046', '15,155.00', '3/3/2019', '221', '8', 'Eminence Builders and Traders', '', '', ''),
-(17, 'Aircon', '2.0 HP Window type aircon inverter Condura SN: 10918-0137003, 1018-0163342', '18 - 177-178', '123,800.00', '6/2/2018', '221', '8', 'JenJusJem', '', '', ''),
-(18, 'Typewriter', 'Manual Typewriter 18\" carriage with 3 position ribbon selector w/ tabulator setting; line spacing 1/1.5/2/2.5/3 metal casing OLYMPIA SN: 6933343', '18 - 176', '49,200.00', '6/2/2018', '223', '8', 'JenJusJem', '', '', ''),
-(19, 'Printer', 'Printer all in one inkjet print, copy, scan and wifi continous EPSON L4160 SN: 4E3001850 EPSON L405 SN: X4FJ02041', '18 - 174-175', '34,550.00', '6/2/2018', '223', '8', 'JenJusJem', '', '', ''),
-(20, 'Computer set', 'Computer set - operating system windows 10 Home 17-7700 processor (8MB cache, up to 3.60GHz): memory: 16GB 2400MHz: Hard disk 1TB GB 7200+128GB SSD graphics NVIDIA, Geforce, GTX 1050 2GB DDR5 Optical Drive  Monitor S2318H 23\" DW 1705 80211 bgn bluetooth 4', '18 - 173', '179,750.00', '6/2/2018', '223', '8', 'JenJusJem', '', '', ''),
-(21, 'Motorcycle', 'RUSI Motorcycle 125cc Black Engine No.: RSPTC125-Z32100 Frame No.: RSPTC125Z32100', '439', '35,000.00', '2017', '241', '8', '', '', '', 'Donated'),
-(22, 'Printer ', 'Printer - L110 , 180 Nozzles, black 50 nozzles each color (cyan, magenta, yellow) 50 sheets A4 plain paper 75 mgsm, 10 sh eets premium glossy paper  SN -RADK - 429838', '1665', '11,400.00', '5/3/2015', '223', '8', 'Lemon N\' Lime ', '', '', 'previous mr issued to Annaliza Germano BAC'),
-(23, 'Computers', 'Computer i3-3240, IH6ICT- icope Motherboard , 4gb ddr3 ram, 500gb, HDD Sata , air casing w/600whs PSc, key and mouse USB, 18.5 \" Monitor, Volts AVR 500 whs Monitor SN - G063HCG301769', '1669', '35,300.00', '5/3/2015', '223', '8', 'Lemon N\' Lime ', '', '', 'previous mr issued to Annaliza Germano BAC'),
-(24, 'Computer desktop', 'Computer desktop 500-334D cor i5-4460 3.2GHZ 20\" LED Monitor DELL SN: 0HH66M-64180-49P-1CWL CPU Service Tag #3XXN622', '4132', '77,690.00', '5/3/2015', '223', '8', 'MA-REV Gen. Mdse.', '', '', ''),
-(25, 'Printer', 'Printer deskjet all in one printer SN: HP Deskjet 1000 CN36R19K7Rs', '4133', '6,370.00', '5/3/2015', '223', '8', 'MA-REV Gen. Mdse.', '', '', ''),
-(26, 'Laptop', 'Laptop - AMD A4 series A4-3300M 2.5ghz DELL Laptop 26VJM72 SN: 4769345254', '4098', '80,960.00', '5/3/2015', '223', '8', 'MA-REV Gen. Mdse.', '', '', '');
+(2, 'Laptop', 'ACER - intel i7-8500,16GB RAM 2x8 , 1TB SSD, 3TB HDD SATA, GTX 730 DDR5 2GB, \"15inch WQHD+ 3200x1440 DUAL AUDIO SOUND', '2022-07-223', '300000.00', '12-12-2022', '1-07-05-030', '8', 'Lemon and Lime', '000-001', '000-001', 'Serviceable'),
+(4, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume  SN: KMBE83021', '21-421', '17.00', '2021', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(5, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume  SN: KMYV06220', '21-422', '17.00', '2021', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(6, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume SN: KMYV05242', '21-423', '17.00', '2021', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(7, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume SN: KMYV06219', '21-424', '17.00', '2021', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(8, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume SN: KMYV05249', '21-425', '17.00', '2021', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(9, 'Printer', 'CANON G2020- print , scan, copy refillable ink tank all in one for high volume SN: KMBE83089', '21-426', '17.00', '2021', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(10, 'Computer Desktop', 'System Unit : HP CDTS 2089 - intel i5-9400F,128GB NVME M.2 SSD,NVIDIA GeForce GTX 1030 2GB, W10, \nSN: 4CEO390N41 , Monitor - HP 22M Backlit  SN: ICRO420XLQ', '21-427', '112.00', '2021', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(11, 'Computer Desktop', 'System Unit : HP CDTS 2089 - intel i5-9400F,128GB NVME M.2 SSD,NVIDIA GeForce GTX 1030 2GB, W10, SN:4CE0390CRM,  , Monitor - HP 22M Backlit SN: ICRO211FVS\nLCD Monitor ', '21-428', '112.00', '2021', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(12, 'Computer Desktop', 'System Unit : HP CDTS 2089 - intel i5-9400F,128GB NVME M.2 SSD,NVIDIA GeForce GTX 1030 2GB, W10, SN: 4CE0390NK9 , Monitor - HP 22M Backlit  SN: ICRO420XKV\nLCD Monitor', '21-429', '112.00', '2021', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(13, 'Computer Desktop', 'System Unit : HP CDTS 2089 - intel i5-9400F,128GB NVME M.2 SSD,NVIDIA GeForce GTX 1030 2GB, W10, SN:4CEO390CRM ,Monitor - HP 22M Backlit SN: ICRO420XM5\nLCD Monitor   ', '21-430', '112.00', '2021', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(14, 'Computer Desktop', 'System Unit : HP CDTS 2089 - intel i5-9400F,128GB NVME M.2 SSD,NVIDIA GeForce GTX 1030 2GB, W10, SN: 4CE0390QRW, Monitor - HP 22M Backlit \nLCD Monitor SN: ICRO420XN1', '21-431', '112.00', '2021', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(15, 'Chair', 'Office Ergo Comfort Black fabric high back executive perator chair, suitable for 24 hr use. Comfort arm rests optional 3 level synchronous ergo tilt seat back angle adjustment', '19 - 2337', '28.00', '6/3/2019', '1-07-07-010', '8', 'JenJusJem', '', '', ''),
+(16, 'Copier', 'Multi Function Laser Copier parts main engine assembly KYOCERA multi function laser copier task alfa 2201 SN: LXE4800085', '18 - 2046', '15.00', '3/3/2019', '1-07-05-020', '8', 'Eminence Builders and Traders', '', '', ''),
+(17, 'Aircon', '2.0 HP Window type aircon inverter Condura SN: 10918-0137003, 1018-0163342', '18 - 177-178', '123.00', '6/2/2018', '1-07-05-020', '8', 'JenJusJem', '', '', ''),
+(18, 'Typewriter', 'Manual Typewriter 18\" carriage with 3 position ribbon selector w/ tabulator setting; line spacing 1/1.5/2/2.5/3 metal casing OLYMPIA SN: 6933343', '18 - 176', '49.00', '6/2/2018', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(19, 'Printer', 'Printer all in one inkjet print, copy, scan and wifi continous EPSON L4160 SN: 4E3001850 EPSON L405 SN: X4FJ02041', '18 - 174-175', '34.00', '6/2/2018', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(20, 'Computer set', 'Computer set - operating system windows 10 Home 17-7700 processor (8MB cache, up to 3.60GHz): memory: 16GB 2400MHz: Hard disk 1TB GB 7200+128GB SSD graphics NVIDIA, Geforce, GTX 1050 2GB DDR5 Optical Drive  Monitor S2318H 23\" DW 1705 80211 bgn bluetooth 4', '18 - 173', '179.00', '6/2/2018', '1-07-05-030', '8', 'JenJusJem', '', '', ''),
+(21, 'Motorcycle', 'RUSI Motorcycle 125cc Black Engine No.: RSPTC125-Z32100 Frame No.: RSPTC125Z32100', '439', '35.00', '2017', '1-07-06-010', '8', '', '', '', 'Donated'),
+(22, 'Printer ', 'Printer - L110 , 180 Nozzles, black 50 nozzles each color (cyan, magenta, yellow) 50 sheets A4 plain paper 75 mgsm, 10 sh eets premium glossy paper  SN -RADK - 429838', '1665', '11.00', '5/3/2015', '1-07-05-030', '8', 'Lemon N\' Lime ', '', '', 'previous mr issued to Annaliza Germano BAC'),
+(23, 'Computers', 'Computer i3-3240, IH6ICT- icope Motherboard , 4gb ddr3 ram, 500gb, HDD Sata , air casing w/600whs PSc, key and mouse USB, 18.5 \" Monitor, Volts AVR 500 whs Monitor SN - G063HCG301769', '1669', '35.00', '5/3/2015', '1-07-05-030', '8', 'Lemon N\' Lime ', '', '', 'previous mr issued to Annaliza Germano BAC'),
+(24, 'Computer desktop', 'Computer desktop 500-334D cor i5-4460 3.2GHZ 20\" LED Monitor DELL SN: 0HH66M-64180-49P-1CWL CPU Service Tag #3XXN622', '4132', '77.00', '5/3/2015', '1-07-05-030', '8', 'MA-REV Gen. Mdse.', '', '', ''),
+(25, 'Printer', 'Printer deskjet all in one printer SN: HP Deskjet 1000 CN36R19K7Rs', '4133', '6.00', '5/3/2015', '1-07-05-030', '8', 'MA-REV Gen. Mdse.', '', '', ''),
+(26, 'Laptop', 'Laptop - AMD A4 series A4-3300M 2.5ghz DELL Laptop 26VJM72 SN: 4769345254', '4098', '100000.00', '5/3/2015', '1-07-05-030', '8', 'MA-REV Gen. Mdse.', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -321,7 +334,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `account_code`
 --
 ALTER TABLE `account_code`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `departments`
