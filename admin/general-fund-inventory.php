@@ -40,7 +40,7 @@ include('../database/databaseConnection.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Inventory</h1>
+            <h1>Property Inventory</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -66,7 +66,7 @@ include('../database/databaseConnection.php');
           $query = mysqli_query($conn, $sql);
           if(mysqli_num_rows($query)>0){
             foreach($query as $result){?>
-                <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; <?=$result['department_name']?>&nbsp;Inventory</h3>
+                <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; <?=$result['department_name']?>&nbsp;Office</h3>
             <?php }}?>  
         </div>
 
