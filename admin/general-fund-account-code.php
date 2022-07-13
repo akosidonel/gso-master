@@ -70,21 +70,22 @@ include('../database/databaseConnection.php');
         <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr class="bg-dark text-light bg-gradient bg-opacity-150">
-                    <th>ACCOUNT NAME</th>
                     <th>ACCOUNT CODE</th>
+                    <th>ACCOUNT NAME</th>
                     <th>TOTAL AMOUNT</th>
                   </tr>
                   </thead>
                   <tbody>
               <?php 
-                $sql = "SELECT account_code.account_name,account_code.account_code, concat('₱',format(sum(general_fund.unit_value),2)) as total FROM account_code join general_fund on account_code.account_code = general_fund.account_code
+                $sql = "SELECT  concat('₱ ',format(sum(general_fund.unit_value),2)) as total ,account_code.account_name,account_code.account_code,general_fund.account_code FROM account_code join general_fund on account_code.account_code = general_fund.account_code
                 group by account_code.account_name";
                 $results = mysqli_query($conn,$sql);
 
                 if(mysqli_num_rows($results)){
                   foreach($results as $row){?>
                   <tr>
-                    <td><?=$row['']?></td>
+                    <td><?=$row['account_code']?></td>
+                    <td><?=$row['account_name']?></td>
                     <td><?=$row['total']?></td>
                   </tr>
 <?php

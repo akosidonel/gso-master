@@ -105,7 +105,7 @@ include('../database/databaseConnection.php');
                     <label >Department</label>
                     <select name="department" id="department" class="form-control">
                       <option value="">-SELECT-</option>
-                    <?php $sql = "SELECT * FROM departments";
+                        <?php $sql = "SELECT * FROM departments";
                         $query = mysqli_query($conn,$sql);
                         if(mysqli_num_rows($query) > 0){
                         foreach($query as $result){?> 
@@ -121,7 +121,12 @@ include('../database/databaseConnection.php');
                   </div>
                   <div class="form-group col-md-6">
                     <label >Account code</label>
-                    <input type="text" class="form-control" name="acode" id="acode" placeholder="Account Code">
+                      <select name="" id="">
+                        <option value=""></option>
+                        <?php
+                        
+                        ?>
+                      </select>
                   </div>
                 </div>
                 <div class="form-row">
