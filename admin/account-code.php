@@ -110,7 +110,7 @@ include('../database/databaseConnection.php');
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form class="form-horizontal" id="#" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" id="acct_update" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
 
               <div class="alert alert-warning d-none"></div>
@@ -120,13 +120,13 @@ include('../database/databaseConnection.php');
                     <input type="hidden" name="AccntId" id="AccntId">
                     <label  class="col-sm-4 col-form-label">Account title</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" name="eaccntname" id="eaccnttname" placeholder="Account title">
+                      <input type="text" class="form-control" name="eacctname" id="eacctname" placeholder="Account title">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label  class="col-sm-4 col-form-label">Code</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" name="eaccntcode" id="eaccnttcode" placeholder="Account code">
+                      <input type="text" class="form-control" name="eacctcode" id="eacctcode" placeholder="Account code">
                     </div>
                   </div>   
                 </div>
@@ -169,8 +169,8 @@ include('../database/databaseConnection.php');
                         <td><?=$result['account_name']?></td>
                         <td><?=$result['account_code']?></td>
                         <td class="text-center">
-                          <button type="submit" value="<?= $result['id']; ?>" class="editdept btn btn-sm btn-success" data-toggle="modal" data-target="#editAccntModal"><i class="fas fa-edit" data-toggle="popover" data-content="Edit" data-trigger="hover"></i></button>
-                          <button type="submit" value="<?= $result['id']; ?>" class="deldept btn btn-sm btn-danger"><i class="fas fa-trash" data-toggle="popover" data-content="Trash" data-trigger="hover"></i></button>
+                          <button type="submit" value="<?= $result['id']; ?>" class="editacct btn btn-sm btn-success" data-toggle="modal" data-target="#editAccntModal"><i class="fas fa-edit" data-toggle="popover" data-content="Edit" data-trigger="hover"></i></button>
+                          <button type="submit" value="<?= $result['id']; ?>" class="delacct btn btn-sm btn-danger"><i class="fas fa-trash" data-toggle="popover" data-content="Trash" data-trigger="hover"></i></button>
                         </td>
                       </tr>
                       <?php }
@@ -276,4 +276,77 @@ $(function(){
       }
     });
    });
+
+   $(document).on('click','.editacct',function(e){
+    var acctid = $(this).val();
+    $.ajax({
+        type:'GET',
+        url:'../auth/auth.php?acctid='+acctid,
+        success:function(response){
+          
+          var res = jQuery.parseJSON(response);
+
+          if(res.status == 422){
+              alert(res.message);
+            }else if(res.status == 200){
+
+              $('#AccntId').val(res.data.id);
+              $('#eacctname').val(res.data.account_name);
+              $('#eacctcode').val(res.data.account_code);
+              $('#editAccntModal').modal('show');
+              
+            }
+        }
+    });
+   });
+
+   $(document).on('submit','#acct_update',function(e){
+      e.preventDefault();
+      var fd = new FormData(this);
+      fd.append("update_acct",true);
+
+      $.ajax({
+        type: "POST",
+        url: "../auth/auth.php",
+        data: fd,
+        processData: false,
+        contentType: false,
+        success:function(response){
+          var res = jQuery.parseJSON(response);
+
+          if(res.status == 422){
+              $('#errorMessage').text(res.message);
+            }else if(res.status == 200 ){
+              $('#editAccntModal').modal('hide');
+              $('#acct_update')[0].reset();
+              $('#example1').load(location.href + " #example1");
+            }
+        }
+      });
+   });
+   $(document).on('click','.delacct', function(e){
+      e.preventDefault();
+
+      if(confirm("Are you sure? ")){
+        var delacct = $(this).val();
+        $.ajax({
+          type: "POST",
+          url: "../auth/auth.php",
+          data:{
+            'delete_acct':true,
+            'delacct':delacct
+          },
+          success:function(response){
+            var res = jQuery.parseJSON(response);
+            if (res.status == 500){
+              alert(res.message);
+          }else{
+                alert(res.message);
+
+                $('#example1').load(location.href + " #example1");
+              }
+            }
+        });
+      }
+   });  
 </script>

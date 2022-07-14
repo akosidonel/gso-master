@@ -91,6 +91,11 @@ include('../database/databaseConnection.php');
 <?php
                   }
                 }?>
+                <tr>
+                  <td colspan="1">Total</td>
+                  <td style="display: none"></td>
+                  <td>₱ 1000000</td>
+                </tr>
                   </tbody>
                 </table>
 

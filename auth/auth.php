@@ -659,4 +659,93 @@ if(isset($_POST['save_acct'])){
 
 }
 
+//fetch account details
+if(isset($_GET['acctid'])){
+    
+    $acctid = mysqli_real_escape_string($conn, $_GET['acctid']);
+    
+    $sql = "SELECT * FROM account_code WHERE id = '$acctid' LIMIT 1 ";
+    $query = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($query) == 1){
+
+        $dept = mysqli_fetch_array($query);
+
+        $res = [
+            'status' => 200,
+            'message' => 'Account code id fetch successfully',
+            'data' => $dept
+        ];
+        echo json_encode($res);
+        return false; 
+
+    }else{
+        $res = [
+            'status' => 422,
+            'message' => 'No Account code id found'
+        ];
+        echo json_encode($res);
+        return false; 
+    }
+}
+
+//update account code
+if(isset($_POST['update_acct'])){
+    $Id = mysqli_real_escape_string($conn, $_POST['AccntId']);
+    $acctname = mysqli_real_escape_string($conn, $_POST['eacctname']);
+    $acctcode = mysqli_real_escape_string($conn, $_POST['eacctcode']);
+
+    if($acctname == NULL || $acctcode == NULL){
+        $res = [
+            'status' => 422,
+            'message' => 'All fields are required!.'
+        ];
+        echo json_encode($res);
+        return false;
+    }
+
+    $sql = "UPDATE account_code SET account_name = '$acctname' , account_code = '$acctcode' WHERE id = '$Id' ";
+    $query = mysqli_query($conn, $sql);
+
+    if($query){
+        $res = [
+            'status' => 200,
+            'message' => 'Updated succesfully!'
+        ];
+        echo json_encode($res);
+        return false;  
+    }else{
+        $res = [
+            'status' => 500,
+            'message' => 'opps..something went wrong..'
+        ];
+        echo json_encode($res);
+        return false;  
+    }
+
+} 
+//delete account code
+if(isset($_POST['delete_acct'])){
+    
+    $delacct = mysqli_real_escape_string($conn,$_POST['delacct']);
+
+    $sql = "DELETE FROM account_code WHERE id = '$delacct' ";
+    $query = mysqli_query($conn, $sql);
+
+    if($query){
+        $res = [
+            'status' => 200,
+            'message' => 'Deleted succesfully!'
+        ];
+        echo json_encode($res);
+        return false;  
+    }else{
+        $res = [
+            'status' => 500,
+            'message' => 'opps..something went wrong..'
+        ];
+        echo json_encode($res);
+        return false;  
+    }
+}
 ?>

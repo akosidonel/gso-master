@@ -99,13 +99,14 @@ include('../database/databaseConnection.php');
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label >Unit Value</label>
-                    <input type="text" class="form-control" name="uvalue" id="uvalue" placeholder="Unit Value">
+                    <input type="number" class="form-control" name="uvalue" id="uvalue" placeholder="Unit Value">
                   </div>
                   <div class="form-group col-md-6">
                     <label >Department</label>
                     <select name="department" id="department" class="form-control">
                       <option value="">-SELECT-</option>
-                        <?php $sql = "SELECT * FROM departments";
+                        <?php 
+                        $sql = "SELECT * FROM departments";
                         $query = mysqli_query($conn,$sql);
                         if(mysqli_num_rows($query) > 0){
                         foreach($query as $result){?> 
@@ -121,10 +122,15 @@ include('../database/databaseConnection.php');
                   </div>
                   <div class="form-group col-md-6">
                     <label >Account code</label>
-                      <select name="" id="">
-                        <option value=""></option>
+                      <select name="acode" id="acode" class="form-control">
+                        <option value="">-SELECT-</option>
                         <?php
-                        
+                        $sql = "SELECT * FROM account_code";
+                        $query = mysqli_query($conn,$sql);
+                        if(mysqli_num_rows($query)>0){
+                          foreach($query as $row){?>
+                        <option value="<?php echo htmlentities($row['account_code'])?>"><?php echo htmlentities($row['account_name'])?></option>
+                      <?php }}
                         ?>
                       </select>
                   </div>
