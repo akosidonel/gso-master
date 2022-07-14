@@ -84,7 +84,7 @@ include('../database/databaseConnection.php');
                 if(mysqli_num_rows($results)){
                   foreach($results as $row){?>
                   <tr>
-                    <td><?=$row['account_code']?></td>
+                    <td><a href=""><?=$row['account_code']?></a></td>
                     <td><?=$row['account_name']?></td>
                     <td><?=$row['total']?></td>
                   </tr>
