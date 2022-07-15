@@ -77,14 +77,14 @@ include('../database/databaseConnection.php');
                   </thead>
                   <tbody>
               <?php 
-                $sql = "SELECT  concat('₱ ',format(sum(general_fund.unit_value),2)) as total ,account_code.account_name,account_code.account_code,general_fund.account_code FROM account_code join general_fund on account_code.account_code = general_fund.account_code
+                $sql = "SELECT  concat('₱ ',format(sum(general_fund.unit_value),2)) as total ,account_code.id,account_code.account_name,account_code.account_code,general_fund.account_code FROM account_code join general_fund on account_code.account_code = general_fund.account_code
                 group by account_code.account_name";
                 $results = mysqli_query($conn,$sql);
 
                 if(mysqli_num_rows($results)){
                   foreach($results as $row){?>
                   <tr>
-                    <td><a href=""><?=$row['account_code']?></a></td>
+                    <td><a href="general-fund-account-inventory.php?acct=<?=$row['id']?>"><?=$row['account_code']?></a></td>
                     <td><?=$row['account_name']?></td>
                     <td><?=$row['total']?></td>
                   </tr>
@@ -92,7 +92,7 @@ include('../database/databaseConnection.php');
                   }
                 }?>
                 <tr>
-                  <td colspan="1">Total</td>
+                  <td colspan="1"><strong>Total</strong></td>
                   <td style="display: none"></td>
                   <td>₱ 1000000</td>
                 </tr>

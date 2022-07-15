@@ -60,13 +60,13 @@ include('../database/databaseConnection.php');
       <div class="card"> <!-- Default box -->
         <div class="card-header">
           <?php
-          $did = intval($_GET['dept']);
+          $aid = intval($_GET['acct']);
           $sql = "SELECT * FROM account_code  
-          WHERE id = '$did' LIMIT 1 ";
+          WHERE id = '$aid' LIMIT 1 ";
           $query = mysqli_query($conn, $sql);
           if(mysqli_num_rows($query)>0){
             foreach($query as $result){?>
-                <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; <?=$result['account_code']?>&nbsp;Office</h3>
+                <h3 class="card-title"><i class="fas fa-clipboard"></i>&nbsp; <?=$result['account_name']?>&nbsp;<?=$result['account_code']?></h3>
             <?php }}?>  
         </div>
 
@@ -183,21 +183,19 @@ include('../database/databaseConnection.php');
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
-                    <th>DEPARTMENT</th>
-                    <th>END USER</th>
-                    <th class="text-center">ACTION</th>
+                    <th>AMOUNT</th>
+                    <th>STATUS</th>
                   </tr>
                   </thead>
                   <tbody>
                
                  <?php 
                  
-                 $did = intval($_GET['dept']);
-                 $query = "SELECT departments.deptid, departments.department_code, departments.department_name, general_fund.id as gid, general_fund.item,
-                 general_fund.description, general_fund.par_number,item_history.par_number, item_history.end_user,
-                 item_history.department_code,item_history.status
-                 FROM departments JOIN item_history ON departments.department_code = item_history.department_code 
-                 JOIN general_fund ON item_history.par_number = general_fund.par_number WHERE departments.deptid = '$did' AND item_history.status = '1'  ";
+                 $aid = intval($_GET['acct']);
+                 $query = "SELECT account_code.account_code,account_code.account_name,account_code.id, general_fund.item,
+                 general_fund.description, general_fund.par_number, general_fund.account_code,general_fund.unit_value,general_fund.remarks
+                 FROM account_code JOIN general_fund ON account_code.account_code = general_fund.account_code 
+                 WHERE account_code.id = '$aid' ";
                  $cnt = 1;
                  $results = mysqli_query($conn, $query);
                  if(mysqli_num_rows($results) > 0){
@@ -207,20 +205,8 @@ include('../database/databaseConnection.php');
                       <td><?=$row['item']?></td>
                       <td><?=$row['description']?></td> 
                       <td ><?=$row['par_number']?></td>
-                      <td><?=$row['department_name']?></td>
-                      <td><?=$row['end_user']?></td>
-                      <td class="text-center">
-                     
-                      <div class="btn-group">
-                          <button type="button" class="btn btn-info btn-sm viewProper" data-value="<?=$row['gid']; ?>"><i class="fas fa-eye" data-toggle="popover" data-content="View details" data-trigger="hover"></i></button>
-                          <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52"><i class="fas fa-bars" data-toggle="popover" data-content="Actions" data-trigger="hover"></i></button>
-                    <div class="dropdown-menu" role="menu">
-                      <a href="#" class="dropdown-item editInv" data-toggle="modal" data-target="#editInModal" data-value="<?=$row['gid']; ?>" ><i class="fas fa-edit"></i>&nbsp; Edit</a>
-                      <a href="#" class="dropdown-item retInv" data-value="<?=$row['par_number']; ?>"><i class="fas fa-box-open"></i>&nbsp; Return item</a>
-                      <a href="#" class="dropdown-item arcInv" data-value="<?=$row['gid']; ?>"><i class="fas fa-archive"></i>&nbsp;&nbsp;  Archive</a>
-                    </div>
-                  </div>
-                      </td>
+                      <td ><?=$row['unit_value']?></td>
+                      <td ><?=$row['remarks']?></td>
                     </tr>
 
                <?php $cnt++; } } ?>
@@ -233,9 +219,8 @@ include('../database/databaseConnection.php');
                     <th>ITEM</th>    
                     <th>DESCRIPTION</th>
                     <th>P.A.R NUMBER</th>
-                    <th>DEPARTMENT</th>
-                    <th>END USER</th>
-                    <th class="text-center">ACTION</th>
+                    <th>AMOUNT</th>
+                    <th>STATUS</th>
                   </tr>
                   </tfoot>
                 </table>
