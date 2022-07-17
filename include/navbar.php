@@ -64,7 +64,7 @@
                 </div>
             </div>
 <br>
-            <h5 class="mb-3">Results:</h5>
+            <h5 class="mb-3">Search Results:</h5>
 
 
             <div class="card" >
@@ -91,6 +91,37 @@
                     </thead>
                     <tbody>
                     <tr>
+                      <td>OR9842</td>
+                      <td>Laptop</td>
+                      <td>Accounting</td>
+                      <td><span class="badge badge-success">ACTIVE</span></td>
+                    </tr>
+                    <tr>
+                      <td>OR9842</td>
+                      <td>Laptop</td>
+                      <td>Accounting</td>
+                      <td><span class="badge badge-success">ACTIVE</span></td>
+                    </tr> <tr>
+                      <td>OR9842</td>
+                      <td>Laptop</td>
+                      <td>Accounting</td>
+                      <td><span class="badge badge-success">ACTIVE</span></td>
+                    </tr> <tr>
+                      <td>OR9842</td>
+                      <td>Laptop</td>
+                      <td>Accounting</td>
+                      <td><span class="badge badge-success">ACTIVE</span></td>
+                    </tr> <tr>
+                      <td>OR9842</td>
+                      <td>Laptop</td>
+                      <td>Accounting</td>
+                      <td><span class="badge badge-success">ACTIVE</span></td>
+                    </tr> <tr>
+                      <td>OR9842</td>
+                      <td>Laptop</td>
+                      <td>Accounting</td>
+                      <td><span class="badge badge-success">ACTIVE</span></td>
+                    </tr> <tr>
                       <td>OR9842</td>
                       <td>Laptop</td>
                       <td>Accounting</td>
