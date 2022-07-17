@@ -16,8 +16,9 @@ include('../database/databaseConnection.php');
   <link rel="stylesheet" href="../assets/plugins/fontawesome-free/css/all.min.css">  <!-- Font Awesome -->
   <link rel="stylesheet" href="../assets/dist/css/adminlte.min.css">  <!-- Theme style -->
   <link rel="stylesheet" href="../assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"><!-- DataTables -->
-  <link rel="stylesheet" href="../assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css"><!-- DataTables -->
+  <link rel="stylesheet" href="../assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="../assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <link rel="stylesheet" href="../assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed">
@@ -71,13 +72,14 @@ include('../database/databaseConnection.php');
                   <thead>
                   <tr class="bg-dark text-light bg-gradient bg-opacity-150">
                     <th>ACCOUNT CODE</th>
-                    <th>ACCOUNT NAME</th>
+                    <th>ACCOUNT TITLES</th>
                     <th>TOTAL AMOUNT</th>
                   </tr>
                   </thead>
                   <tbody>
               <?php 
-                $sql = "SELECT  concat('₱ ',format(sum(general_fund.unit_value),2)) as total ,account_code.id,account_code.account_name,account_code.account_code,general_fund.account_code FROM account_code join general_fund on account_code.account_code = general_fund.account_code
+                $sql = "SELECT  concat('₱ ',format(sum(general_fund.unit_value),2)) as total ,account_code.id,account_code.account_name,account_code.account_code,general_fund.account_code 
+                FROM account_code join general_fund on account_code.account_code = general_fund.account_code
                 group by account_code.account_name";
                 $results = mysqli_query($conn,$sql);
 
@@ -91,11 +93,17 @@ include('../database/databaseConnection.php');
 <?php
                   }
                 }?>
-                <tr>
-                  <td colspan="1"><strong>Total</strong></td>
-                  <td style="display: none"></td>
-                  <td>₱ 1000000</td>
-                </tr>
+                <?php 
+                  $sql = "SELECT concat('₱ ',format(sum(unit_value),2)) as atotal FROM general_fund ";
+                  $query = mysqli_query($conn, $sql);
+                  while($result = mysqli_fetch_array($query)){?>
+                    <tr>
+                      <td><strong>TOTAL</strong></td>
+                      <td></td>
+                      <td><strong><?php echo htmlentities($result['atotal'])?></strong></td>
+                    </tr>
+                  <?php }?>
+              
                   </tbody>
                 </table>
 
@@ -115,22 +123,33 @@ include('../database/databaseConnection.php');
 
 
 <script src="../assets/plugins/jquery/jquery.min.js"></script><!-- jQuery -->
-<script src="../assets/plugins/popper/umd/popper.min.js"></script>
 <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script><!-- Bootstrap 4 -->
 <script src="../assets/dist/js/adminlte.min.js"></script><!-- Custom App -->
 <script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script><!-- DataTables  & Plugins -->
 <script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../assets/plugins/jszip/jszip.min.js"></script>
+<script src="../assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="../assets/plugins/jquery-validation/jquery.validate.min.js"></script><!-- jquery-validation -->
 <script src="../assets/plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="../assets/plugins/popper/popper.min.js"></script>
 <script src="../assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+
 
 <script>
 $(function(){ 
     $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false
-      })//Page specific script
+        "responsive": true, "lengthChange": false, "autoWidth": false, columnDefs: [{targets: "_all", orderable: false}],
+        "buttons": ["excel", "print", { extend: "pdfHtml5",orientation:"landscape",pageSize:"LEGAL",title:"RCPPE"}]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      //Page specific script
       $('[data-toggle="popover"]').popover()
 });
 </script>

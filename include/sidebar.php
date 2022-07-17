@@ -18,18 +18,6 @@
         </div>
       </div>
 
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-3">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -60,7 +48,7 @@
           </li>
          
           <li class="nav-item">
-            <a href="#" class="nav-link <?= $page == 'general-fund-department.php' || $page == 'general-fund-ics-department.php' ? 'active':' '?>">
+            <a href="#" class="nav-link <?= $page == 'general-fund-department.php' || $page == 'general-fund-ics-department.php' || $page == 'general-fund-account-code.php' || $page == 'general-fund-account-inventory.php'? 'active':' '?>">
             <i class="nav-icon fa-solid fa-cart-flatbed text-white"></i>
               <p>
                 Inventory
