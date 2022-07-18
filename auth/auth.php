@@ -748,4 +748,67 @@ if(isset($_POST['delete_acct'])){
         return false;  
     }
 }
+
+//live search
+if(isset($_POST['input'])){
+    $input = mysqli_real_escape_string($conn,$_POST['input']);
+
+    $sql = "SELECT * FROM item_history WHERE end_user LIKE '%$input%' LIMIT 10 ";
+    $query = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($query)>0){
+
+        echo $return = '<h5 class="mb-3">Search Results:</h5>
+
+
+        <div class="card" >
+          <div class="card-header border-transparent">
+            <h3 class="card-title">10 active property</h3>
+        
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table m-0">
+                <thead>
+                <tr class="bg-dark text-light bg-gradient bg-opacity-150">
+                  <th>P.A.R No.</th>
+                  <th>Item</th>
+                  <th>Department</th>
+                  <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>';
+
+        while($row = mysqli_fetch_assoc($query)){
+            echo $return = ' <tr>
+            <td>'.$row['par_number'].'</td>
+            <td>'.$row['end_user'].'</td>    
+            <td>'.$row['department_code'].'</td>
+            <td><span class="badge badge-success">ACTIVE</span></td>
+          </tr>';
+        }
+        echo $return = '
+        </tbody>
+        </table>
+      </div>
+      <!-- /.table-responsive -->
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer clearfix">
+      <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All</a>
+    </div>
+    <!-- /.card-footer -->
+  </div>
+  <!-- /.card -->
+        ';
+    }else{
+        echo $return = '<h4>No Records</h4>';
+    }
+}
 ?>

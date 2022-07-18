@@ -51,97 +51,18 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <form action="simple-results.html">
+                    <form method="POST">
                         <div class="input-group">
-                            <input type="search" class="form-control form-control-m" id="livesearch" placeholder="Type your keywords here">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-m btn-default">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
+                            <input type="text" class="form-control form-control-m" id="livesearch" placeholder="Type your keywords here" autocomplete="off">
                         </div>
                     </form>
                 </div>
             </div>
 <br>
-            <h5 class="mb-3">Search Results:</h5>
+            <div id="results">
 
 
-            <div class="card" >
-              <div class="card-header border-transparent">
-                <h3 class="card-title">10 active property</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <div class="table-responsive">
-                  <table class="table m-0">
-                    <thead>
-                    <tr class="bg-dark text-light bg-gradient bg-opacity-150">
-                      <th>P.A.R No.</th>
-                      <th>Item</th>
-                      <th>Department</th>
-                      <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>OR9842</td>
-                      <td>Laptop</td>
-                      <td>Accounting</td>
-                      <td><span class="badge badge-success">ACTIVE</span></td>
-                    </tr>
-                    <tr>
-                      <td>OR9842</td>
-                      <td>Laptop</td>
-                      <td>Accounting</td>
-                      <td><span class="badge badge-success">ACTIVE</span></td>
-                    </tr> <tr>
-                      <td>OR9842</td>
-                      <td>Laptop</td>
-                      <td>Accounting</td>
-                      <td><span class="badge badge-success">ACTIVE</span></td>
-                    </tr> <tr>
-                      <td>OR9842</td>
-                      <td>Laptop</td>
-                      <td>Accounting</td>
-                      <td><span class="badge badge-success">ACTIVE</span></td>
-                    </tr> <tr>
-                      <td>OR9842</td>
-                      <td>Laptop</td>
-                      <td>Accounting</td>
-                      <td><span class="badge badge-success">ACTIVE</span></td>
-                    </tr> <tr>
-                      <td>OR9842</td>
-                      <td>Laptop</td>
-                      <td>Accounting</td>
-                      <td><span class="badge badge-success">ACTIVE</span></td>
-                    </tr> <tr>
-                      <td>OR9842</td>
-                      <td>Laptop</td>
-                      <td>Accounting</td>
-                      <td><span class="badge badge-success">ACTIVE</span></td>
-                    </tr>
-                  
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.table-responsive -->
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All</a>
-              </div>
-              <!-- /.card-footer -->
-            </div>
-            <!-- /.card -->
-
-
+            </div> <!-- results -->
 
 
       </div>
@@ -150,10 +71,25 @@
 </div>
   </div>
 
+
+<script src="../assets/plugins/jquery/jquery.min.js"></script><!-- jQuery -->
 <script type="text/javascript">
   $(document).ready(function(){
       $("#livesearch").keyup(function(){
           var input = $(this).val();
+
+          if(input !=""){
+            $.ajax({
+                url:"../auth/auth.php",
+                method:"POST",
+                data:{input:input},
+                success:function(data){
+                  $("#results").html(data);
+                }
+            });
+          }else{
+            $("#results").css("display","none");
+          }
       });
   });
 </script>
