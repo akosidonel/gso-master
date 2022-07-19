@@ -53,43 +53,32 @@
                 <div class="col-md-12">
                     <form method="POST">
                         <div class="input-group">
-                            <input type="text" class="form-control form-control-m" id="livesearch" placeholder="Type your keywords here" autocomplete="off">
+                            <input type="search" class="form-control form-control-m" id="livesearch" placeholder="Type your keywords here" autocomplete="off">
                         </div>
                     </form>
                 </div>
             </div>
-<br>
-            <div id="results">
-
-
-            </div> <!-- results -->
-
-
+          <br>
+            <div id="results"></div> <!-- results -->
       </div>
     </div>
   </div>
 </div>
   </div>
 
-
-<script src="../assets/plugins/jquery/jquery.min.js"></script><!-- jQuery -->
-<script type="text/javascript">
+  <script src="../assets/plugins/jquery/jquery.min.js"></script><!-- jQuery -->
+  <script type="text/javascript">
   $(document).ready(function(){
       $("#livesearch").keyup(function(){
           var input = $(this).val();
-
-          if(input !=""){
             $.ajax({
                 url:"../auth/auth.php",
                 method:"POST",
                 data:{input:input},
                 success:function(data){
-                  $("#results").html(data);
+                    $("#results").html(data);
                 }
             });
-          }else{
-            $("#results").css("display","none");
-          }
       });
   });
 </script>
