@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2022 at 06:42 PM
+-- Generation Time: Jul 20, 2022 at 09:47 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -233,6 +233,23 @@ INSERT INTO `item_history` (`id`, `par_number`, `end_user`, `department_code`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `property_clearance`
+--
+
+CREATE TABLE `property_clearance` (
+  `id` int(11) NOT NULL,
+  `end_user` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
+  `date` timestamp(6) NOT NULL DEFAULT current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `return_item`
 --
 
@@ -315,6 +332,12 @@ ALTER TABLE `item_history`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `property_clearance`
+--
+ALTER TABLE `property_clearance`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `return_item`
 --
 ALTER TABLE `return_item`
@@ -353,6 +376,12 @@ ALTER TABLE `general_fund`
 --
 ALTER TABLE `item_history`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT for table `property_clearance`
+--
+ALTER TABLE `property_clearance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

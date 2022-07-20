@@ -22,7 +22,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="notif" href="#" role="button">
+        <a class="nav-link" data-toggle="modal" data-target="#clearanceModal" href="#" role="button">
           <i class="fas fa-file-edit fa-xl"></i>
         </a>
       </li>
@@ -34,7 +34,7 @@
     </ul>
   </nav>
 
-  <div>
+<div>
   <!-- Modal -->
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -64,7 +64,72 @@
     </div>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="clearanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Property Clearance</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form>
+        	<div class="form-group">
+            <label class="col-form-label">Control No.</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Type</label>
+          <select name="" id="" class="form-control">
+            <option value="">Terminal Leave</option>
+            <option value="">Vacation Leave</option>
+            <option value="">Travel Abroad</option>
+            <option value="">Resignation</option>
+            <option value="">Retirement</option>
+            <option value="">Transfer of Office</option>
+            <option value="">Maternity Leave</option>
+          </select>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Name</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Address</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Position</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Department</label>
+          <select name="" id="" class="form-control">
+            <option value="">Accounting</option>
+            <option value="">General Services Office</option>
+            <option value="">Budget Office</option>
+          </select>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Apply</button>
+      </div>
+    </div>
   </div>
+</div>
+
+ 
+  </div>
+
+
+
+
 
   <script src="../assets/plugins/jquery/jquery.min.js"></script><!-- jQuery -->
   <script type="text/javascript">

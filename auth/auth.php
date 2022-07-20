@@ -753,7 +753,7 @@ if(isset($_POST['delete_acct'])){
 if(isset($_POST['input'])){
     $input = $_POST['input'];
 
-    $sql = "SELECT * FROM item_history WHERE end_user LIKE '{$input}%' and status = '1' LIMIT 20 ";
+    $sql = "SELECT * FROM item_history WHERE end_user LIKE '{$input}%' and status = '1' LIMIT 10 ";
     $query = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($query)>0){

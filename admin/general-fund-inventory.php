@@ -216,6 +216,7 @@ include('../database/databaseConnection.php');
                           <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52"><i class="fas fa-bars" data-toggle="popover" data-content="Actions" data-trigger="hover"></i></button>
                     <div class="dropdown-menu" role="menu">
                       <a href="#" class="dropdown-item editInv" data-toggle="modal" data-target="#editInModal" data-value="<?=$row['gid']; ?>" ><i class="fas fa-edit"></i>&nbsp; Edit</a>
+                      <a href="#" class="dropdown-item transInv" data-toggle="modal" data-target="#transInModal" data-value="<?=$row['gid']; ?>" ><i class="fas fa-sync"></i>&nbsp; Transfer to</a>
                       <a href="#" class="dropdown-item retInv" data-value="<?=$row['par_number']; ?>"><i class="fas fa-box-open"></i>&nbsp; Return item</a>
                       <a href="#" class="dropdown-item arcInv" data-value="<?=$row['gid']; ?>"><i class="fas fa-archive"></i>&nbsp;&nbsp;  Archive</a>
                     </div>
