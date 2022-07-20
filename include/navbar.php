@@ -78,11 +78,12 @@
       </div>
       <div class="modal-body">
       <form>
-        	<div class="form-group">
+        <div class="form-row">
+        <div class="form-group col-md-6">
             <label class="col-form-label">Control No.</label>
             <input type="text" class="form-control" id="name">
           </div>
-          <div class="form-group">
+          <div class="form-group col-md-6">
             <label for="message-text" class="col-form-label">Type</label>
           <select name="" id="" class="form-control">
             <option value="">Terminal Leave</option>
@@ -94,6 +95,7 @@
             <option value="">Maternity Leave</option>
           </select>
           </div>
+        </div>
           <div class="form-group">
             <label class="col-form-label">Name</label>
             <input type="text" class="form-control" id="name">
