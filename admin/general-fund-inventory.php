@@ -173,6 +173,63 @@ include('../database/databaseConnection.php');
     </div>
 
 
+    <!-- Modal -->
+<div class="modal fade" id="transInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Transfer of Property</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form>
+      <h6>Current user</h5>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="col-form-label">P.A.R No.</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="message-text" class="col-form-label">Item</label>
+          <input type="text" class="form-control">
+          </div>
+        </div>
+          <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="col-form-label">End user</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="message-text" class="col-form-label">Department</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          </div>
+          <hr>
+          <h6  class="mt-4">Transfer to</h5>
+          <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="col-form-label">End user</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="message-text" class="col-form-label">Department</label>
+            <select name="" id="" class="form-control">
+              <option value="">Select..</option>
+            </select>
+          </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary">Print and Transfer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
         <div class="card-body">
         <table id="example1" class="table table-bordered table-hover">
