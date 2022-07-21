@@ -184,7 +184,7 @@ include('../database/databaseConnection.php');
         </button>
       </div>
       <div class="modal-body">
-      <form>
+      <form method = "POST" id="transfer" enctype="multipart/form-data">
       <h6>Current user</h5>
         <div class="form-row">
         <input type="hidden" id="tid" name="tid" >
@@ -461,9 +461,9 @@ $(document).on('click','.arcInv', function(e){
 $(document).on('click','.transInv',function(e){
     var propertyTransfer = $(this).data("value");
       $.ajax({
-        type: 'GET',
-        url:'../auth/auth.php?propertyTransfer='+ propertyTransfer,
-        success: function(response){
+        type: "GET",
+        url:"../auth/auth.php?propertyTransfer="+ propertyTransfer,
+        success:function(response){
 
           var res = jQuery.parseJSON(response);
 

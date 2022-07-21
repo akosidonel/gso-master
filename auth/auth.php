@@ -418,16 +418,41 @@ if(isset($_POST['update_inventory'])){
     }
 
 }
-
+ 
+//fetch property transfer detail
 if(isset($_POST['propertyTransfer'])){
-    $ptid = mysqli_real_escape_string($conn,$_POST['propertyTransfer']);
 
-    $sql = "SELECT general_fund.id,general_fund.item,general_fund.par_number,general_fund.purchase_order,general_fund.obr_number,general_fund.supplier,general_fund.unit_value,
-    item_history.par_number,item_history.end_user,item_history.department_code,item_history.status,
+    $ptid = mysqli_real_escape_string($conn, $_POST['propertyTransfer']);
+
+    $sql ="SELECT general_fund.id,general_fund.item,general_fund.par_number,
+    item_history.par_number,item_history.end_user,item_history.department_code,
     departments.department_code,departments.department_name
     FROM general_fund JOIN item_history ON item_history.par_number = general_fund.par_number
     JOIN departments ON item_history.department_code = departments.department_code
-    WHERE general_fund.id = '$invid' LIMIT 1"; 
+    WHERE general_fund.id = '$pid' LIMIT 1";
+    $query = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($query) == 1){
+
+        $returnProperty = mysqli_fetch_array($query);
+
+        $res = [
+            'status' => 200,
+            'message' => 'Property id fetch successfully',
+            'data' => $returnProperty
+        ];
+        echo json_encode($res);
+        return false; 
+
+    }else{
+        $res = [
+            'status' => 422,
+            'message' => 'No property id found'
+        ];
+        echo json_encode($res);
+        return false; 
+    }
+
 }
 
 //add property
