@@ -187,23 +187,24 @@ include('../database/databaseConnection.php');
       <form>
       <h6>Current user</h5>
         <div class="form-row">
+        <input type="hidden" id="tid" name="tid" >
         <div class="form-group col-md-6">
             <label class="col-form-label">P.A.R No.</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="par_num" name="par_num">
           </div>
           <div class="form-group col-md-6">
             <label for="message-text" class="col-form-label">Item</label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" id="citem" name="citem">
           </div>
         </div>
           <div class="form-row">
           <div class="form-group col-md-6">
             <label class="col-form-label">End user</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="cuser" name="cuser">
           </div>
           <div class="form-group col-md-6">
             <label for="message-text" class="col-form-label">Department</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="cdept" name="cdept">
           </div>
           </div>
           <hr>
@@ -211,11 +212,11 @@ include('../database/databaseConnection.php');
           <div class="form-row">
           <div class="form-group col-md-6">
             <label class="col-form-label">End user</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="newuser" name="newuser">
           </div>
           <div class="form-group col-md-6">
             <label for="message-text" class="col-form-label">Department</label>
-            <select name="" id="" class="form-control">
+            <select name="newdept" id="newdept" class="form-control">
               <option value="">Select..</option>
             </select>
           </div>
@@ -390,7 +391,7 @@ $(function(){
       success: function(response){
         var res = jQuery.parseJSON(response);
 
-        if(res.status == 422){
+        if(res.status == 500){
               $('#errorMessage').text(res.message);
             }else if(res.status == 200 ){
               $('#editInModal').modal('hide');
@@ -455,6 +456,30 @@ $(document).on('click','.arcInv', function(e){
           }
     });
   }
+});
+
+$(document).on('click','.transInv',function(e){
+    var propertyTransfer = $(this).data("value");
+      $.ajax({
+        type: 'GET',
+        url:'../auth/auth.php?propertyTransfer='+ propertyTransfer,
+        success: function(response){
+
+          var res = jQuery.parseJSON(response);
+
+          if(res.status==422){
+            alert(res.message);
+          }else if(res.status == 200){
+            $('#tid').val(res.data.id);
+            $('#par_num').val(res.data.par_number);
+            $('#citem').val(res.data.item);
+            $('#cuser').val(res.data.end_user);
+            $('#cdept').val(res.data.department_name);
+            $('#transInModal').modal('show');
+          }
+        }
+      });
+
 });
 
 </script>

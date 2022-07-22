@@ -264,7 +264,7 @@ if(isset($_POST['delete_dept'])){
     }
 }
 
-//return items
+//return property
 if(isset($_POST['return_inv'])){
 
     $rinv = mysqli_real_escape_string($conn, $_POST['retInv']);
@@ -316,7 +316,7 @@ if(isset($_POST['archive_inv'])){
 
 }
 
-//fetch return_item details
+//fetch return_property details
 if(isset($_GET['retid'])){
 
     $retid = mysqli_real_escape_string($conn, $_GET['retid']);
@@ -347,8 +347,6 @@ if(isset($_GET['retid'])){
     
 
 }
-
-
 
 //fetch property details
 if(isset($_GET['editinv'])){
@@ -389,7 +387,7 @@ if(isset($_GET['editinv'])){
 
 
 
-//update item
+//update property
 if(isset($_POST['update_inventory'])){
     $InvId = mysqli_real_escape_string($conn, $_POST['InvId']);
     $date = mysqli_real_escape_string($conn, $_POST['date']);
@@ -420,7 +418,19 @@ if(isset($_POST['update_inventory'])){
     }
 
 }
-//add item
+
+if(isset($_POST['propertyTransfer'])){
+    $ptid = mysqli_real_escape_string($conn,$_POST['propertyTransfer']);
+
+    $sql = "SELECT general_fund.id,general_fund.item,general_fund.par_number,general_fund.purchase_order,general_fund.obr_number,general_fund.supplier,general_fund.unit_value,
+    item_history.par_number,item_history.end_user,item_history.department_code,item_history.status,
+    departments.department_code,departments.department_name
+    FROM general_fund JOIN item_history ON item_history.par_number = general_fund.par_number
+    JOIN departments ON item_history.department_code = departments.department_code
+    WHERE general_fund.id = '$invid' LIMIT 1"; 
+}
+
+//add property
 if(isset($_POST['save_item'])){
     $pr = mysqli_real_escape_string($conn, $_POST['property_number']);
     $datea = mysqli_real_escape_string($conn, $_POST['datea']);
@@ -460,7 +470,7 @@ if(isset($_POST['save_item'])){
 
 }
 
-//insert and restore item
+//insert and restore property
 if(isset($_POST['save_retitem'])){
     $rid = mysqli_real_escape_string($conn, $_POST['rid']);
     $par = mysqli_real_escape_string($conn, $_POST['par']);
