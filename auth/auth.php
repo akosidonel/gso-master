@@ -429,7 +429,7 @@ if(isset($_POST['propertyTransfer'])){
     departments.department_code,departments.department_name
     FROM general_fund JOIN item_history ON item_history.par_number = general_fund.par_number
     JOIN departments ON item_history.department_code = departments.department_code
-    WHERE general_fund.id = '$pid' LIMIT 1";
+    WHERE general_fund.id = '$ptid' LIMIT 1";
     $query = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($query) == 1){
