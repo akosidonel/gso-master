@@ -174,7 +174,7 @@ include('../database/databaseConnection.php');
 
 
     <!-- Modal -->
-<div class="modal fade" id="transInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="transInModal" data-backdrop="static" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -184,47 +184,55 @@ include('../database/databaseConnection.php');
         </button>
       </div>
       <div class="modal-body">
-      <form method = "POST" id="transfer" enctype="multipart/form-data">
-      <h6>Current user</h5>
+      <form method ="POST" id="transfer"  enctype="multipart/form-data">
+      <h6 class="text-success">Current user</h5>
         <div class="form-row">
         <input type="hidden" id="tid" name="tid" >
         <div class="form-group col-md-6">
             <label class="col-form-label">P.A.R No.</label>
-            <input type="text" class="form-control" id="par_num" name="par_num">
+            <input type="text" class="form-control" id="par_num" name="par_num" readonly>
           </div>
           <div class="form-group col-md-6">
             <label for="message-text" class="col-form-label">Item</label>
-          <input type="text" class="form-control" id="citem" name="citem">
+          <input type="text" class="form-control" id="citem" name="citem" readonly>
           </div>
         </div>
           <div class="form-row">
           <div class="form-group col-md-6">
             <label class="col-form-label">End user</label>
-            <input type="text" class="form-control" id="cuser" name="cuser">
+            <input type="text" class="form-control" id="cuser" name="cuser" readonly>
           </div>
           <div class="form-group col-md-6">
             <label for="message-text" class="col-form-label">Department</label>
-            <input type="text" class="form-control" id="cdept" name="cdept">
+            <input type="text" class="form-control" id="cdept" name="cdept" readonly>
           </div>
           </div>
           <hr>
-          <h6  class="mt-4">Transfer to</h5>
+          <h6  class="text-success">Transfer to</h6>
           <div class="form-row">
           <div class="form-group col-md-6">
             <label class="col-form-label">End user</label>
             <input type="text" class="form-control" id="newuser" name="newuser">
           </div>
           <div class="form-group col-md-6">
-            <label for="message-text" class="col-form-label">Department</label>
-            <select name="newdept" id="newdept" class="form-control">
-              <option value="">Select..</option>
-            </select>
+                    <label class="col-form-label" >Department</label>
+                 <select name="newdept" id="newdept" class="form-control">
+                <option value="">-SELECT-</option>
+                 <?php 
+                        $sql = "SELECT * FROM departments";
+                        $query = mysqli_query($conn,$sql);
+                        if(mysqli_num_rows($query) > 0){
+                        foreach($query as $result){?> 
+                      <option value="<?php echo htmlentities($result['department_code']);?>"><?php echo htmlentities($result['department_name']);?></option>
+                      <?php }} ?>
+                 </select>
+                  </div>
           </div>
-          </div>
-        </form>
+       
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary">Print and Transfer</button>
+        <button type="submit" class="btn btn-secondary">Print and Transfer</button>
+        </form>
       </div>
     </div>
   </div>
@@ -389,6 +397,7 @@ $(function(){
       processData: false,
       contentType: false,
       success: function(response){
+
         var res = jQuery.parseJSON(response);
 
         if(res.status == 500){
@@ -401,6 +410,37 @@ $(function(){
       }
     }); 
   });
+
+
+  $(document).on('submit','#transfer',function(e){
+    e.preventDefault();
+
+    var fd = new FormData(this);
+    fd.append("btn_transfer", true);
+
+    $.ajax({
+      type: "POST",
+      url: "../auth/auth.php",
+      data: fd,
+      processData: false,
+      contentType: false,
+      success:  function(response){
+
+        var res = jQuery.parseJSON(response);
+
+        if(res.status == 500){
+              $('#errorMessage').text(res.message);
+            }else if(res.status == 200 ){
+              $('#transInModal').modal('hide');
+              $('#transfer')[0].reset();
+              location.reload();
+        }
+
+      }
+    });
+});
+
+
 
 $(document).on('click','.retInv', function(e){
   e.preventDefault();
@@ -449,20 +489,21 @@ $(document).on('click','.arcInv', function(e){
               if(res.status == 500){
                 alert(res.message);
               }else{
-                alert(res.message);
-
-                location.reload();
+                toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'),
+                location.reload()
               }
           }
     });
   }
 });
 
-$(document).on('click','.transInv',function(e){
+$(document).on('click','.transInv', function(){
+
     var propertyTransfer = $(this).data("value");
+
       $.ajax({
-        type: "GET",
-        url:"../auth/auth.php?propertyTransfer="+ propertyTransfer,
+        type: 'GET',
+        url:'../auth/auth.php?propertyTransfer='+ propertyTransfer,
         success:function(response){
 
           var res = jQuery.parseJSON(response);
@@ -482,11 +523,7 @@ $(document).on('click','.transInv',function(e){
 
 });
 
-</script>
-<script>
-  
-
-        $(document).on('click','.viewProper', function (e) { 
+$(document).on('click','.viewProper', function (e) { 
           e.preventDefault();
          
           
@@ -508,5 +545,4 @@ $(document).on('click','.transInv',function(e){
             
         });
 
-    
 </script>

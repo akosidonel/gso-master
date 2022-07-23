@@ -385,7 +385,36 @@ if(isset($_GET['editinv'])){
     
 }
 
+//transfer property
+if(isset($_POST{'btn_transfer'})){
 
+    $par = mysqli_real_escape_string($conn,$_POST['par_num']);
+    $newuser = mysqli_real_escape_string($conn,$_POST['newuser']);
+    $newdeptcode = mysqli_real_escape_string($conn,$_POST['newdept']);
+    $status1= 0;
+    $status2= 1;
+
+    $sql = "UPDATE item_history SET status = '$status1' WHERE par_number = '$par'; 
+    INSERT INTO item_history (par_number,end_user,department_code,status) VALUES ('$par','$newuser','$newdeptcode','$status2');";
+    $query = mysqli_multi_query($conn, $sql);
+
+    if($query){
+        $res = [
+            'status' => 200,
+            'message' => 'Transffered Successfully!'
+        ];
+        echo json_encode($res);
+        return false;  
+    }else{
+        $res = [
+            'status' => 500,
+            'message' => 'opps..something went wrong..'
+        ];
+        echo json_encode($res);
+        return false;  
+    }
+
+}
 
 //update property
 if(isset($_POST['update_inventory'])){
@@ -420,9 +449,9 @@ if(isset($_POST['update_inventory'])){
 }
  
 //fetch property transfer detail
-if(isset($_POST['propertyTransfer'])){
+if(isset($_GET['propertyTransfer'])){
 
-    $ptid = mysqli_real_escape_string($conn, $_POST['propertyTransfer']);
+    $ptid = mysqli_real_escape_string($conn, $_GET['propertyTransfer']);
 
     $sql ="SELECT general_fund.id,general_fund.item,general_fund.par_number,
     item_history.par_number,item_history.end_user,item_history.department_code,
