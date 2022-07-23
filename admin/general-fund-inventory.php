@@ -433,7 +433,7 @@ $(function(){
             }else if(res.status == 200 ){
               $('#transInModal').modal('hide');
               $('#transfer')[0].reset();
-              location.reload();
+              location.reload();     
         }
 
       }
