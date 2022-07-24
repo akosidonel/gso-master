@@ -283,7 +283,7 @@ include('../database/databaseConnection.php');
                     <div class="dropdown-menu" role="menu">
                       <a href="#" class="dropdown-item editInv" data-toggle="modal" data-target="#editInModal" data-value="<?=$row['gid']; ?>" ><i class="fas fa-edit"></i>&nbsp; Edit</a>
                       <a href="#" class="dropdown-item transInv" data-toggle="modal" data-target="#transInModal" data-value="<?=$row['gid']; ?>" ><i class="fas fa-sync"></i>&nbsp; Transfer to</a>
-                      <a href="#" class="dropdown-item retInv" data-value="<?=$row['par_number']; ?>"><i class="fas fa-box-open"></i>&nbsp; Return item</a>
+                      <a href="#" class="dropdown-item retInv" data-value="<?=$row['par_number']; ?>"><i class="fas fa-box-open"></i>&nbsp; Return to stock</a>
                       <a href="#" class="dropdown-item arcInv" data-value="<?=$row['gid']; ?>"><i class="fas fa-archive"></i>&nbsp;&nbsp;  Archive</a>
                     </div>
                   </div>
@@ -349,6 +349,36 @@ $(function(){
         "buttons": ["copy", "excel", "print", { extend: "pdfHtml5",orientation:"landscape",pageSize:"LEGAL",title:"RCPPE"}]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('[data-toggle="popover"]').popover();
+
+      $('#transfer').validate({
+          rules:{
+            newuser:{
+              required:true
+            },
+            newdept:{
+              required:true
+            }
+          },
+          messages:{
+            newuser:{
+              required: "Please enter end user"
+            },
+            newdept:{
+              required: "Please select department"
+            }
+          },
+          errorElement: 'span',
+            errorPlacement: function (error, element) {
+              error.addClass('invalid-feedback');
+              element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+              $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+              $(element).removeClass('is-invalid');
+            }
+      });
 });
 
 </script>
@@ -401,9 +431,18 @@ $(function(){
         var res = jQuery.parseJSON(response);
 
         if(res.status == 200){
+          Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Property Updated Successfully',
+              showConfirmButton: false,
+              timer: 2000
+            }).then(()=>{
               $('#editInModal').modal('hide');
               $('#inventory_update')[0].reset();
               location.reload();
+            })
+             
         }
       }
     }); 
