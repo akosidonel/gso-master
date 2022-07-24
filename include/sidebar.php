@@ -86,7 +86,7 @@
                   <li class="nav-item">
                     <a href="../admin/return-item.php" class="nav-link <?= $page == 'return-item.php'? 'active':' '?>">
                       <i class="far fa-folder-open nav-icon"></i>
-                      <p>Return Item</p>
+                      <p>Return to stock</p>
                     </a>
                   </li>
                 </ul>   
@@ -119,7 +119,7 @@
                   <li class="nav-item">
                     <a href="#" class="nav-link">
                       <i class="far fa-folder-open nav-icon"></i>
-                      <p>Return Item</p>
+                      <p>Return to stock</p>
                     </a>
                   </li>
                 </ul>   

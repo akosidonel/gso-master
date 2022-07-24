@@ -441,8 +441,7 @@ $(function(){
               $('#editInModal').modal('hide');
               $('#inventory_update')[0].reset();
               location.reload();
-            })
-             
+          });  
         }
       }
     }); 

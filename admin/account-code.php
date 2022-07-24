@@ -220,7 +220,7 @@ $(function(){
       })//Page specific script
       $('[data-toggle="popover"]').popover()
 
-      $('#accnt_form').validate({
+      $('#acct_form').validate({
           rules:{
             acctname:{
               required:true
@@ -234,6 +234,35 @@ $(function(){
               required: "Please enter account titles"
             },
             acctcode:{
+              required: "Please enter account code"
+            }
+          },
+          errorElement: 'span',
+            errorPlacement: function (error, element) {
+              error.addClass('invalid-feedback');
+              element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+              $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+              $(element).removeClass('is-invalid');
+            }
+      });
+      $('#acct_update').validate({
+          rules:{
+            eacctname:{
+              required:true
+            },
+            eacctcode:{
+              required:true
+            }
+          },
+          messages:{
+            eacctname:{
+              required: "Please enter account titles"
+            },
+            eacctcode:{
               required: "Please enter account code"
             }
           },
@@ -314,13 +343,19 @@ $(function(){
         success:function(response){
           var res = jQuery.parseJSON(response);
 
-          if(res.status == 422){
-              $('#errorMessage').text(res.message);
-            }else if(res.status == 200 ){
+          if(res.status == 200){
+              Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Account Code Updated Successfully',
+                  showConfirmButton: false,
+                  timer: 2000
+            }).then(()=>{
               $('#editAccntModal').modal('hide');
               $('#acct_update')[0].reset();
-              $('#example1').load(location.href + " #example1");
-            }
+              location.reload();
+          });  
+        }
         }
       });
    });
@@ -338,12 +373,20 @@ $(function(){
           },
           success:function(response){
             var res = jQuery.parseJSON(response);
-            if (res.status == 500){
-              alert(res.message);
-          }else{
-                alert(res.message);
+            if (res.status == 200){
+              
+              Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Account Code Deleted!',
+                  showConfirmButton: false,
+                  timer: 2000
+            }).then(()=>{
+             
+              location.reload();
+          }); 
 
-                $('#example1').load(location.href + " #example1");
+
               }
             }
         });
