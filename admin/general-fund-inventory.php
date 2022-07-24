@@ -400,9 +400,7 @@ $(function(){
 
         var res = jQuery.parseJSON(response);
 
-        if(res.status == 500){
-              $('#errorMessage').text(res.message);
-            }else if(res.status == 200 ){
+        if(res.status == 200){
               $('#editInModal').modal('hide');
               $('#inventory_update')[0].reset();
               location.reload();
@@ -428,12 +426,25 @@ $(function(){
 
         var res = jQuery.parseJSON(response);
 
-        if(res.status == 500){
-              $('#errorMessage').text(res.message);
-            }else if(res.status == 200 ){
-              $('#transInModal').modal('hide');
-              $('#transfer')[0].reset();
-              location.reload();     
+        if(res.status == 200){
+          Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Property Transferred Successfully',
+              showConfirmButton: false,
+              timer: 1500
+            });
+						setTimeout(function(){
+							var nw = window.open('printMR.php?tid='+res.tid+'&pid='+res.pid,"_blank","width=1000,height=800")
+							setTimeout(function(){
+								nw.print()
+								setTimeout(function(){
+									nw.close()
+									location.reload()
+								},500)
+							},500)
+						},500)
+              
         }
 
       }
@@ -489,7 +500,6 @@ $(document).on('click','.arcInv', function(e){
               if(res.status == 500){
                 alert(res.message);
               }else{
-                toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'),
                 location.reload()
               }
           }

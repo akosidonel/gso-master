@@ -15,6 +15,7 @@ include('../database/databaseConnection.php');
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"><!-- Google Font: Montserrat -->
   <link rel="stylesheet" href="../assets/plugins/fontawesome-free/css/all.min.css">  <!-- Font Awesome -->
   <link rel="stylesheet" href="../assets/dist/css/adminlte.min.css">  <!-- Theme style -->
+  <link rel="stylesheet" href="../assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"> <!-- SweetAlert2 -->
   <link rel="stylesheet" href="../assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"><!-- DataTables -->
   <link rel="stylesheet" href="../assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css"><!-- DataTables -->
   <link rel="stylesheet" href="../assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
@@ -235,6 +236,36 @@ $(function(){
         "responsive": true, "lengthChange": false, "autoWidth": false
       })//Page specific script
       $('[data-toggle="popover"]').popover()
+
+      $('#item_form').validate({
+          rules:{
+            deptname:{
+              required:true
+            },
+            deptcode:{
+              required:true
+            }
+          },
+          messages:{
+            deptname:{
+              required: "Please enter department name"
+            },
+            deptcode:{
+              required: "Please enter department code"
+            }
+          },
+          errorElement: 'span',
+            errorPlacement: function (error, element) {
+              error.addClass('invalid-feedback');
+              element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+              $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+              $(element).removeClass('is-invalid');
+            }
+      });
 });
 </script>
  <script>
