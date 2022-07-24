@@ -1,6 +1,3 @@
-<?php
-    
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,51 +11,27 @@
   <link rel="stylesheet" href="../assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../assets/dist/css/adminlte.min.css">
-</head>
+</head> 
 <body>
 <div class="wrapper">
   <!-- Main content -->
   <section class="invoice">
     <!-- title row -->
     <div class="row">
-      <div class="col-12">
-        <h2 class="page-header">
-          <i class="fas fa-globe"></i> AdminLTE, Inc.
-          <small class="float-right">Date: 2/10/2014</small>
-        </h2>
+      <div class="col-12 mb-5">
+        <h2 class="page-header text-center"><b>PROPERTY TRANSFER REPORT</b></h2>
       </div>
       <!-- /.col -->
     </div>
     <!-- info row -->
     <div class="row invoice-info">
-      <div class="col-sm-4 invoice-col">
-        From
+      <div class="col-sm-8 invoice-col">
         <address>
-          <strong>Admin, Inc.</strong><br>
-          795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          Phone: (804) 123-5432<br>
-          Email: info@almasaeedstudio.com
+          <strong>Entity Name: </strong><br>
         </address>
       </div>
-      <!-- /.col -->
       <div class="col-sm-4 invoice-col">
-        To
-        <address>
-          <strong>John Doe</strong><br>
-          795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          Phone: (555) 539-1037<br>
-          Email: john.doe@example.com
-        </address>
-      </div>
-      <!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        <b>Invoice #007612</b><br>
-        <br>
-        <b>Order ID:</b> 4F3S8J<br>
-        <b>Payment Due:</b> 2/22/2014<br>
-        <b>Account:</b> 968-34567
+        <b>Fund Cluster: General Fund</b><br>
       </div>
       <!-- /.col -->
     </div>
@@ -67,89 +40,54 @@
     <!-- Table row -->
     <div class="row">
       <div class="col-12 table-responsive">
-        <table class="table table-striped">
+        <table class="table table-bordered">
+        
           <thead>
-          <tr>
-            <th>Qty</th>
-            <th>Product</th>
-            <th>Serial #</th>
-            <th>Description</th>
-            <th>Subtotal</th>
-          </tr>
+            <tr>
+              <th colspan="3">From Accountable officer/Agency/Fund Cluster:  <b>MARIO L. JIMENEZ</b></th>
+              <th colspan="2">Date : </th>
+            </tr>
+            <tr>
+              <th colspan="3">To Accountable officer/Agency/Fund Cluster: </th>
+              <th colspan="2">PTR No. : </th>
+            </tr>
+            <tr>
+              <th colspan="5">Transfer Type : <b>Reasignment</b></th>
+            </tr>
+            <tr>
+              <th class="">Date Aquired</th>
+              <th class="">Property No.</th>
+              <th class="text-center">Description</th>
+              <th class="">Amount</th>
+              <th class="" class="text-center">Condition of PPE</th>
+            </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>1</td>
-            <td>Call of Duty</td>
-            <td>455-981-221</td>
-            <td>El snort testosterone trophy driving gloves handsome</td>
-            <td>$64.50</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Need for Speed IV</td>
-            <td>247-925-726</td>
-            <td>Wes Anderson umami biodiesel</td>
-            <td>$50.00</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Monsters DVD</td>
-            <td>735-845-642</td>
-            <td>Terry Richardson helvetica tousled street art master</td>
-            <td>$10.70</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Grown Ups Blue Ray</td>
-            <td>422-568-642</td>
-            <td>Tousled lomo letterpress</td>
-            <td>$25.99</td>
-          </tr>
+            <tr>
+              <th scope="row">2018</th>
+              <td>2018-05-030-0001-41</td>
+              <td>i5-8400 8gb 1TB/2GB 16 L Tower + Monitor Bundle Processor 
+                (9M Cache up to 4.00 GHz) 8gb DDR4 2666 MHz UDIMM 1TB 3.5 inch 7200rpm  8x DVD-Writer 9.0mm slim 2GB NVIDIA GeForce GT1030 Warranty  
+                HP V194 Monitor SN: 3CQ9101MC3  Model UPS-650 SN: E1905010601</td>
+              <td>135,000</td>
+              <td>Serviceable</td>
+            </tr>
+            <tr>
+              <th scope="row">2019</th>
+              <td>2019-05-030-0001-41</td>
+              <td>i7-11400 8gb 1TB/2GB 16 L Tower + Monitor Bundle Processor 
+                (9M Cache up to 4.00 GHz) 8gb DDR4 2666 MHz UDIMM 1TB 3.5 inch 7200rpm  8x DVD-Writer 9.0mm slim 2GB NVIDIA GeForce GT1030 Warranty  
+                HP V194 Monitor SN: 3CQ9101MC3  Model UPS-650 SN: E1905010601</td>
+              <td>185,000</td>
+              <td>Serviceable</td>
+            </tr>
+            </tr>
           </tbody>
         </table>
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
-
-    <div class="row">
-      <!-- accepted payments column -->
-      <div class="col-6">
-        <p class="lead">Payment Methods:</p>
-        <img src="../../dist/img/credit/visa.png" alt="Visa">
-        <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-        <img src="../../dist/img/credit/american-express.png" alt="American Express">
-        <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
-
-        <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-          Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr
-          jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-        </p>
-      </div>
-      <!-- /.col -->
-      <div class="col-6">
-        <p class="lead">Amount Due 2/22/2014</p>
-
-        <div class="table-responsive">
-          <table class="table">
-            <tr>
-              <th style="width:50%">Subtotal:</th>
-              <td>$250.30</td>
-            </tr>
-            <tr>
-              <th>Tax (9.3%)</th>
-              <td>$10.34</td>
-            </tr>
-            <tr>
-              <th>Shipping:</th>
-              <td>$5.80</td>
-            </tr>
-            <tr>
-              <th>Total:</th>
-              <td>$265.24</td>
-            </tr>
-          </table>
+        <div class="row">
+          <div class="col-md-6">
+              <h4>Reason For Transfer : </h4>
+          </div>
         </div>
       </div>
       <!-- /.col -->

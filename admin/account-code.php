@@ -295,12 +295,18 @@ $(function(){
       success:function(response){
         var res = jQuery.parseJSON(response);
 
-        if(res.status == 422){
-          $('#errorMessage').text(res.message);
-        }else if(res.status == 200){
-          $('#addAccntModal').modal('hide');
-          $('#acct_form')[0].reset();
-          $('#example1').load(location.href + " #example1");
+        if(res.status == 200){
+          Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Account Code Added Successfully',
+                  showConfirmButton: false,
+                  timer: 2000
+            }).then(()=>{
+              $('#addAccntModal').modal('hide');
+              $('#acct_form')[0].reset();
+              location.reload();
+          });  
         }
       }
     });
